@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
+import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_valorant_agents/ui/common/app_colors.dart';
 import 'package:flutter_valorant_agents/ui/common/ui_helpers.dart';
@@ -39,6 +40,24 @@ class HomeView extends StackedView<HomeViewModel> {
                           viewModel.changeLanguage(context, Locales.tr),
                       child: const Text(
                         LocaleKeys.appName,
+                        style: TextStyle(color: Colors.white),
+                      ).tr(),
+                    ),
+                    MaterialButton(
+                      color: Colors.black,
+                      onPressed: () =>
+                          viewModel.updateThemeMode(AppThemeMode.light),
+                      child: const Text(
+                        'Light tema',
+                        style: TextStyle(color: Colors.white),
+                      ).tr(),
+                    ),
+                    MaterialButton(
+                      color: Colors.black,
+                      onPressed: () =>
+                          viewModel.updateThemeMode(AppThemeMode.dark),
+                      child: const Text(
+                        'Dark tema',
                         style: TextStyle(color: Colors.white),
                       ).tr(),
                     ),

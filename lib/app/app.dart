@@ -4,7 +4,8 @@ import 'package:flutter_valorant_agents/ui/views/home/home_view.dart';
 import 'package:flutter_valorant_agents/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:flutter_valorant_agents/services/localization_service.dart';
+import 'package:flutter_valorant_agents/services/app/localization_service.dart';
+import 'package:flutter_valorant_agents/services/app/theme_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -18,6 +19,7 @@ import 'package:flutter_valorant_agents/services/localization_service.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: LocalizationService),
+    LazySingleton(classType: ThemeService),
 // @stacked-service
   ],
   bottomsheets: [
