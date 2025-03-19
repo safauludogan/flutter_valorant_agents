@@ -13,6 +13,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/app/localization_service.dart';
 import '../services/app/theme_service.dart';
+import '../services/config/environment_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -30,4 +31,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => LocalizationService());
   locator.registerLazySingleton(() => ThemeService());
+  locator.registerLazySingleton(() => EnvironmentService());
 }

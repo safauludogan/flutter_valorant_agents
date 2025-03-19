@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.dialogs.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
+import 'package:flutter_valorant_agents/services/config/environment_service.dart';
 
 @immutable
 final class ApplicationInitialize {
+  static final _environmentService = locator<EnvironmentService>();
   Future<void> setup() async {
     WidgetsFlutterBinding.ensureInitialized();
 
@@ -22,5 +24,11 @@ final class ApplicationInitialize {
 
     /// Use portrait mode for app
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+    _productEnvironment();
+  }
+
+  static void _productEnvironment() {
+    _environmentService.general();
   }
 }

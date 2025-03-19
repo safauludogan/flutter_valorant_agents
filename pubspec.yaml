@@ -15,6 +15,10 @@ dependencies:
   # Config
   easy_localization: ^3.0.7+1
 
+
+  gen:
+    path: module/gen
+
 dev_dependencies:
   build_runner: ^2.4.5
   flutter_test:
