@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
-import 'package:flutter_valorant_agents/services/config/environment_service.dart';
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_valorant_agents/ui/common/app_colors.dart';
@@ -13,12 +11,6 @@ import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
   const HomeView({Key? key}) : super(key: key);
- static final _environmentService = locator<EnvironmentService>();
-  @override
-  void onViewModelReady(HomeViewModel viewModel) {
-    super.onViewModelReady(viewModel);
-    print(_environmentService.baseUrl);
-  }
 
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {

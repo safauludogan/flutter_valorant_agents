@@ -6,7 +6,6 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:flutter_valorant_agents/services/app/localization_service.dart';
 import 'package:flutter_valorant_agents/services/app/theme_service.dart';
-import 'package:flutter_valorant_agents/services/config/environment_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -21,7 +20,6 @@ import 'package:flutter_valorant_agents/services/config/environment_service.dart
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: LocalizationService),
     LazySingleton(classType: ThemeService),
-    LazySingleton(classType: EnvironmentService),
 // @stacked-service
   ],
   bottomsheets: [

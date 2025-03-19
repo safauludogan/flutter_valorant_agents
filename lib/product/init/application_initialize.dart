@@ -4,11 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.dialogs.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
-import 'package:flutter_valorant_agents/services/config/environment_service.dart';
+import 'package:flutter_valorant_agents/product/config/app_environment.dart';
 
 @immutable
 final class ApplicationInitialize {
-  static final _environmentService = locator<EnvironmentService>();
   Future<void> setup() async {
     WidgetsFlutterBinding.ensureInitialized();
 
@@ -29,6 +28,7 @@ final class ApplicationInitialize {
   }
 
   static void _productEnvironment() {
-    _environmentService.general();
+    /// Setup application environment
+    AppEnvironment.general();
   }
 }
