@@ -19,6 +19,9 @@ dependencies:
   dio_nexus: ^0.3.2
   dio: ^5.8.0+1
 
+  # UI
+  flutter_screenutil: ^5.9.3
+
   gen:
     path: module/gen
 
