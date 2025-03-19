@@ -1,3 +1,4 @@
+import 'package:flutter_valorant_agents/product/network/product_network_manager.dart';
 import 'package:flutter_valorant_agents/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:flutter_valorant_agents/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.dart';
@@ -20,6 +21,7 @@ import 'package:flutter_valorant_agents/services/app/theme_service.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: LocalizationService),
     LazySingleton(classType: ThemeService),
+    LazySingleton(classType: ProductNetworkManager),
 // @stacked-service
   ],
   bottomsheets: [

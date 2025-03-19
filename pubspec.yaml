@@ -15,6 +15,9 @@ dependencies:
   # Config
   easy_localization: ^3.0.7+1
 
+  # Network
+  dio_nexus: ^0.3.2
+  dio: ^5.8.0+1
 
   gen:
     path: module/gen
@@ -25,8 +28,14 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   mockito: ^5.4.1
-  stacked_generator: ^1.3.3
+  stacked_generator: ^1.6.1
   golden_toolkit: ^0.15.0
+
+dependency_overrides:
+  source_gen: ^1.2.7
+  logger: ^2.0.0
+  dart_style: ^2.3.4
+  analyzer: ^5.13.0
 
 flutter:
   uses-material-design: true
