@@ -12,8 +12,6 @@ import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.d
 import 'package:flutter_valorant_agents/services/app/localization_service.dart'
     as _i7;
 import 'package:flutter_valorant_agents/services/app/theme_service.dart' as _i9;
-import 'package:flutter_valorant_agents/services/config/environment_service.dart'
-    as _i11;
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i4;
@@ -857,9 +855,3 @@ class MockThemeService extends _i1.Mock implements _i9.ThemeService {
         returnValueForMissingStub: null,
       );
 }
-
-/// A class which mocks [EnvironmentService].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockEnvironmentService extends _i1.Mock
-    implements _i11.EnvironmentService {}
