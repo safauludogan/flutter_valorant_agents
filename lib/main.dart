@@ -1,16 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
-import 'package:flutter_valorant_agents/app/app.dialogs.dart';
-import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/app/app.router.dart';
+import 'package:flutter_valorant_agents/product/init/application_initialize.dart';
+import 'package:flutter_valorant_agents/product/init/product_localization.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await setupLocator();
-  setupDialogUi();
-  setupBottomSheetUi();
-  runApp(const MainApp());
+  await ApplicationInitialize().setup();
+
+  runApp(ProductLocalization(child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -23,6 +21,9 @@ class MainApp extends StatelessWidget {
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [StackedService.routeObserver],
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
     );
   }
 }

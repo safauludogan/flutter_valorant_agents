@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
+import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_valorant_agents/ui/common/app_colors.dart';
 import 'package:flutter_valorant_agents/ui/common/ui_helpers.dart';
@@ -32,11 +35,12 @@ class HomeView extends StackedView<HomeViewModel> {
                     verticalSpaceMedium,
                     MaterialButton(
                       color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
+                      onPressed: () =>
+                          viewModel.changeLanguage(context, Locales.tr),
+                      child: const Text(
+                        LocaleKeys.appName,
+                        style: TextStyle(color: Colors.white),
+                      ).tr(),
                     ),
                   ],
                 ),
