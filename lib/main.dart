@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/app/app.router.dart';
 import 'package:flutter_valorant_agents/main_view_model.dart';
@@ -20,21 +21,26 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.reactive(
-      viewModelBuilder: () => MainViewModel(),
-      builder: (context, viewModel, child) => MaterialApp(
-        initialRoute: Routes.startupView,
-        onGenerateRoute: StackedRouter().onGenerateRoute,
-        navigatorKey: StackedService.navigatorKey,
-        navigatorObservers: [StackedService.routeObserver],
-        builder: (context, child) {
-          locator<ProductNetworkManager>().setupNetworkConnection(context);
-          return child!;
-        },
-        theme: viewModel.theme,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => ViewModelBuilder.reactive(
+        viewModelBuilder: () => MainViewModel(),
+        builder: (context, viewModel, child) => MaterialApp(
+          initialRoute: Routes.startupView,
+          onGenerateRoute: StackedRouter().onGenerateRoute,
+          navigatorKey: StackedService.navigatorKey,
+          navigatorObservers: [StackedService.routeObserver],
+          builder: (context, child) {
+            locator<ProductNetworkManager>().setupNetworkConnection(context);
+            return child!;
+          },
+          theme: viewModel.theme,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+        ),
       ),
     );
   }

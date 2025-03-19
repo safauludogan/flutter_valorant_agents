@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
+import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_valorant_agents/ui/common/app_colors.dart';
@@ -26,12 +27,9 @@ class HomeView extends StackedView<HomeViewModel> {
                 verticalSpaceLarge,
                 Column(
                   children: [
-                    const Text(
+                    Text(
                       'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
+                      style: AppTextStyles.headline1,
                     ),
                     verticalSpaceMedium,
                     MaterialButton(
