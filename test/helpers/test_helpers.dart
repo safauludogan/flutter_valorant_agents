@@ -2,7 +2,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:flutter_valorant_agents/services/localization_service.dart';
+import 'package:flutter_valorant_agents/services/app/localization_service.dart';
+import 'package:flutter_valorant_agents/services/app/theme_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -14,6 +15,7 @@ import 'test_helpers.mocks.dart';
     MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<LocalizationService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<ThemeService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
   ],
 )
@@ -22,6 +24,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterLocalizationService();
+  getAndRegisterThemeService();
 // @stacked-mock-register
 }
 
@@ -83,6 +86,13 @@ MockLocalizationService getAndRegisterLocalizationService() {
   _removeRegistrationIfExists<LocalizationService>();
   final service = MockLocalizationService();
   locator.registerSingleton<LocalizationService>(service);
+  return service;
+}
+
+MockThemeService getAndRegisterThemeService() {
+  _removeRegistrationIfExists<ThemeService>();
+  final service = MockThemeService();
+  locator.registerSingleton<ThemeService>(service);
   return service;
 }
 // @stacked-mock-create
