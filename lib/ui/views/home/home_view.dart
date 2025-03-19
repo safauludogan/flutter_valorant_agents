@@ -2,16 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
+import 'package:flutter_valorant_agents/ui/common/app_colors.dart';
+import 'package:flutter_valorant_agents/ui/common/ui_helpers.dart';
 import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
 import 'package:stacked/stacked.dart';
-import 'package:flutter_valorant_agents/ui/common/app_colors.dart';
-import 'package:flutter_valorant_agents/ui/common/ui_helpers.dart';
 
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
   const HomeView({Key? key}) : super(key: key);
+
+  @override
+  void onViewModelReady(HomeViewModel viewModel) {
+    super.onViewModelReady(viewModel);
+    viewModel.getAgents();
+  }
 
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {

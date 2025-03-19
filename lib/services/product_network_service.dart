@@ -2,10 +2,8 @@ import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/product/config/app_environment.dart';
 
-/// Product network manager for backend api
-final class ProductNetworkManager extends DioNexusManager {
-  /// Initialize constructor
-  ProductNetworkManager.base()
+class ProductNetworkService extends DioNexusManager {
+  ProductNetworkService()
       : super(
           options: BaseOptions(
             baseUrl: AppEnvironmentItems.baseUrl.value,
@@ -15,6 +13,7 @@ final class ProductNetworkManager extends DioNexusManager {
           printLogsDebugMode: false,
         );
 
+  /// Setup network connection
   void setupNetworkConnection(BuildContext context) {
     networkConnection = NetworkConnection(context: context);
   }

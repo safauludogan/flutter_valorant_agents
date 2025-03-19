@@ -9,14 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  stacked: ^3.4.0
+  stacked: ^3.4.4
   stacked_services: ^1.1.0
 
   # Config
   easy_localization: ^3.0.7+1
 
   # Network
-  dio_nexus: ^0.3.2
+  dio_nexus: ^0.3.3
   dio: ^5.8.0+1
 
   # UI
@@ -29,16 +29,13 @@ dev_dependencies:
   build_runner: ^2.4.5
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  very_good_analysis: ^7.0.0
   mockito: ^5.4.1
   stacked_generator: ^1.6.1
   golden_toolkit: ^0.15.0
 
 dependency_overrides:
-  source_gen: ^1.2.7
-  logger: ^2.0.0
-  dart_style: ^2.3.4
-  analyzer: ^5.13.0
+  logger: ^2.5.0
 
 flutter:
   uses-material-design: true
