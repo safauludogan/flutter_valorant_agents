@@ -1,12 +1,13 @@
-import 'package:flutter_valorant_agents/product/network/product_network_manager.dart';
+import 'package:flutter_valorant_agents/services/app/localization_service.dart';
+import 'package:flutter_valorant_agents/services/app/theme_service.dart';
 import 'package:flutter_valorant_agents/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:flutter_valorant_agents/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.dart';
 import 'package:flutter_valorant_agents/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:flutter_valorant_agents/services/app/localization_service.dart';
-import 'package:flutter_valorant_agents/services/app/theme_service.dart';
+import 'package:flutter_valorant_agents/services/api/agent_service.dart';
+import 'package:flutter_valorant_agents/services/product_network_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -21,7 +22,8 @@ import 'package:flutter_valorant_agents/services/app/theme_service.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: LocalizationService),
     LazySingleton(classType: ThemeService),
-    LazySingleton(classType: ProductNetworkManager),
+    LazySingleton(classType: AgentService),
+    LazySingleton(classType: ProductNetworkService),
 // @stacked-service
   ],
   bottomsheets: [

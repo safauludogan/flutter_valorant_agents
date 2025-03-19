@@ -3,6 +3,7 @@ import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.dialogs.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
+import 'package:flutter_valorant_agents/services/api/agent_service.dart';
 import 'package:flutter_valorant_agents/services/app/localization_service.dart';
 import 'package:flutter_valorant_agents/services/app/theme_service.dart';
 import 'package:flutter_valorant_agents/ui/common/app_strings.dart';
@@ -15,6 +16,7 @@ class HomeViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _localizationService = locator<LocalizationService>();
   final _themeService = locator<ThemeService>();
+  final _agentService = locator<AgentService>();
   String get counterLabel => 'Counter is: $_counter';
 
   int _counter = 0;
@@ -46,5 +48,10 @@ class HomeViewModel extends BaseViewModel {
 
   void updateThemeMode(AppThemeMode value) {
     _themeService.updateThemeMode(value);
+  }
+
+  Future<void> getAgents() async {
+   final data = await _agentService.getAllAgents();
+    print(data);
   }
 }

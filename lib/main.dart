@@ -6,7 +6,7 @@ import 'package:flutter_valorant_agents/app/app.router.dart';
 import 'package:flutter_valorant_agents/main_view_model.dart';
 import 'package:flutter_valorant_agents/product/init/application_initialize.dart';
 import 'package:flutter_valorant_agents/product/init/product_localization.dart';
-import 'package:flutter_valorant_agents/product/network/product_network_manager.dart';
+import 'package:flutter_valorant_agents/services/product_network_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
           navigatorKey: StackedService.navigatorKey,
           navigatorObservers: [StackedService.routeObserver],
           builder: (context, child) {
-            locator<ProductNetworkManager>().setupNetworkConnection(context);
+            locator<ProductNetworkService>().setupNetworkConnection(context);
             return child!;
           },
           theme: viewModel.theme,

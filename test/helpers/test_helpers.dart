@@ -1,9 +1,12 @@
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:flutter_valorant_agents/services/app/localization_service.dart';
 import 'package:flutter_valorant_agents/services/app/theme_service.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import 'package:flutter_valorant_agents/services/api/agent_service.dart';
+import 'package:flutter_valorant_agents/services/product_network_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -16,6 +19,8 @@ import 'test_helpers.mocks.dart';
     MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<LocalizationService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<ThemeService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<AgentService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<ProductNetworkService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
   ],
 )
@@ -25,6 +30,8 @@ void registerServices() {
   getAndRegisterDialogService();
   getAndRegisterLocalizationService();
   getAndRegisterThemeService();
+  getAndRegisterAgentService();
+  getAndRegisterProductNetworkService();
 // @stacked-mock-register
 }
 
@@ -93,6 +100,20 @@ MockThemeService getAndRegisterThemeService() {
   _removeRegistrationIfExists<ThemeService>();
   final service = MockThemeService();
   locator.registerSingleton<ThemeService>(service);
+  return service;
+}
+
+MockAgentService getAndRegisterAgentService() {
+  _removeRegistrationIfExists<AgentService>();
+  final service = MockAgentService();
+  locator.registerSingleton<AgentService>(service);
+  return service;
+}
+
+MockProductNetworkService getAndRegisterProductNetworkService() {
+  _removeRegistrationIfExists<ProductNetworkService>();
+  final service = MockProductNetworkService();
+  locator.registerSingleton<ProductNetworkService>(service);
   return service;
 }
 // @stacked-mock-create
