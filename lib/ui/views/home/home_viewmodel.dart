@@ -46,6 +46,5 @@ class HomeViewModel extends BaseViewModel {
 
   void updateThemeMode(AppThemeMode value) {
     _themeService.updateThemeMode(value);
-    print(_themeService.isDarkModel);
   }
 }
