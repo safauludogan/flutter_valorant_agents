@@ -2,9 +2,14 @@
     "appName":"Valorant Agents",
 
     "general" : {
+        "button" : {
+            "tryAgain" : "Try again"
+        },
         "messages" : {
             "somethingWentWrong" : "Oops, something went wrong!",
-            "noAgentsFound" : "No agents found ☹️"
+            "noAgentsFound" : "No agents found ☹️",
+            "noInternetConnection" : "Check your internet connection.",
+            "noResponseFromServer" : "No response from server"
         }
     }
 }
