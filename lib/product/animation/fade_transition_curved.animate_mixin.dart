@@ -42,7 +42,7 @@ mixin FadeTransitionCurvedAnimateMixin<T extends StatefulWidget>
   }
 
   /// Build animated card
-  Widget buildAnimatedCard({required Widget child}) {
+  Widget fadeTransitionCurved({required Widget child}) {
     if (!_previousLoadingState) {
       return const SizedBox.shrink();
     }

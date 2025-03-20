@@ -31,10 +31,13 @@ class HomeViewModel extends ReactiveViewModel {
   Future<void> getAgents() async {
     _error = null;
     _productNetworkErrorManager.resolve(
-        await runBusyFuture(_agentService.getAllAgents()), response: (value) {
-      _agents = value?.agents ?? [];
-    }, networkExceptions: (value) {
-      _error = value;
-    });
+      await runBusyFuture(_agentService.getAllAgents()),
+      response: (value) {
+        _agents = value?.agents ?? [];
+      },
+      networkExceptions: (value) {
+        _error = value;
+      },
+    );
   }
 }
