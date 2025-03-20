@@ -26,6 +26,8 @@ dependencies:
     path: module/gen
   common:
     path: module/common
+  widgets:
+    path: module/widgets
 
 dev_dependencies:
   build_runner: ^2.4.5

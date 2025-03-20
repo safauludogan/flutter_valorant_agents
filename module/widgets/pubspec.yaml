@@ -1,4 +1,4 @@
-name: common
+name: widgets
 description: "A new Flutter package project."
 version: 0.0.1
 homepage: none
@@ -11,16 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Network
-  cached_network_image: ^3.4.1
-
-  # Core
-  path_provider: ^2.1.5
-  
-  # Toast
-  fluttertoast: ^8.2.12
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^7.0.0
+  very_good_analysis: ^6.0.0
+
