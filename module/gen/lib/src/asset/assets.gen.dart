@@ -27,12 +27,20 @@ class $AssetsLottieGen {
   LottieGenImage get lottieError =>
       const LottieGenImage('assets/lottie/lottie_error.json');
 
+  /// File path: assets/lottie/lottie_no_internet_connection.json
+  LottieGenImage get lottieNoInternetConnection =>
+      const LottieGenImage('assets/lottie/lottie_no_internet_connection.json');
+
   /// File path: assets/lottie/lottie_notfound.json
   LottieGenImage get lottieNotfound =>
       const LottieGenImage('assets/lottie/lottie_notfound.json');
 
   /// List of all assets
-  List<LottieGenImage> get values => [lottieError, lottieNotfound];
+  List<LottieGenImage> get values => [
+    lottieError,
+    lottieNoInternetConnection,
+    lottieNotfound,
+  ];
 }
 
 class Assets {

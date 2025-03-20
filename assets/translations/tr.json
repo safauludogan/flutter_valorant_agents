@@ -2,9 +2,14 @@
     "appName":"Valorant Ajanları",
 
     "general" : {
+        "button" : {
+            "tryAgain" : "Tekrar deneyin"
+        },
         "messages" : {
             "somethingWentWrong" : "Hay aksi, bir şeyler ters gitti!",
-            "noAgentsFound" : "Ajanlar bulunamadı ☹️"
+            "noAgentsFound" : "Ajanlar bulunamadı ☹️",
+            "noInternetConnection" : "İnternet bağlantınızı kontrol ediniz.",
+            "noResponseFromServer" : "Sunucudan yanıt alınamadı"
         }
     }
 }
