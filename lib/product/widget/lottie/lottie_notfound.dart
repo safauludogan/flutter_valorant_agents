@@ -4,6 +4,7 @@ import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
 import 'package:gen/gen.dart';
 
 @immutable
+
 /// Lottie not found
 final class LottieNotFound extends StatefulWidget {
   const LottieNotFound({super.key});

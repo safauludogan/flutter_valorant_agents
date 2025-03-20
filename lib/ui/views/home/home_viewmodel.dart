@@ -2,11 +2,14 @@ import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
 import 'package:flutter_valorant_agents/services/api/agent_service.dart';
+import 'package:flutter_valorant_agents/ui/views/home/home_view.form.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
 
-class HomeViewModel extends ReactiveViewModel {
+class HomeViewModel extends ReactiveViewModel
+    with FormStateHelper
+    implements FormViewModel {
   HomeViewModel({
     required ProductNetworkErrorManager productNetworkErrorManager,
   }) : _productNetworkErrorManager = productNetworkErrorManager;
@@ -27,6 +30,8 @@ class HomeViewModel extends ReactiveViewModel {
   List<AgentRole> _agentRoles = [];
   List<AgentRole> get agentRoles => _agentRoles;
 
+  List<Agent> baseAgents = [];
+
   /// Selected agent role
   AgentRole _selectedAgentRole = allFilterAgentRole;
   AgentRole get selectedAgentRole => _selectedAgentRole;
@@ -35,6 +40,9 @@ class HomeViewModel extends ReactiveViewModel {
   NetworkExceptions? _error;
   NetworkExceptions? get getError => _error;
 
+  /// Search value
+  String get searchValue => hasSearchInput ? searchInputValue! : '';
+
   /// Get agents
   Future<void> getAgents() async {
     _error = null;
@@ -42,6 +50,7 @@ class HomeViewModel extends ReactiveViewModel {
       await runBusyFuture(_agentService.getAllAgents()),
       response: (value) {
         _agents = value?.agents ?? [];
+        baseAgents = [..._agents];
         findAllAgentRoles();
       },
       networkExceptions: (value) {
@@ -66,6 +75,27 @@ class HomeViewModel extends ReactiveViewModel {
   /// On agent role selected
   void onAgentRoleSelected(AgentRole agentRole) {
     _selectedAgentRole = agentRole;
+    rebuildUi();
+  }
+
+  /// On search input changed
+  void onSearchInputChanged(String text) {
+    if (text.isEmpty || text.trim() == '') {
+      _agents = baseAgents;
+      rebuildUi();
+      return;
+    }
+    final trimText = text.trim().toLowerCase();
+    final newAgents = baseAgents
+        .where(
+          (agent) =>
+              (agent.displayName?.trim().toLowerCase().contains(trimText) ??
+                  false) ||
+              (agent.description?.trim().toLowerCase().contains(trimText) ??
+                  false),
+        )
+        .toList();
+    _agents = newAgents;
     rebuildUi();
   }
 }

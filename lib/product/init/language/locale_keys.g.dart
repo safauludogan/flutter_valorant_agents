@@ -2,16 +2,24 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const appName = 'appName';
   static const general_button_tryAgain = 'general.button.tryAgain';
   static const general_button_all = 'general.button.all';
   static const general_button = 'general.button';
-  static const general_messages_somethingWentWrong = 'general.messages.somethingWentWrong';
-  static const general_messages_noAgentsFound = 'general.messages.noAgentsFound';
-  static const general_messages_noInternetConnection = 'general.messages.noInternetConnection';
-  static const general_messages_noResponseFromServer = 'general.messages.noResponseFromServer';
+  static const general_messages_somethingWentWrong =
+      'general.messages.somethingWentWrong';
+  static const general_messages_noAgentsFound =
+      'general.messages.noAgentsFound';
+  static const general_messages_noInternetConnection =
+      'general.messages.noInternetConnection';
+  static const general_messages_noResponseFromServer =
+      'general.messages.noResponseFromServer';
   static const general_messages = 'general.messages';
+  static const general_textformfield_hintText_searchAgent =
+      'general.textformfield.hintText.searchAgent';
+  static const general_textformfield_hintText =
+      'general.textformfield.hintText';
+  static const general_textformfield = 'general.textformfield';
   static const general = 'general';
-
 }

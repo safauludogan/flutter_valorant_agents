@@ -11,6 +11,11 @@
             "noAgentsFound" : "No agents found ☹️",
             "noInternetConnection" : "Check your internet connection.",
             "noResponseFromServer" : "No response from server"
+        },
+        "textformfield" : {
+            "hintText" : {
+                "searchAgent" : "Search agent"
+            }
         }
     }
 }

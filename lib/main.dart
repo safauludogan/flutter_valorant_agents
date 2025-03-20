@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => ViewModelBuilder.reactive(
-        viewModelBuilder: () => MainViewModel(),
+        viewModelBuilder: MainViewModel.new,
         builder: (context, viewModel, child) => MaterialApp(
           initialRoute: Routes.startupView,
           onGenerateRoute: StackedRouter().onGenerateRoute,

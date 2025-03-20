@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @immutable
+
 /// Abilities decoration
 final class AbilitiesDecoration extends BoxDecoration {
   AbilitiesDecoration()
