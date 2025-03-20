@@ -26,9 +26,7 @@ class HomeViewModel extends ReactiveViewModel {
     _productNetworkErrorManager.resolve(
         await runBusyFuture(_agentService.getAllAgents()), response: (value) {
       _agents = value?.agents ?? [];
-      print(_agents);
     }, networkExceptions: (value) {
-      print(value);
     });
   }
 }

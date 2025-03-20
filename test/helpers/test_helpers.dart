@@ -7,7 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import 'package:flutter_valorant_agents/services/api/agent_service.dart';
 import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
-import 'package:flutter_valorant_agents/services/toast_service.dart';
+import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';

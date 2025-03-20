@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
@@ -7,11 +9,21 @@ import 'package:flutter_valorant_agents/ui/views/home/home_viewmodel.dart';
 
 import '../helpers/test_helpers.dart';
 
+class MockBuildContext extends Mock implements BuildContext {}
+
+late final MockBuildContext _mockContext;
+
 void main() {
-  HomeViewModel getModel() => HomeViewModel();
+  HomeViewModel getModel() => HomeViewModel(
+        productNetworkErrorManager:
+            ProductNetworkErrorManager(context: _mockContext),
+      );
 
   group('HomeViewmodelTest -', () {
-    setUp(() => registerServices());
+    setUp(() {
+      _mockContext = MockBuildContext();
+      return registerServices();
+    });
     tearDown(() => locator.reset());
 
     group('incrementCounter -', () {
