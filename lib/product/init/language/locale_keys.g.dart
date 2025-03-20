@@ -2,10 +2,11 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const appName = 'appName';
-  static const general_messages_somethingWentWrong =
-      'general.messages.somethingWentWrong';
+  static const general_messages_somethingWentWrong = 'general.messages.somethingWentWrong';
+  static const general_messages_noAgentsFound = 'general.messages.noAgentsFound';
   static const general_messages = 'general.messages';
   static const general = 'general';
+
 }

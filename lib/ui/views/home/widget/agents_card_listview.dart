@@ -22,6 +22,18 @@ class _AgentsCardListViewState extends State<_AgentsCardListView>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.agents.isEmpty) {
+      return Center(
+          child: Column(
+        children: [
+          const LottieNotFound(),
+          Text(
+            LocaleKeys.general_messages_noAgentsFound,
+            style: AppTextStyles.footNote3,
+          ).tr(),
+        ],
+      ));
+    }
     return buildAnimatedCard(
       child: ListView.builder(
         shrinkWrap: true,
