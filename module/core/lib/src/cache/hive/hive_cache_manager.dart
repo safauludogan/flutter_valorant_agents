@@ -21,12 +21,7 @@ final class HiveCacheManager extends CacheManager {
 
   @override
   Future<void> remove() async {
-    final items = <String>[
-      /*Order.empty().toString(),
-      OrderDetail.empty().toString(),
-      Scan.empty().toString(),
-      Barcode.empty().toString(), */
-    ];
+    final items = <String>[];
 
     try {
       for (final item in items) {

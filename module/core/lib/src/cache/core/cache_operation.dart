@@ -1,4 +1,3 @@
-
 import 'package:core/core.dart';
 
 abstract class CacheOperation<T extends CacheModel<T>> {

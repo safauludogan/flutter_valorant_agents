@@ -8,6 +8,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:flutter_valorant_agents/services/api/agent_service.dart';
 import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
 import 'package:flutter_valorant_agents/services/common/toast_service.dart';
+import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -23,6 +24,7 @@ import 'test_helpers.mocks.dart';
     MockSpec<AgentService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<ProductNetworkService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<ToastService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<ProductCacheService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
   ],
 )
@@ -35,6 +37,7 @@ void registerServices() {
   getAndRegisterAgentService();
   getAndRegisterProductNetworkService();
   getAndRegisterToastService();
+  getAndRegisterProductCacheService();
 // @stacked-mock-register
 }
 
@@ -124,6 +127,13 @@ MockToastService getAndRegisterToastService() {
   _removeRegistrationIfExists<ToastService>();
   final service = MockToastService();
   locator.registerSingleton<ToastService>(service);
+  return service;
+}
+
+MockProductCacheService getAndRegisterProductCacheService() {
+  _removeRegistrationIfExists<ProductCacheService>();
+  final service = MockProductCacheService();
+  locator.registerSingleton<ProductCacheService>(service);
   return service;
 }
 // @stacked-mock-create

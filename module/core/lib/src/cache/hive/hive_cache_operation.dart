@@ -16,9 +16,7 @@ class HiveCacheOperation<T extends CacheModel<T>> extends CacheOperation<T>
 
   @override
   void addAll(List<T> items) {
-    final map = <String, T>{
-      for (final item in items) item.cacheId: item,
-    };
+    final map = <String, T>{for (final item in items) item.cacheId: item};
     _box?.putAll(map);
   }
 
