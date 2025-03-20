@@ -14,7 +14,8 @@ import 'package:stacked_shared/stacked_shared.dart';
 import '../services/api/agent_service.dart';
 import '../services/app/localization_service.dart';
 import '../services/app/theme_service.dart';
-import '../services/product_network_service.dart';
+import '../services/manager/product_network_service.dart';
+import '../services/toast_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -34,4 +35,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => ThemeService());
   locator.registerLazySingleton(() => AgentService());
   locator.registerLazySingleton(() => ProductNetworkService());
+  locator.registerLazySingleton(() => ToastService());
 }

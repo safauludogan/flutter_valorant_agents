@@ -1,57 +1,34 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
-import 'package:flutter_valorant_agents/app/app.dialogs.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
-import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
+import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
 import 'package:flutter_valorant_agents/services/api/agent_service.dart';
-import 'package:flutter_valorant_agents/services/app/localization_service.dart';
-import 'package:flutter_valorant_agents/services/app/theme_service.dart';
-import 'package:flutter_valorant_agents/ui/common/app_strings.dart';
-import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
+import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends BaseViewModel {
-  final _dialogService = locator<DialogService>();
-  final _bottomSheetService = locator<BottomSheetService>();
-  final _localizationService = locator<LocalizationService>();
-  final _themeService = locator<ThemeService>();
+class HomeViewModel extends ReactiveViewModel {
+  HomeViewModel({
+    required ProductNetworkErrorManager productNetworkErrorManager,
+  }) : _productNetworkErrorManager = productNetworkErrorManager;
+
+  /// Dialog Service
   final _agentService = locator<AgentService>();
-  String get counterLabel => 'Counter is: $_counter';
 
-  int _counter = 0;
+  /// Product network error manager for handling network errors
+  late final ProductNetworkErrorManager _productNetworkErrorManager;
 
-  void incrementCounter() {
-    _counter++;
-    rebuildUi();
-  }
+  /// Agents private property
+  List<Agent> _agents = [];
 
-  void showDialog() {
-    _dialogService.showCustomDialog(
-      variant: DialogType.infoAlert,
-      title: 'Stacked Rocks!',
-      description: 'Give stacked $_counter stars on Github',
-    );
-  }
+  /// Agents
+  List<Agent> get agents => _agents;
 
-  void showBottomSheet() {
-    _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.notice,
-      title: ksHomeBottomSheetTitle,
-      description: ksHomeBottomSheetDescription,
-    );
-  }
-
-  void changeLanguage(BuildContext context, Locales value) {
-    _localizationService.updateLanguage(context: context, value: value);
-  }
-
-  void updateThemeMode(AppThemeMode value) {
-    _themeService.updateThemeMode(value);
-  }
-
+  /// Get agents
   Future<void> getAgents() async {
-   final data = await _agentService.getAllAgents();
-    print(data);
+    _productNetworkErrorManager.resolve(
+        await runBusyFuture(_agentService.getAllAgents()), response: (value) {
+      _agents = value?.agents ?? [];
+      print(_agents);
+    }, networkExceptions: (value) {
+      print(value);
+    });
   }
 }

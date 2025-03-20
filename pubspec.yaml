@@ -24,6 +24,8 @@ dependencies:
 
   gen:
     path: module/gen
+  common:
+    path: module/common
 
 dev_dependencies:
   build_runner: ^2.4.5

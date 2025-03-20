@@ -4,4 +4,8 @@
 
 abstract class LocaleKeys {
   static const appName = 'appName';
+  static const general_messages_somethingWentWrong =
+      'general.messages.somethingWentWrong';
+  static const general_messages = 'general.messages';
+  static const general = 'general';
 }

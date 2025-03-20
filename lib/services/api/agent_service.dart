@@ -1,7 +1,7 @@
 import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/enum/product_service_path.dart';
-import 'package:flutter_valorant_agents/services/product_network_service.dart';
+import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
 import 'package:gen/gen.dart';
 
 /// Agent service for valorant agents
