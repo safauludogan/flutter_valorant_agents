@@ -12,6 +12,8 @@ import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_viewmodel.dart';
 import 'package:flutter_valorant_agents/ui/views/home/mixin/home_view_mixin.dart';
+import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/abilities_decoration.dart';
+import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/card_bg_decoration.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:widgets/widgets.dart';
@@ -31,7 +33,10 @@ class HomeView extends StackedView<HomeViewModel> with HomeViewMixin {
           child: viewModel.isBusy
               ? const ShimmerCardListView()
               : NetworkErrorResolver(
-                  child: _AgentsCardListView(agents: viewModel.agents),
+                  child: CustomRefreshIndicator(
+                      isListView: true,
+                      onRefresh: () async => viewModel.getAgents(),
+                      child: _AgentsCardListView(agents: viewModel.agents)),
                   error: viewModel.getError,
                 ).resolveErrorWidget(
                   receiveData: () => viewModel.getAgents(),
