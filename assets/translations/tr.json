@@ -3,7 +3,8 @@
 
     "general" : {
         "button" : {
-            "tryAgain" : "Tekrar deneyin"
+            "tryAgain" : "Tekrar deneyin",
+            "all" : "Tümü"
         },
         "messages" : {
             "somethingWentWrong" : "Hay aksi, bir şeyler ters gitti!",

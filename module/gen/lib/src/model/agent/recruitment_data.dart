@@ -68,4 +68,9 @@ final class RecruitmentData extends IDioNexusNetworkModel<RecruitmentData>
       endDate: endDate ?? this.endDate,
     );
   }
+
+  @override
+  String toString() {
+    return 'RecruitmentData(counterId: $counterId, milestoneId: $milestoneId, milestoneThreshold: $milestoneThreshold, useLevelVpCostOverride: $useLevelVpCostOverride, levelVpCostOverride: $levelVpCostOverride, startDate: $startDate, endDate: $endDate)';
+  }
 }

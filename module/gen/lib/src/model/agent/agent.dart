@@ -140,4 +140,9 @@ final class Agent extends IDioNexusNetworkModel<Agent> with EquatableMixin {
       abilities: abilities ?? this.abilities,
     );
   }
+
+  @override
+  String toString() {
+    return 'Agent(uuid: $uuid, displayName: $displayName, description: $description, developerName: $developerName, releaseDate: $releaseDate, characterTags: $characterTags, displayIcon: $displayIcon, bustPortrait: $bustPortrait, fullPortrait: $fullPortrait, fullPortraitV2: $fullPortraitV2, killfeedPortrait: $killfeedPortrait, background: $background, backgroundGradientColors: $backgroundGradientColors, assetPath: $assetPath, isFullPortraitRightFacing: $isFullPortraitRightFacing, isPlayableCharacter: $isPlayableCharacter, isAvailableForTest: $isAvailableForTest, isBaseContent: $isBaseContent, agentRole: $agentRole, recruitmentData: $recruitmentData, abilities: $abilities)';
+  }
 }

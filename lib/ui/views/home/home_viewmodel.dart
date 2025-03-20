@@ -2,6 +2,7 @@ import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
 import 'package:flutter_valorant_agents/services/api/agent_service.dart';
+import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,9 +23,16 @@ class HomeViewModel extends ReactiveViewModel {
   /// Agents
   List<Agent> get agents => _agents;
 
-  NetworkExceptions? _error;
+  /// Agent roles
+  List<AgentRole> _agentRoles = [];
+  List<AgentRole> get agentRoles => _agentRoles;
 
-  /// Error
+  /// Selected agent role
+  AgentRole _selectedAgentRole = allFilterAgentRole;
+  AgentRole get selectedAgentRole => _selectedAgentRole;
+
+  /// Network error
+  NetworkExceptions? _error;
   NetworkExceptions? get getError => _error;
 
   /// Get agents
@@ -34,10 +42,30 @@ class HomeViewModel extends ReactiveViewModel {
       await runBusyFuture(_agentService.getAllAgents()),
       response: (value) {
         _agents = value?.agents ?? [];
+        findAllAgentRoles();
       },
       networkExceptions: (value) {
         _error = value;
       },
     );
+  }
+
+  /// Find all agent roles
+  void findAllAgentRoles() {
+    if (_agents.isEmpty) return;
+    for (final agent in _agents) {
+      if (agent.agentRole != null &&
+          agent.agentRole?.displayName != null &&
+          agent.agentRole?.displayName!.trim() != '') {
+        _agentRoles.add(agent.agentRole!);
+      }
+    }
+    _agentRoles = _agentRoles.toSet().toList();
+  }
+
+  /// On agent role selected
+  void onAgentRoleSelected(AgentRole agentRole) {
+    _selectedAgentRole = agentRole;
+    rebuildUi();
   }
 }

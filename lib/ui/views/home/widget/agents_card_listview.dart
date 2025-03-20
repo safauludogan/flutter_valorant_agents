@@ -2,10 +2,18 @@ part of '../home_view.dart';
 
 /// Agents card list view
 class _AgentsCardListView extends StatefulWidget {
-  const _AgentsCardListView({required this.agents, Key? key}) : super(key: key);
+  const _AgentsCardListView({
+    required this.agents,
+    required this.selectedAgentRole,
+    Key? key,
+  }) : super(key: key);
 
   /// Agents
   final List<Agent> agents;
+
+  /// Selected agent role
+  final AgentRole? selectedAgentRole;
+
   @override
   State<_AgentsCardListView> createState() => _AgentsCardListViewState();
 }
@@ -33,6 +41,15 @@ class _AgentsCardListViewState extends State<_AgentsCardListView>
       itemCount: widget.agents.length,
       itemBuilder: (context, index) {
         final agent = widget.agents[index];
+
+        /// If the agent role is not the selected agent role,
+        /// return a [SizedBox.shrink()]
+        final isAgentRoleSelected =
+            agent.agentRole?.uuid?.compareUuid(widget.selectedAgentRole?.uuid);
+        if ((isAgentRoleSelected == null || !isAgentRoleSelected) &&
+            widget.selectedAgentRole?.uuid != allFilterAgentRole.uuid) {
+          return const SizedBox.shrink();
+        }
         return fadeTransitionCurved(
           child: Padding(
             padding: Paddings.p4v,
@@ -99,15 +116,10 @@ class _AgentCard extends StatelessWidget {
                   padding: Paddings.p8a,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Agent Name and Role
                       _buildAgentNameAndRole(agent),
-                      if (agent.agentRole?.displayName != null) ...[
-                        Text(
-                          agent.agentRole!.displayName!,
-                          style: AppTextStyles.footNote2,
-                        ),
-                      ],
                       SizedBox(height: WidgetSizes.spacingXs.h),
                       // Agent Description
                       Text(
