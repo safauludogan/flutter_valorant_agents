@@ -5,12 +5,13 @@ final class Radiuses {
   ///  All Radius
   static const BorderRadius b0r = BorderRadius.zero;
 
-  /// [b4r] 4.r
+  /// [b2r] 2.r
+  static final BorderRadius b2r = BorderRadius.circular(2.r);
 
-  /// [b8r] 8.r
+  /// [b4r] 4.r
   static final BorderRadius b4r = BorderRadius.circular(4.r);
 
-  /// [b16r] 16.r
+  /// [b8r] 8.r
   static final BorderRadius b8r = BorderRadius.circular(8.r);
 
   /// [b16r] 16.r

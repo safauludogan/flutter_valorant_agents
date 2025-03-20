@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// Padding utility class
 final class Paddings {
   /// All Padding
   /// [p1a] 1.h
@@ -57,4 +58,7 @@ final class Paddings {
 
   /// [p32l] 32.h
   static final EdgeInsets p32l = EdgeInsets.only(left: 32.h);
+
+  /// [p32r] 32.h
+  static final EdgeInsets p32r = EdgeInsets.only(right: 32.h);
 }

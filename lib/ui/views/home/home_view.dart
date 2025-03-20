@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_valorant_agents/product/animation/fade_transition_curved.animate_mixin.dart';
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
+import 'package:flutter_valorant_agents/product/widget/shimmer/shimmer_card_listview.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_viewmodel.dart';
 import 'package:flutter_valorant_agents/ui/views/home/mixin/home_view_mixin.dart';
@@ -19,11 +20,11 @@ class HomeView extends StackedView<HomeViewModel> with HomeViewMixin {
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: Paddings.p16h,
-        child: Center(
+      body: SafeArea(
+        child: Padding(
+          padding: Paddings.p16h,
           child: viewModel.isBusy
-              ? LoadingCircular()
+              ? const ShimmerCardListView()
               : _AgentsCardListView(agents: viewModel.agents),
         ),
       ),
