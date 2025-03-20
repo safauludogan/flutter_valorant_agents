@@ -16,9 +16,10 @@ import 'package:flutter_valorant_agents/services/app/localization_service.dart'
     as _i8;
 import 'package:flutter_valorant_agents/services/app/theme_service.dart'
     as _i10;
+import 'package:flutter_valorant_agents/services/common/toast_service.dart'
+    as _i15;
 import 'package:flutter_valorant_agents/services/manager/product_network_service.dart'
     as _i14;
-import 'package:flutter_valorant_agents/services/common/toast_service.dart' as _i15;
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart' as _i11;
 import 'package:gen/gen.dart' as _i13;
 import 'package:mockito/mockito.dart' as _i1;

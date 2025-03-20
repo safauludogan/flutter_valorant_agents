@@ -16,6 +16,7 @@ dependencies:
 
   # Core
   path_provider: ^2.1.5
+  keyboard_dismisser: ^3.0.0
   
   # Toast
   fluttertoast: ^8.2.12

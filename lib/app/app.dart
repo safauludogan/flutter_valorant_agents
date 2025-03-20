@@ -15,7 +15,7 @@ import 'package:flutter_valorant_agents/services/common/toast_service.dart';
   routes: [
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
-    // @stacked-route
+// @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),

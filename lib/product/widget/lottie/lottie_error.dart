@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gen/gen.dart';
 
 @immutable
+
 /// Lottie error
 class LottieError extends StatefulWidget {
   const LottieError({super.key});

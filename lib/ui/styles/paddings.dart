@@ -54,14 +54,28 @@ final class Paddings {
   /// [p32v] 32.h
   static final EdgeInsets p32v = EdgeInsets.symmetric(vertical: 32.h);
 
-  /// Other Padding
-  /// [p12v4h] 12.h 4.w
-  static final EdgeInsets p12v4h =
-      EdgeInsets.symmetric(vertical: 12.h, horizontal: 4.h);
+  /// Left Padding
+  /// [p16l] 16.h
+  static final EdgeInsets p16l = EdgeInsets.only(left: 16.h);
 
   /// [p32l] 32.h
   static final EdgeInsets p32l = EdgeInsets.only(left: 32.h);
 
+  /// Right Padding
+  /// [p4r] 4.h
+  static final EdgeInsets p4r = EdgeInsets.only(right: 4.h);
+
+  /// [p8r] 8.h
+  static final EdgeInsets p8r = EdgeInsets.only(right: 8.h);
+
+  /// [p16r] 16.h
+  static final EdgeInsets p16r = EdgeInsets.only(right: 16.h);
+
   /// [p32r] 32.h
   static final EdgeInsets p32r = EdgeInsets.only(right: 32.h);
+
+  /// Other Padding
+  /// [p12v4h] 12.h 4.w
+  static final EdgeInsets p12v4h =
+      EdgeInsets.symmetric(vertical: 12.h, horizontal: 4.h);
 }

@@ -19,7 +19,7 @@ final class ShimmerCardListView extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: itemCount,
         itemBuilder: (context, index) => Padding(
-        padding: Paddings.p4v,
+          padding: Paddings.p4v,
           child: Card(
             elevation: .5,
             child: ListTile(

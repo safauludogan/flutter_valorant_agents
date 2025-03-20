@@ -11,6 +11,11 @@
             "noAgentsFound" : "Ajanlar bulunamadı ☹️",
             "noInternetConnection" : "İnternet bağlantınızı kontrol ediniz.",
             "noResponseFromServer" : "Sunucudan yanıt alınamadı"
+        },
+        "textformfield" : {
+            "hintText" : {
+                "searchAgent" : "Ajan arayın"
+            }
         }
     }
 }
