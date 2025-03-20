@@ -1,3 +1,9 @@
 {
-    "appName":"Valorant Ajanları"
+    "appName":"Valorant Ajanları",
+
+    "general" : {
+        "messages" : {
+            "somethingWentWrong" : "Hay aksi, bir şeyler ters gitti!"
+        }
+    }
 }

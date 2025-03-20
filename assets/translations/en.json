@@ -1,3 +1,9 @@
 {
-    "appName":"Valorant Agents"
+    "appName":"Valorant Agents",
+
+    "general" : {
+        "messages" : {
+            "somethingWentWrong" : "Oops, something went wrong!"
+        }
+    }
 }

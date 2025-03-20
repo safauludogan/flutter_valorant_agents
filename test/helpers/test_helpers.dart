@@ -6,7 +6,8 @@ import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:flutter_valorant_agents/services/api/agent_service.dart';
-import 'package:flutter_valorant_agents/services/product_network_service.dart';
+import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
+import 'package:flutter_valorant_agents/services/toast_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -21,6 +22,7 @@ import 'test_helpers.mocks.dart';
     MockSpec<ThemeService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<AgentService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<ProductNetworkService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<ToastService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
   ],
 )
@@ -32,6 +34,7 @@ void registerServices() {
   getAndRegisterThemeService();
   getAndRegisterAgentService();
   getAndRegisterProductNetworkService();
+  getAndRegisterToastService();
 // @stacked-mock-register
 }
 
@@ -114,6 +117,13 @@ MockProductNetworkService getAndRegisterProductNetworkService() {
   _removeRegistrationIfExists<ProductNetworkService>();
   final service = MockProductNetworkService();
   locator.registerSingleton<ProductNetworkService>(service);
+  return service;
+}
+
+MockToastService getAndRegisterToastService() {
+  _removeRegistrationIfExists<ToastService>();
+  final service = MockToastService();
+  locator.registerSingleton<ToastService>(service);
   return service;
 }
 // @stacked-mock-create

@@ -6,7 +6,7 @@ import 'package:flutter_valorant_agents/app/app.router.dart';
 import 'package:flutter_valorant_agents/main_view_model.dart';
 import 'package:flutter_valorant_agents/product/init/application_initialize.dart';
 import 'package:flutter_valorant_agents/product/init/product_localization.dart';
-import 'package:flutter_valorant_agents/services/product_network_service.dart';
+import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

@@ -16,8 +16,9 @@ import 'package:flutter_valorant_agents/services/app/localization_service.dart'
     as _i8;
 import 'package:flutter_valorant_agents/services/app/theme_service.dart'
     as _i10;
-import 'package:flutter_valorant_agents/services/product_network_service.dart'
+import 'package:flutter_valorant_agents/services/manager/product_network_service.dart'
     as _i14;
+import 'package:flutter_valorant_agents/services/toast_service.dart' as _i15;
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart' as _i11;
 import 'package:gen/gen.dart' as _i13;
 import 'package:mockito/mockito.dart' as _i1;
@@ -929,16 +930,17 @@ class MockThemeService extends _i1.Mock implements _i10.ThemeService {
 /// See the documentation for Mockito's code generation for more information.
 class MockAgentService extends _i1.Mock implements _i12.AgentService {
   @override
-  _i6.Future<_i3.IResponseModel<List<_i13.Agent>?>?> getAllAgents() =>
+  _i6.Future<_i3.IResponseModel<_i13.AgentResponse?>?> getAllAgents() =>
       (super.noSuchMethod(
         Invocation.method(
           #getAllAgents,
           [],
         ),
-        returnValue: _i6.Future<_i3.IResponseModel<List<_i13.Agent>?>?>.value(),
+        returnValue:
+            _i6.Future<_i3.IResponseModel<_i13.AgentResponse?>?>.value(),
         returnValueForMissingStub:
-            _i6.Future<_i3.IResponseModel<List<_i13.Agent>?>?>.value(),
-      ) as _i6.Future<_i3.IResponseModel<List<_i13.Agent>?>?>);
+            _i6.Future<_i3.IResponseModel<_i13.AgentResponse?>?>.value(),
+      ) as _i6.Future<_i3.IResponseModel<_i13.AgentResponse?>?>);
 }
 
 /// A class which mocks [ProductNetworkService].
@@ -2186,4 +2188,39 @@ class MockProductNetworkService extends _i1.Mock
           ),
         ),
       ) as _i3.Dio);
+}
+
+/// A class which mocks [ToastService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockToastService extends _i1.Mock implements _i15.ToastService {
+  @override
+  void showSuccessMessage({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #showSuccessMessage,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void showErrorMessage({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #showErrorMessage,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void showInfoMessage({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #showInfoMessage,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
 }

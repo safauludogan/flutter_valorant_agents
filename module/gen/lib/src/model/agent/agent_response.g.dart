@@ -9,11 +9,11 @@ part of 'agent_response.dart';
 AgentResponse _$AgentResponseFromJson(Map<String, dynamic> json) =>
     AgentResponse(
       status: (json['status'] as num?)?.toInt(),
-      agentRoles:
+      agents:
           (json['data'] as List<dynamic>?)
-              ?.map((e) => AgentRole.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => Agent.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
 
 Map<String, dynamic> _$AgentResponseToJson(AgentResponse instance) =>
-    <String, dynamic>{'status': instance.status, 'data': instance.agentRoles};
+    <String, dynamic>{'status': instance.status, 'data': instance.agents};

@@ -7,7 +7,8 @@ import 'package:flutter_valorant_agents/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:flutter_valorant_agents/services/api/agent_service.dart';
-import 'package:flutter_valorant_agents/services/product_network_service.dart';
+import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
+import 'package:flutter_valorant_agents/services/toast_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -24,6 +25,7 @@ import 'package:flutter_valorant_agents/services/product_network_service.dart';
     LazySingleton(classType: ThemeService),
     LazySingleton(classType: AgentService),
     LazySingleton(classType: ProductNetworkService),
+    LazySingleton(classType: ToastService),
 // @stacked-service
   ],
   bottomsheets: [
