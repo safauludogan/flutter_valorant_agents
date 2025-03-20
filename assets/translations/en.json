@@ -3,7 +3,8 @@
 
     "general" : {
         "button" : {
-            "tryAgain" : "Try again"
+            "tryAgain" : "Try again",
+            "all" : "All"
         },
         "messages" : {
             "somethingWentWrong" : "Oops, something went wrong!",

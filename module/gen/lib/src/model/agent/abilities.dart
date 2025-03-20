@@ -41,4 +41,9 @@ final class Abilities extends IDioNexusNetworkModel<Abilities>
       displayIcon: displayIcon ?? this.displayIcon,
     );
   }
+
+  @override
+  String toString() {
+    return 'Abilities(slot: $slot, displayName: $displayName, description: $description, displayIcon: $displayIcon)';
+  }
 }

@@ -55,4 +55,9 @@ final class AgentRole extends IDioNexusNetworkModel<AgentRole>
       assetPath: assetPath ?? this.assetPath,
     );
   }
+
+  @override
+  String toString() {
+    return 'AgentRole(uuid: $uuid, displayName: $displayName, description: $description, displayIcon: $displayIcon, assetPath: $assetPath)';
+  }
 }

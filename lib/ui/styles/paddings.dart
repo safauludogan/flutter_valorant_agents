@@ -23,6 +23,9 @@ final class Paddings {
   /// [p1h] 1.h
   static final EdgeInsets p1h = EdgeInsets.symmetric(horizontal: 1.h);
 
+  /// [p4h] 2.h
+  static final EdgeInsets p2h = EdgeInsets.symmetric(horizontal: 2.h);
+
   /// [p4h] 4.h
   static final EdgeInsets p4h = EdgeInsets.symmetric(horizontal: 4.h);
 
