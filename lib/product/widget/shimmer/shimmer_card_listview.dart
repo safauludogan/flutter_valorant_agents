@@ -22,13 +22,16 @@ final class ShimmerCardListView extends StatelessWidget {
           padding: Paddings.p4v,
           child: Card(
             elevation: .5,
-            child: ListTile(
-              title: Padding(
-                padding: EdgeInsets.only(right: Paddings.p32r.right * 4),
-                child: shimmerTitleCard,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24),
+              child: ListTile(
+                title: Padding(
+                  padding: EdgeInsets.only(right: Paddings.p32r.right * 4),
+                  child: shimmerTitleCard,
+                ),
+                subtitle: shimmerSubtitleCard,
+                leading: shimmerImageCard,
               ),
-              subtitle: shimmerSubtitleCard,
-              leading: shimmerImageCard,
             ),
           ),
         ),

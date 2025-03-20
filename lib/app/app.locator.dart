@@ -14,6 +14,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 import '../services/api/agent_service.dart';
 import '../services/app/localization_service.dart';
 import '../services/app/theme_service.dart';
+import '../services/cache/product_cache_service.dart';
 import '../services/common/toast_service.dart';
 import '../services/manager/product_network_service.dart';
 
@@ -36,4 +37,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => AgentService());
   locator.registerLazySingleton(() => ProductNetworkService());
   locator.registerLazySingleton(() => ToastService());
+  locator.registerLazySingleton(() => ProductCacheService());
 }

@@ -19,9 +19,7 @@ final class CacheRegisterAdapter<T extends CacheModel<T>>
   T read(BinaryReader reader) {
     final read = reader.read();
     final jsonConverted = jsonEncode(read);
-    return fromJson(
-      json.decode(jsonConverted) as Map<String, dynamic>,
-    );
+    return fromJson(json.decode(jsonConverted) as Map<String, dynamic>);
   }
 
   @override
