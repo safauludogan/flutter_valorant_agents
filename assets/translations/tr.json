@@ -3,7 +3,8 @@
 
     "general" : {
         "messages" : {
-            "somethingWentWrong" : "Hay aksi, bir şeyler ters gitti!"
+            "somethingWentWrong" : "Hay aksi, bir şeyler ters gitti!",
+            "noAgentsFound" : "Ajanlar bulunamadı ☹️"
         }
     }
 }

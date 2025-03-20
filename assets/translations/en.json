@@ -3,7 +3,8 @@
 
     "general" : {
         "messages" : {
-            "somethingWentWrong" : "Oops, something went wrong!"
+            "somethingWentWrong" : "Oops, something went wrong!",
+            "noAgentsFound" : "No agents found ☹️"
         }
     }
 }
