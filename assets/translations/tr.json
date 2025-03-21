@@ -35,7 +35,8 @@
             "messages" : {
                 "favoriteTitleAlreadyExists" : "Bu başlıkta bir favori mevcut.",
                 "favoriteAgentAlreadyExistsInFavorites" : "Bu ajan zaten favorilerinizde mevcut.",
-                "favoriteAdded" : "Favoriye eklendi."
+                "favoriteAdded" : "Favoriye eklendi.",
+                "agentName" : "Ajan - {}"
             }
         }
     }

@@ -65,9 +65,19 @@ class AddFavoriteSheet extends StackedView<AddFavoriteSheetModel>
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              LocaleKeys.general_bottomSheet_addFavorite_title.tr(),
-              style: AppTextStyles.bodyText1,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  LocaleKeys.general_bottomSheet_addFavorite_title.tr(),
+                  style: AppTextStyles.bodyText1,
+                ),
+                Text(
+                  LocaleKeys.general_favorite_messages_agentName
+                      .tr(args: [request.title.toString()]),
+                  style: AppTextStyles.small.copyWith(fontSize: 12),
+                ),
+              ],
             ),
             verticalSpaceSmall,
             _TitleTextform(

@@ -35,7 +35,8 @@
             "messages" : {
                 "favoriteTitleAlreadyExists" : "This title already exists in your favorites.",
                 "favoriteAgentAlreadyExistsInFavorites" : "This agent already exists in your favorites.",
-                "favoriteAdded" : "Favorite added."
+                "favoriteAdded" : "Favorite added.",
+                "agentName" : "Agent - {}"
             }
         }
     }

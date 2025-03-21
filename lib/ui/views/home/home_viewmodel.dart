@@ -101,12 +101,7 @@ class HomeViewModel extends ReactiveViewModel
     await _bottomSheetService.showCustomSheet(
         variant: BottomSheetType.addFavorite,
         isScrollControlled: true,
-        title: 'Add to favorites',
-        description:
-            'Are you sure you want to add this agent to your favorites?',
-        additionalButtonTitle: 'Cancel',
-        barrierLabel: 'Add to favorites',
-        mainButtonTitle: 'Add to favorites',
+        title: agent.displayName,
         data: agent.uuid);
     //_favoriteAgentRepository.addFavoriteAgent(favoriteAgent: agent.);
   }
