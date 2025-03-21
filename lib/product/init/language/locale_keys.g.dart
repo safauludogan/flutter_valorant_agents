@@ -29,6 +29,7 @@ abstract class  LocaleKeys {
   static const general_favorite_messages_favoriteTitleAlreadyExists = 'general.favorite.messages.favoriteTitleAlreadyExists';
   static const general_favorite_messages_favoriteAgentAlreadyExistsInFavorites = 'general.favorite.messages.favoriteAgentAlreadyExistsInFavorites';
   static const general_favorite_messages_favoriteAdded = 'general.favorite.messages.favoriteAdded';
+  static const general_favorite_messages_agentName = 'general.favorite.messages.agentName';
   static const general_favorite_messages = 'general.favorite.messages';
   static const general_favorite = 'general.favorite';
   static const general = 'general';
