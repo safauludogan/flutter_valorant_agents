@@ -6,6 +6,7 @@ class _AgentsCardListView extends StatefulWidget {
     required this.agents,
     required this.selectedAgentRole,
     required this.onFavoriteTap,
+    required this.favoriteAgents,
     Key? key,
   }) : super(key: key);
 
@@ -17,6 +18,9 @@ class _AgentsCardListView extends StatefulWidget {
 
   /// On favorite tap
   final ValueSetter<Agent> onFavoriteTap;
+
+  /// Favorite agents
+  final List<FavoriteAgent> favoriteAgents;
 
   @override
   State<_AgentsCardListView> createState() => _AgentsCardListViewState();
@@ -60,6 +64,8 @@ class _AgentsCardListViewState extends State<_AgentsCardListView>
             child: _AgentCard(
               agent: agent,
               onFavoriteTap: widget.onFavoriteTap,
+              isFavorite: widget.favoriteAgents.any((favorite) =>
+                  favorite.agentId?.compareUuid(agent.uuid) ?? false),
             ),
           ),
         );
@@ -84,10 +90,12 @@ class _AgentCard extends StatelessWidget {
   const _AgentCard({
     required this.agent,
     required this.onFavoriteTap,
+    required this.isFavorite,
   });
 
   final Agent agent;
   final ValueSetter<Agent> onFavoriteTap;
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -202,6 +210,7 @@ class _AgentCard extends StatelessWidget {
         WidgetSizes.spacingXSs.width,
         FavoriteIconButton(
           onFavoriteTap: () => onFavoriteTap(agent),
+          isFavorite: isFavorite,
         ),
       ],
     );
