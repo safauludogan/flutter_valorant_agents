@@ -14,7 +14,28 @@
         },
         "textformfield" : {
             "hintText" : {
-                "searchAgent" : "Ajan arayın"
+                "searchAgent" : "Ajan arayın",
+                "title" : "Başlık",
+                "description" : "Açıklama"
+            }
+        },
+        "validator" : {
+            "favoriteTitleMustBeAtLeast3Characters" : "Favori başlığı en az 3 karakter olmalıdır.",
+            "favoriteDescriptionMustBeAtLeast10Characters" : "Favori açıklaması en az 10 karakter olmalıdır."
+        },
+        "bottomSheet" : {
+            "addFavorite" : {
+                "title" : "Favorilere Ekle",
+                "description" : "Bu ajanı favorilerinize eklemek istediğinize emin misiniz?",
+                "additionalButtonTitle" : "İptal",
+                "mainButtonTitle" : "Favorilere Ekle"
+            }
+        },
+        "favorite" : {
+            "messages" : {
+                "favoriteTitleAlreadyExists" : "Bu başlıkta bir favori mevcut.",
+                "favoriteAgentAlreadyExistsInFavorites" : "Bu ajan zaten favorilerinizde mevcut.",
+                "favoriteAdded" : "Favoriye eklendi."
             }
         }
     }

@@ -9,8 +9,16 @@ import 'dart:ui' as _i8;
 import 'package:core/core.dart' as _i4;
 import 'package:dio_nexus/dio_nexus.dart' as _i3;
 import 'package:flutter/material.dart' as _i2;
+import 'package:flutter_valorant_agents/product/cache/agent/abilities_cache_model.dart'
+    as _i21;
 import 'package:flutter_valorant_agents/product/cache/agent/agent_cache_model.dart'
     as _i18;
+import 'package:flutter_valorant_agents/product/cache/agent/agent_role_cache_model.dart'
+    as _i19;
+import 'package:flutter_valorant_agents/product/cache/agent/recruitment_data_cache_model.dart'
+    as _i20;
+import 'package:flutter_valorant_agents/product/cache/favorite/favorite_agent_cache_model.dart'
+    as _i22;
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart'
     as _i10;
 import 'package:flutter_valorant_agents/services/api/agent/agent_service.dart'
@@ -2261,6 +2269,68 @@ class MockProductCacheService extends _i1.Mock
           Invocation.getter(#agentCacheOperation),
         ),
       ) as _i4.HiveCacheOperation<_i18.AgentCacheModel>);
+
+  @override
+  _i4.HiveCacheOperation<_i19.AgentRoleCacheModel>
+      get agentRoleCacheOperation => (super.noSuchMethod(
+            Invocation.getter(#agentRoleCacheOperation),
+            returnValue: _FakeHiveCacheOperation_7<_i19.AgentRoleCacheModel>(
+              this,
+              Invocation.getter(#agentRoleCacheOperation),
+            ),
+            returnValueForMissingStub:
+                _FakeHiveCacheOperation_7<_i19.AgentRoleCacheModel>(
+              this,
+              Invocation.getter(#agentRoleCacheOperation),
+            ),
+          ) as _i4.HiveCacheOperation<_i19.AgentRoleCacheModel>);
+
+  @override
+  _i4.HiveCacheOperation<_i20.RecruitmentDataCacheModel>
+      get recruitmentDataCacheOperation => (super.noSuchMethod(
+            Invocation.getter(#recruitmentDataCacheOperation),
+            returnValue:
+                _FakeHiveCacheOperation_7<_i20.RecruitmentDataCacheModel>(
+              this,
+              Invocation.getter(#recruitmentDataCacheOperation),
+            ),
+            returnValueForMissingStub:
+                _FakeHiveCacheOperation_7<_i20.RecruitmentDataCacheModel>(
+              this,
+              Invocation.getter(#recruitmentDataCacheOperation),
+            ),
+          ) as _i4.HiveCacheOperation<_i20.RecruitmentDataCacheModel>);
+
+  @override
+  _i4.HiveCacheOperation<_i21.AbilitiesCacheModel>
+      get abilitiesCacheOperation => (super.noSuchMethod(
+            Invocation.getter(#abilitiesCacheOperation),
+            returnValue: _FakeHiveCacheOperation_7<_i21.AbilitiesCacheModel>(
+              this,
+              Invocation.getter(#abilitiesCacheOperation),
+            ),
+            returnValueForMissingStub:
+                _FakeHiveCacheOperation_7<_i21.AbilitiesCacheModel>(
+              this,
+              Invocation.getter(#abilitiesCacheOperation),
+            ),
+          ) as _i4.HiveCacheOperation<_i21.AbilitiesCacheModel>);
+
+  @override
+  _i4.HiveCacheOperation<_i22.FavoriteAgentCacheModel>
+      get favoriteAgentCacheOperation => (super.noSuchMethod(
+            Invocation.getter(#favoriteAgentCacheOperation),
+            returnValue:
+                _FakeHiveCacheOperation_7<_i22.FavoriteAgentCacheModel>(
+              this,
+              Invocation.getter(#favoriteAgentCacheOperation),
+            ),
+            returnValueForMissingStub:
+                _FakeHiveCacheOperation_7<_i22.FavoriteAgentCacheModel>(
+              this,
+              Invocation.getter(#favoriteAgentCacheOperation),
+            ),
+          ) as _i4.HiveCacheOperation<_i22.FavoriteAgentCacheModel>);
 
   @override
   _i7.Future<void> init() => (super.noSuchMethod(

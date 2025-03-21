@@ -9,15 +9,19 @@ import 'package:flutter_valorant_agents/product/cache/agent/abilities_cache_mode
 import 'package:flutter_valorant_agents/product/cache/agent/agent_cache_model.dart';
 import 'package:flutter_valorant_agents/product/cache/agent/agent_role_cache_model.dart';
 import 'package:flutter_valorant_agents/product/cache/agent/recruitment_data_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/favorite/favorite_agent_cache_model.dart';
 import 'package:flutter_valorant_agents/product/config/app_environment.dart';
 import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
 import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
 import 'package:flutter_valorant_agents/repository/agent/concrete/agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/favorite_agent/abstract/i_favorite_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/favorite_agent/concrete/favorite_agent_repository.dart';
 import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 @immutable
 final class ApplicationInitialize {
+  /// Setup application
   Future<void> setup() async {
     WidgetsFlutterBinding.ensureInitialized();
 
@@ -43,14 +47,24 @@ final class ApplicationInitialize {
 
   static void _registerLocators() {
     /// Agent repository
-    locator.registerFactory<IAgentRepository>(
-      () => AgentRepository(
-        agentCacheOperation: locator<ProductCacheService>().agentCacheOperation,
-        productNetworkErrorManager: ProductNetworkErrorManager(
-          context: StackedService.navigatorKey!.currentState!.context,
+    locator
+      ..registerLazySingleton<IAgentRepository>(
+        () => AgentRepository(
+          agentCacheOperation:
+              locator<ProductCacheService>().agentCacheOperation,
+          productNetworkErrorManager: ProductNetworkErrorManager(
+            context: StackedService.navigatorKey!.currentState!.context,
+          ),
         ),
-      ),
-    );
+      )
+
+      /// Favorite agent repository
+      ..registerLazySingleton<IFavoriteAgentRepository>(
+        () => FavoriteAgentRepository(
+          favoriteAgentCacheOperation:
+              locator<ProductCacheService>().favoriteAgentCacheOperation,
+        ),
+      );
   }
 
   static void _productEnvironment() {
@@ -83,6 +97,10 @@ final class ApplicationInitialize {
       ..register<AbilitiesCacheModel>(
         AbilitiesCacheModel.empty(),
         HiveAdapterId.ability,
+      )
+      ..register<FavoriteAgentCacheModel>(
+        FavoriteAgentCacheModel.empty(),
+        HiveAdapterId.favoriteAgent,
       );
 
     /// Open cache box
@@ -90,5 +108,6 @@ final class ApplicationInitialize {
     await _productCache.agentRoleCacheOperation.open();
     await _productCache.recruitmentDataCacheOperation.open();
     await _productCache.abilitiesCacheOperation.open();
+    await _productCache.favoriteAgentCacheOperation.open();
   }
 }

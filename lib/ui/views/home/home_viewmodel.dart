@@ -1,42 +1,31 @@
 import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/manager/network_error.dart';
-import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
 import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
-import 'package:flutter_valorant_agents/repository/agent/concrete/agent_repository.dart';
-import 'package:flutter_valorant_agents/services/api/agent/agent_service.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.form.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends ReactiveViewModel
     with FormStateHelper
     implements FormViewModel {
-  HomeViewModel({
-    required ProductNetworkErrorManager productNetworkErrorManager,
-  }) : _productNetworkErrorManager = productNetworkErrorManager;
-
   final _agentRepository = locator<IAgentRepository>();
-
-  /// Dialog Service
-  final _agentService = locator<AgentService>();
-
-  /// Product network error manager for handling network errors
-  late final ProductNetworkErrorManager _productNetworkErrorManager;
+  final _bottomSheetService = locator<BottomSheetService>();
 
   /// Agents private property
   List<Agent> _agents = [];
 
   /// Agents
   List<Agent> get agents => _agents;
+  List<Agent> constantAgents = [];
 
   /// Agent roles
   List<AgentRole> _agentRoles = [];
   List<AgentRole> get agentRoles => _agentRoles;
-
-  List<Agent> baseAgents = [];
 
   /// Selected agent role
   AgentRole _selectedAgentRole = allFilterAgentRole;
@@ -56,7 +45,7 @@ class HomeViewModel extends ReactiveViewModel
     try {
       _agents = await _agentRepository.getAgentsFromCache();
 
-      baseAgents = [..._agents];
+      constantAgents = [..._agents];
       findAllAgentRoles();
     } on NetworkError catch (e) {
       _error = e.networkException;
@@ -89,12 +78,12 @@ class HomeViewModel extends ReactiveViewModel
   /// On search input changed
   void onSearchInputChanged(String text) {
     if (text.isEmpty || text.trim() == '') {
-      _agents = baseAgents;
+      _agents = constantAgents;
       rebuildUi();
       return;
     }
     final trimText = text.trim().toLowerCase();
-    final newAgents = baseAgents
+    final newAgents = constantAgents
         .where(
           (agent) =>
               (agent.displayName?.trim().toLowerCase().contains(trimText) ??
@@ -105,5 +94,20 @@ class HomeViewModel extends ReactiveViewModel
         .toList();
     _agents = newAgents;
     rebuildUi();
+  }
+
+  /// On favorite tap
+  Future<void> onFavoriteTap(Agent agent) async {
+    await _bottomSheetService.showCustomSheet(
+        variant: BottomSheetType.addFavorite,
+        isScrollControlled: true,
+        title: 'Add to favorites',
+        description:
+            'Are you sure you want to add this agent to your favorites?',
+        additionalButtonTitle: 'Cancel',
+        barrierLabel: 'Add to favorites',
+        mainButtonTitle: 'Add to favorites',
+        data: agent.uuid);
+    //_favoriteAgentRepository.addFavoriteAgent(favoriteAgent: agent.);
   }
 }
