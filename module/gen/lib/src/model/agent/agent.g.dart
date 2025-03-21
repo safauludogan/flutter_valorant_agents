@@ -31,7 +31,7 @@ Agent _$AgentFromJson(Map<String, dynamic> json) => Agent(
   isPlayableCharacter: json['isPlayableCharacter'] as bool?,
   isAvailableForTest: json['isAvailableForTest'] as bool?,
   isBaseContent: json['isBaseContent'] as bool?,
-  agentRole:
+  role:
       json['role'] == null
           ? null
           : AgentRole.fromJson(json['role'] as Map<String, dynamic>),
@@ -66,7 +66,7 @@ Map<String, dynamic> _$AgentToJson(Agent instance) => <String, dynamic>{
   'isPlayableCharacter': instance.isPlayableCharacter,
   'isAvailableForTest': instance.isAvailableForTest,
   'isBaseContent': instance.isBaseContent,
-  'role': instance.agentRole,
+  'role': instance.role,
   'recruitmentData': instance.recruitmentData,
   'abilities': instance.abilities,
 };

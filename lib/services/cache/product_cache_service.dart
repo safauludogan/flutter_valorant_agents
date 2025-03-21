@@ -1,5 +1,8 @@
 import 'package:core/core.dart';
-import 'package:flutter_valorant_agents/product/cache/agent/agent_response_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/abilities_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/agent_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/agent_role_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/recruitment_data_cache_model.dart';
 
 class ProductCacheService {
   ProductCacheService() : _cacheManager = HiveCacheManager();
@@ -21,7 +24,16 @@ class ProductCacheService {
     _cacheManager.register(model, hiveAdapterId);
   }
 
-  late final HiveCacheOperation<AgentResponseCacheModel>
-      agentResponseCacheOperation =
-      HiveCacheOperation<AgentResponseCacheModel>();
+  late final HiveCacheOperation<AgentCacheModel> agentCacheOperation =
+      HiveCacheOperation<AgentCacheModel>();
+
+  late final HiveCacheOperation<AgentRoleCacheModel> agentRoleCacheOperation =
+      HiveCacheOperation<AgentRoleCacheModel>();
+
+  late final HiveCacheOperation<RecruitmentDataCacheModel>
+      recruitmentDataCacheOperation =
+      HiveCacheOperation<RecruitmentDataCacheModel>();
+
+  late final HiveCacheOperation<AbilitiesCacheModel> abilitiesCacheOperation =
+      HiveCacheOperation<AbilitiesCacheModel>();
 }

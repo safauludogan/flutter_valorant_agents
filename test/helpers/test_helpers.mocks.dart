@@ -9,11 +9,11 @@ import 'dart:ui' as _i8;
 import 'package:core/core.dart' as _i4;
 import 'package:dio_nexus/dio_nexus.dart' as _i3;
 import 'package:flutter/material.dart' as _i2;
-import 'package:flutter_valorant_agents/product/cache/agent/agent_response_cache_model.dart'
+import 'package:flutter_valorant_agents/product/cache/agent/agent_cache_model.dart'
     as _i18;
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart'
     as _i10;
-import 'package:flutter_valorant_agents/services/api/agent_service.dart'
+import 'package:flutter_valorant_agents/services/api/agent/agent_service.dart'
     as _i13;
 import 'package:flutter_valorant_agents/services/app/localization_service.dart'
     as _i9;
@@ -2248,20 +2248,19 @@ class MockToastService extends _i1.Mock implements _i16.ToastService {
 class MockProductCacheService extends _i1.Mock
     implements _i17.ProductCacheService {
   @override
-  _i4.HiveCacheOperation<_i18.AgentResponseCacheModel>
-      get agentResponseCacheOperation => (super.noSuchMethod(
-            Invocation.getter(#agentResponseCacheOperation),
-            returnValue:
-                _FakeHiveCacheOperation_7<_i18.AgentResponseCacheModel>(
-              this,
-              Invocation.getter(#agentResponseCacheOperation),
-            ),
-            returnValueForMissingStub:
-                _FakeHiveCacheOperation_7<_i18.AgentResponseCacheModel>(
-              this,
-              Invocation.getter(#agentResponseCacheOperation),
-            ),
-          ) as _i4.HiveCacheOperation<_i18.AgentResponseCacheModel>);
+  _i4.HiveCacheOperation<_i18.AgentCacheModel> get agentCacheOperation =>
+      (super.noSuchMethod(
+        Invocation.getter(#agentCacheOperation),
+        returnValue: _FakeHiveCacheOperation_7<_i18.AgentCacheModel>(
+          this,
+          Invocation.getter(#agentCacheOperation),
+        ),
+        returnValueForMissingStub:
+            _FakeHiveCacheOperation_7<_i18.AgentCacheModel>(
+          this,
+          Invocation.getter(#agentCacheOperation),
+        ),
+      ) as _i4.HiveCacheOperation<_i18.AgentCacheModel>);
 
   @override
   _i7.Future<void> init() => (super.noSuchMethod(
