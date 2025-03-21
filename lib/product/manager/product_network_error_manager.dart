@@ -33,7 +33,7 @@ final class ProductNetworkErrorManager {
       );
 
       if (error.networkException != null) {
-       networkExceptions?.call(error.networkException);
+        networkExceptions?.call(error.networkException);
         throw NetworkError(error.networkException!);
       }
     } else {

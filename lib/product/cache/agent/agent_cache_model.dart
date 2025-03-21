@@ -18,7 +18,6 @@ final class AgentCacheModel with CacheModel<AgentCacheModel> {
 
   @override
   AgentCacheModel fromJson(Map<String, dynamic> json) {
-    print('fromJson: $json');
     final jsonString = json['data'] as String?;
     if (jsonString == null) {
       throw Exception('Json data cannot be null');

@@ -3,6 +3,7 @@ import 'package:flutter_valorant_agents/product/cache/agent/abilities_cache_mode
 import 'package:flutter_valorant_agents/product/cache/agent/agent_cache_model.dart';
 import 'package:flutter_valorant_agents/product/cache/agent/agent_role_cache_model.dart';
 import 'package:flutter_valorant_agents/product/cache/agent/recruitment_data_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/favorite/favorite_agent_cache_model.dart';
 
 class ProductCacheService {
   ProductCacheService() : _cacheManager = HiveCacheManager();
@@ -36,4 +37,8 @@ class ProductCacheService {
 
   late final HiveCacheOperation<AbilitiesCacheModel> abilitiesCacheOperation =
       HiveCacheOperation<AbilitiesCacheModel>();
+
+  late final HiveCacheOperation<FavoriteAgentCacheModel>
+      favoriteAgentCacheOperation =
+      HiveCacheOperation<FavoriteAgentCacheModel>();
 }

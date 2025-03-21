@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.form.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -20,8 +19,11 @@ mixin HomeViewMixin on StackedView<HomeViewModel>, $HomeView {
   }
 
   @override
-  HomeViewModel viewModelBuilder(BuildContext context) => HomeViewModel(
-        productNetworkErrorManager:
-            ProductNetworkErrorManager(context: context),
-      );
+  void onDispose(HomeViewModel viewModel) {
+    super.onDispose(viewModel);
+    disposeForm();
+  }
+
+  @override
+  HomeViewModel viewModelBuilder(BuildContext context) => HomeViewModel();
 }

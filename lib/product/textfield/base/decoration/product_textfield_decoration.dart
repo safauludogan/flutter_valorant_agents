@@ -11,8 +11,6 @@ class ProductTextfieldDecoration extends InputDecoration {
   }) : super(
           fillColor: isFocused ? ColorName.gray200 : null,
           prefixIconColor: isFocused ? ColorName.primary : null,
-          filled: true,
-          isDense: true,
           counterText: '',
           hintText: hintText,
           errorText: errorText,

@@ -5,6 +5,7 @@ class _AgentsCardListView extends StatefulWidget {
   const _AgentsCardListView({
     required this.agents,
     required this.selectedAgentRole,
+    required this.onFavoriteTap,
     Key? key,
   }) : super(key: key);
 
@@ -13,6 +14,9 @@ class _AgentsCardListView extends StatefulWidget {
 
   /// Selected agent role
   final AgentRole? selectedAgentRole;
+
+  /// On favorite tap
+  final ValueSetter<Agent> onFavoriteTap;
 
   @override
   State<_AgentsCardListView> createState() => _AgentsCardListViewState();
@@ -53,7 +57,10 @@ class _AgentsCardListViewState extends State<_AgentsCardListView>
         return fadeTransitionCurved(
           child: Padding(
             padding: Paddings.p4v,
-            child: _AgentCard(agent: agent),
+            child: _AgentCard(
+              agent: agent,
+              onFavoriteTap: widget.onFavoriteTap,
+            ),
           ),
         );
       },
@@ -76,9 +83,11 @@ class _AgentsCardListViewState extends State<_AgentsCardListView>
 class _AgentCard extends StatelessWidget {
   const _AgentCard({
     required this.agent,
+    required this.onFavoriteTap,
   });
 
   final Agent agent;
+  final ValueSetter<Agent> onFavoriteTap;
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +199,10 @@ class _AgentCard extends StatelessWidget {
             ),
           ),
         ],
+        WidgetSizes.spacingXSs.width,
+        FavoriteIconButton(
+          onFavoriteTap: () => onFavoriteTap(agent),
+        ),
       ],
     );
   }

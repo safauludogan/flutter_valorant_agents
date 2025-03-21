@@ -10,7 +10,10 @@ enum HiveAdapterId {
   recruitmentData(30),
 
   /// Abilities
-  ability(40);
+  ability(40),
+
+  /// Favorite agent
+  favoriteAgent(50);
 
   final int value;
   const HiveAdapterId(this.value);

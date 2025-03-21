@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_valorant_agents/ui/styles/radiuses.dart';
 import 'package:flutter_valorant_agents/ui/themes/app_theme_colors.dart';
+import 'package:flutter_valorant_agents/ui/themes/base/custom_theme.dart';
 import 'package:flutter_valorant_agents/ui/themes/dark/dark_colors.dart';
+import 'package:gen/gen.dart';
 
-class DarkTheme {
+class DarkTheme implements CustomTheme {
+  DarkTheme._();
+  static final DarkTheme _instance = DarkTheme._();
+  static DarkTheme get instance => _instance;
+
   static final AppThemeColors colors = AppThemeColors(
     primary: DarkColorPalette.greenPrimary,
     onPrimary: DarkColorPalette.white,
@@ -15,7 +22,7 @@ class DarkTheme {
     conditionalColor: Colors.black,
   );
 
-  static ThemeData get themeData {
+  ThemeData get themeData {
     return ThemeData(
         colorScheme: ColorScheme(
           brightness: Brightness.dark,
@@ -28,7 +35,33 @@ class DarkTheme {
           error: colors.error,
           onError: colors.onError,
         ),
+        elevatedButtonTheme: elevatedButtonThemeData,
+        inputDecorationTheme: inputDecorationTheme,
         scaffoldBackgroundColor: colors.surface,
         extensions: <ThemeExtension<AppThemeColors>>[colors]);
   }
+
+  @override
+  ElevatedButtonThemeData get elevatedButtonThemeData =>
+      ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: ColorName.primary300,
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: Radiuses.b8r,
+          ),
+          foregroundColor: ColorName.white,
+          textStyle: const TextStyle(
+            color: ColorName.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      );
+
+  @override
+  InputDecorationTheme get inputDecorationTheme => const InputDecorationTheme(
+        hintStyle: TextStyle(color: ColorName.gray500),
+      );
 }

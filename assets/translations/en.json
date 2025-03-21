@@ -14,7 +14,28 @@
         },
         "textformfield" : {
             "hintText" : {
-                "searchAgent" : "Search agent"
+                "searchAgent" : "Search agent",
+                "title" : "Title",
+                "description" : "Description"
+            }
+        },
+        "validator" : {
+            "favoriteTitleMustBeAtLeast3Characters" : "Favorite title must be at least 3 characters.",
+            "favoriteDescriptionMustBeAtLeast10Characters" : "Favorite description must be at least 10 characters."
+        },
+        "bottomSheet" : {
+            "addFavorite" : {
+                "title" : "Add to favorites",
+                "description" : "Are you sure you want to add this agent to your favorites?",
+                "additionalButtonTitle" : "Cancel",
+                "mainButtonTitle" : "Add to favorites"
+            }
+        },
+        "favorite" : {
+            "messages" : {
+                "favoriteTitleAlreadyExists" : "This title already exists in your favorites.",
+                "favoriteAgentAlreadyExistsInFavorites" : "This agent already exists in your favorites.",
+                "favoriteAdded" : "Favorite added."
             }
         }
     }
