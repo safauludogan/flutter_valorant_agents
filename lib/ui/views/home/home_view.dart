@@ -65,11 +65,14 @@ class HomeView extends StackedView<HomeViewModel>
                               selectedAgentRole: viewModel.selectedAgentRole,
                             ),
                           ),
-                          title: SearchTextfield(
-                            controller: searchInputController,
-                            onChanged: (text) => viewModel
-                                .onSearchInputChanged(viewModel.searchValue),
-                          ),
+                          title: viewModel.getError == null
+                              ? SearchTextfield(
+                                  controller: searchInputController,
+                                  onChanged: (text) =>
+                                      viewModel.onSearchInputChanged(
+                                          viewModel.searchValue),
+                                )
+                              : const SizedBox.shrink(),
                         ),
                       ],
                       body: CustomRefreshIndicator(
@@ -79,6 +82,7 @@ class HomeView extends StackedView<HomeViewModel>
                           agents: viewModel.agents,
                           selectedAgentRole: viewModel.selectedAgentRole,
                           onFavoriteTap: viewModel.onFavoriteTap,
+                          favoriteAgents: viewModel.favoriteAgents,
                         ),
                       ),
                     ),

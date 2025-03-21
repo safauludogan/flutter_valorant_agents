@@ -9,7 +9,9 @@ mixin HomeViewMixin on StackedView<HomeViewModel>, $HomeView {
   @override
   void onViewModelReady(HomeViewModel viewModel) {
     super.onViewModelReady(viewModel);
-    viewModel.getAgents();
+    viewModel
+      ..getAgents()
+      ..getAllFavoriteAgents();
     syncFormWithViewModel(viewModel);
 
     /// Hide keyboard

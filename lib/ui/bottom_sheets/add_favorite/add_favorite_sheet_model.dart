@@ -35,7 +35,8 @@ class AddFavoriteSheetModel extends ReactiveViewModel
         _toastService.showSuccessMessage(
             message: LocaleKeys.general_favorite_messages_favoriteAdded.tr());
 
-        _navigationService.back<void>();
+        _navigationService.back<SheetResponse<bool>>(
+            result: SheetResponse<bool>(data: true));
       }
     } on Exception catch (e) {
       _toastService.showErrorMessage(message: e.toString());

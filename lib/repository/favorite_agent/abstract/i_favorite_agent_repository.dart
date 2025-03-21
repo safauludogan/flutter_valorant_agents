@@ -6,4 +6,5 @@ abstract class IFavoriteAgentRepository {
   void updateFavoriteAgent({required FavoriteAgent favoriteAgent});
   void removeFavoriteAgent({required String agentId});
   List<FavoriteAgent> getFavoriteAgents();
+  Future<void> clearFavoriteAgents();
 }

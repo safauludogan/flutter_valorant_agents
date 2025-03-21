@@ -75,4 +75,13 @@ final class FavoriteAgentRepository implements IFavoriteAgentRepository {
     }
     return [];
   }
+
+  @override
+  Future<void> clearFavoriteAgents() async {
+    try {
+      await _favoriteAgentCacheOperation.clear();
+    } catch (e) {
+      CustomLogger(data: 'Error').show();
+    }
+  }
 }

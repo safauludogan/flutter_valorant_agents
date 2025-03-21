@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/manager/network_error.dart';
 import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/favorite_agent/abstract/i_favorite_agent_repository.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.form.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:gen/gen.dart';
@@ -15,6 +18,7 @@ class HomeViewModel extends ReactiveViewModel
     implements FormViewModel {
   final _agentRepository = locator<IAgentRepository>();
   final _bottomSheetService = locator<BottomSheetService>();
+  final _favoriteAgentRepository = locator<IFavoriteAgentRepository>();
 
   /// Agents private property
   List<Agent> _agents = [];
@@ -34,6 +38,10 @@ class HomeViewModel extends ReactiveViewModel
   /// Network error
   NetworkExceptions? _error;
   NetworkExceptions? get getError => _error;
+
+  /// Favorite agents
+  List<FavoriteAgent> _favoriteAgents = [];
+  List<FavoriteAgent> get favoriteAgents => _favoriteAgents;
 
   /// Search value
   String get searchValue => hasSearchInput ? searchInputValue! : '';
@@ -69,7 +77,7 @@ class HomeViewModel extends ReactiveViewModel
     _agentRoles = _agentRoles.toSet().toList();
   }
 
-  /// On agent role selected
+  /// On agent role selected show agents based on selected agent role
   void onAgentRoleSelected(AgentRole agentRole) {
     _selectedAgentRole = agentRole;
     rebuildUi();
@@ -98,11 +106,18 @@ class HomeViewModel extends ReactiveViewModel
 
   /// On favorite tap
   Future<void> onFavoriteTap(Agent agent) async {
-    await _bottomSheetService.showCustomSheet(
+    final response = await _bottomSheetService.showCustomSheet<bool, String>(
         variant: BottomSheetType.addFavorite,
         isScrollControlled: true,
         title: agent.displayName,
         data: agent.uuid);
-    //_favoriteAgentRepository.addFavoriteAgent(favoriteAgent: agent.);
+    if (response?.data ?? false) {
+      unawaited(getAllFavoriteAgents());
+      rebuildUi();
+    }
   }
+
+  /// Get all favorite agents
+  Future<void> getAllFavoriteAgents() async =>
+      _favoriteAgents = _favoriteAgentRepository.getFavoriteAgents();
 }
