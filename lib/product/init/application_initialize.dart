@@ -5,9 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.dialogs.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
-import 'package:flutter_valorant_agents/product/cache/agent/agent_response_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/abilities_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/agent_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/agent_role_cache_model.dart';
+import 'package:flutter_valorant_agents/product/cache/agent/recruitment_data_cache_model.dart';
 import 'package:flutter_valorant_agents/product/config/app_environment.dart';
+import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
+import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/agent/concrete/agent_repository.dart';
 import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 @immutable
 final class ApplicationInitialize {
@@ -29,7 +36,21 @@ final class ApplicationInitialize {
 
     _productEnvironment();
 
-    _productCacheService();
+    await _productCacheService();
+
+    _registerLocators();
+  }
+
+  static void _registerLocators() {
+    /// Agent repository
+    locator.registerFactory<IAgentRepository>(
+      () => AgentRepository(
+        agentCacheOperation: locator<ProductCacheService>().agentCacheOperation,
+        productNetworkErrorManager: ProductNetworkErrorManager(
+          context: StackedService.navigatorKey!.currentState!.context,
+        ),
+      ),
+    );
   }
 
   static void _productEnvironment() {
@@ -45,13 +66,29 @@ final class ApplicationInitialize {
     /// Register models
     ///
 
-    /// Agent response
-    _productCache.register<AgentResponseCacheModel>(
-      AgentResponseCacheModel.empty(),
-      HiveAdapterId.agentResponse,
-    );
+    /// Agent
+    _productCache
+      ..register<AgentCacheModel>(
+        AgentCacheModel.empty(),
+        HiveAdapterId.agent,
+      )
+      ..register<AgentRoleCacheModel>(
+        AgentRoleCacheModel.empty(),
+        HiveAdapterId.agentRole,
+      )
+      ..register<RecruitmentDataCacheModel>(
+        RecruitmentDataCacheModel.empty(),
+        HiveAdapterId.recruitmentData,
+      )
+      ..register<AbilitiesCacheModel>(
+        AbilitiesCacheModel.empty(),
+        HiveAdapterId.ability,
+      );
 
     /// Open cache box
-    await _productCache.agentResponseCacheOperation.open();
+    await _productCache.agentCacheOperation.open();
+    await _productCache.agentRoleCacheOperation.open();
+    await _productCache.recruitmentDataCacheOperation.open();
+    await _productCache.abilitiesCacheOperation.open();
   }
 }

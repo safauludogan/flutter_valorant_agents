@@ -1,7 +1,11 @@
 import 'package:dio_nexus/dio_nexus.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
+import 'package:flutter_valorant_agents/product/manager/network_error.dart';
 import 'package:flutter_valorant_agents/product/manager/product_network_error_manager.dart';
-import 'package:flutter_valorant_agents/services/api/agent_service.dart';
+import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/agent/concrete/agent_repository.dart';
+import 'package:flutter_valorant_agents/services/api/agent/agent_service.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.form.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:gen/gen.dart';
@@ -13,6 +17,8 @@ class HomeViewModel extends ReactiveViewModel
   HomeViewModel({
     required ProductNetworkErrorManager productNetworkErrorManager,
   }) : _productNetworkErrorManager = productNetworkErrorManager;
+
+  final _agentRepository = locator<IAgentRepository>();
 
   /// Dialog Service
   final _agentService = locator<AgentService>();
@@ -45,28 +51,30 @@ class HomeViewModel extends ReactiveViewModel
 
   /// Get agents
   Future<void> getAgents() async {
+    setBusy(true);
     _error = null;
-    _productNetworkErrorManager.resolve(
-      await runBusyFuture(_agentService.getAllAgents()),
-      response: (value) {
-        _agents = value?.agents ?? [];
-        baseAgents = [..._agents];
-        findAllAgentRoles();
-      },
-      networkExceptions: (value) {
-        _error = value;
-      },
-    );
+    try {
+      _agents = await _agentRepository.getAgentsFromCache();
+
+      baseAgents = [..._agents];
+      findAllAgentRoles();
+    } on NetworkError catch (e) {
+      _error = e.networkException;
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      setBusy(false);
+    }
   }
 
   /// Find all agent roles
   void findAllAgentRoles() {
     if (_agents.isEmpty) return;
     for (final agent in _agents) {
-      if (agent.agentRole != null &&
-          agent.agentRole?.displayName != null &&
-          agent.agentRole?.displayName!.trim() != '') {
-        _agentRoles.add(agent.agentRole!);
+      if (agent.role != null &&
+          agent.role?.displayName != null &&
+          agent.role?.displayName!.trim() != '') {
+        _agentRoles.add(agent.role!);
       }
     }
     _agentRoles = _agentRoles.toSet().toList();

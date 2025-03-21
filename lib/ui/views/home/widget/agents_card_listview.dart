@@ -45,7 +45,7 @@ class _AgentsCardListViewState extends State<_AgentsCardListView>
         /// If the agent role is not the selected agent role,
         /// return a [SizedBox.shrink()]
         final isAgentRoleSelected =
-            agent.agentRole?.uuid?.compareUuid(widget.selectedAgentRole?.uuid);
+            agent.role?.uuid?.compareUuid(widget.selectedAgentRole?.uuid);
         if ((isAgentRoleSelected == null || !isAgentRoleSelected) &&
             widget.selectedAgentRole?.uuid != allFilterAgentRole.uuid) {
           return const SizedBox.shrink();
@@ -164,7 +164,7 @@ class _AgentCard extends StatelessWidget {
             style: AppTextStyles.bodyText1,
           ),
         ),
-        if (agent.agentRole?.displayIcon != null) ...[
+        if (agent.role?.displayIcon != null) ...[
           SizedBox(width: WidgetSizes.spacingXxs.w),
           Container(
             padding: EdgeInsets.symmetric(
@@ -176,12 +176,12 @@ class _AgentCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomNetworkImage(
-                  imageUrl: agent.agentRole!.displayIcon,
+                  imageUrl: agent.role!.displayIcon,
                   size: Size(14.w, 14.h),
                 ),
                 SizedBox(width: 4.w),
                 Text(
-                  agent.agentRole!.displayName!,
+                  agent.role!.displayName!,
                   style: AppTextStyles.footNote2.copyWith(
                     color: Colors.white.withValues(alpha: 0.8),
                   ),

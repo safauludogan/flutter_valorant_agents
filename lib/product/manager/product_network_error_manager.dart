@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
+import 'package:flutter_valorant_agents/product/manager/network_error.dart';
 import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 
 /// Manager your network error with screen
@@ -22,26 +23,21 @@ final class ProductNetworkErrorManager {
     ValueSetter<T?>? response,
     ValueSetter<NetworkExceptions?>? networkExceptions,
   }) {
-    try {
-      final error = responseModel?.errorModel;
-      final data = responseModel?.data;
+    final error = responseModel?.errorModel;
+    final data = responseModel?.data;
 
-      if (error != null) {
-        _showError(
-          error.errorMessage ??
-              LocaleKeys.general_messages_somethingWentWrong.tr(),
-        );
+    if (error != null) {
+      _showError(
+        error.errorMessage ??
+            LocaleKeys.general_messages_somethingWentWrong.tr(),
+      );
 
-        if (error.networkException != null) {
-          networkExceptions?.call(
-            error.networkException ?? const NetworkExceptions.unexpectedError(),
-          );
-        }
-      } else {
-        response?.call(data);
+      if (error.networkException != null) {
+       networkExceptions?.call(error.networkException);
+        throw NetworkError(error.networkException!);
       }
-    } catch (_) {
-      return;
+    } else {
+      response?.call(data);
     }
   }
 

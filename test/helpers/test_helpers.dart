@@ -5,7 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'package:flutter_valorant_agents/services/api/agent_service.dart';
+import 'package:flutter_valorant_agents/services/api/agent/agent_service.dart';
 import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
 import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart';
