@@ -16,12 +16,16 @@ import 'package:flutter_valorant_agents/services/manager/product_network_service
 import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart';
 import 'package:flutter_valorant_agents/ui/bottom_sheets/add_favorite/add_favorite_sheet.dart';
+import 'package:flutter_valorant_agents/ui/views/agents/agents_view.dart';
+import 'package:flutter_valorant_agents/ui/views/favorite_agents/favorite_agents_view.dart';
 // @stacked-import
 
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
+    MaterialRoute(page: AgentsView),
+    MaterialRoute(page: FavoriteAgentsView),
 // @stacked-route
   ],
   dependencies: [

@@ -43,5 +43,11 @@
                 "agentName" : "Agent - {}"
             }
         }
+    },
+    "home" : {
+        "pages" : {
+            "agents" : "Agents",
+            "favoriteAgents" : "Favorites"
+        }
     }
 }

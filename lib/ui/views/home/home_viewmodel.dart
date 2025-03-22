@@ -106,7 +106,6 @@ class HomeViewModel extends ReactiveViewModel
 
   /// On favorite tap
   Future<void> onFavoriteTap(Agent agent, bool isFavorite) async {
-    
     if (!isFavorite) {
       await _addFavoriteAgent(agent);
     } else {
