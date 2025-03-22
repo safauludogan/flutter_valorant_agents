@@ -19,7 +19,7 @@ final class FavoriteAgentRepository implements IFavoriteAgentRepository {
       _favoriteAgentCacheOperation;
 
   @override
-  Future<bool> addFavoriteAgent({required FavoriteAgent favoriteAgent}) async {
+  bool addFavoriteAgent({required FavoriteAgent favoriteAgent}) {
     try {
       final currentFavorites = getFavoriteAgents();
 
@@ -47,21 +47,36 @@ final class FavoriteAgentRepository implements IFavoriteAgentRepository {
   }
 
   @override
-  void removeFavoriteAgent({required String agentId}) {
+  bool removeFavoriteAgent({required String agentId}) {
     try {
       _favoriteAgentCacheOperation.remove(agentId);
+      return true;
     } catch (e) {
       CustomLogger(data: 'Error').show();
+      return false;
     }
   }
 
   @override
-  void updateFavoriteAgent({required FavoriteAgent favoriteAgent}) {
+  bool updateFavoriteAgent({required FavoriteAgent favoriteAgent}) {
     try {
+      final currentFavorites = getFavoriteAgents();
+
+      for (final favorite in currentFavorites) {
+        if (!favorite.agentId!.compareUuid(favoriteAgent.agentId) &&
+            favorite.title?.trim() == favoriteAgent.title?.trim()) {
+          throw Exception(LocaleKeys
+              .general_favorite_messages_favoriteTitleAlreadyExists
+              .tr());
+        }
+      }
       _favoriteAgentCacheOperation
           .update(FavoriteAgentCacheModel(favoriteAgent: favoriteAgent));
+
+      return true;
     } catch (e) {
       CustomLogger(data: 'Error').show();
+      rethrow;
     }
   }
 
@@ -83,5 +98,15 @@ final class FavoriteAgentRepository implements IFavoriteAgentRepository {
     } catch (e) {
       CustomLogger(data: 'Error').show();
     }
+  }
+
+  @override
+  FavoriteAgent? getFavoriteAgent({required String agentId}) {
+    try {
+      return _favoriteAgentCacheOperation.get(agentId)?.favoriteAgent;
+    } catch (e) {
+      CustomLogger(data: 'Error').show();
+    }
+    return null;
   }
 }

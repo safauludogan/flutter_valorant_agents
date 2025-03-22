@@ -15,7 +15,6 @@ import 'package:flutter_valorant_agents/services/api/agent/agent_service.dart';
 import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
 import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart';
-import 'package:flutter_valorant_agents/ui/bottom_sheets/favorite/favorite_sheet.dart';
 import 'package:flutter_valorant_agents/ui/bottom_sheets/add_favorite/add_favorite_sheet.dart';
 // @stacked-import
 
@@ -40,7 +39,6 @@ import 'package:flutter_valorant_agents/ui/bottom_sheets/add_favorite/add_favori
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
-    StackedBottomsheet(classType: FavoriteSheet),
     StackedBottomsheet(classType: AddFavoriteSheet),
 // @stacked-bottom-sheet
   ],

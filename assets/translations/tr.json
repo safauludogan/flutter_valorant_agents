@@ -4,7 +4,9 @@
     "general" : {
         "button" : {
             "tryAgain" : "Tekrar deneyin",
-            "all" : "Tümü"
+            "all" : "Tümü",
+            "update" : "Güncelle",
+            "delete" : "Sil"
         },
         "messages" : {
             "somethingWentWrong" : "Hay aksi, bir şeyler ters gitti!",
@@ -36,6 +38,8 @@
                 "favoriteTitleAlreadyExists" : "Bu başlıkta bir favori mevcut.",
                 "favoriteAgentAlreadyExistsInFavorites" : "Bu ajan zaten favorilerinizde mevcut.",
                 "favoriteAdded" : "Favoriye eklendi.",
+                "favoriteRemoved" : "Favori silindi.",
+                "favoriteUpdated" : "Favori güncellendi.",
                 "agentName" : "Ajan - {}"
             }
         }
