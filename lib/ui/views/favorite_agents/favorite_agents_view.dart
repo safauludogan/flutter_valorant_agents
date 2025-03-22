@@ -37,14 +37,29 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
     Widget? child,
   ) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: CustomRefreshIndicator(
         isListView: true,
         onRefresh: onRefresh,
-        child: AgentsCardListView(
-          agents: viewModel.getFavoriteAgents(agents, favoriteAgents),
-          selectedAgentRole: selectedAgentRole,
-          onFavoriteTap: onFavoriteTap,
-          favoriteAgents: favoriteAgents,
+        child: AdaptAllView(
+          phone: _body(
+              agents: agents,
+              favoriteAgents: favoriteAgents,
+              selectedAgentRole: selectedAgentRole,
+              onFavoriteTap: onFavoriteTap,
+              viewModel: viewModel),
+          tablet: _body(
+              agents: agents,
+              favoriteAgents: favoriteAgents,
+              selectedAgentRole: selectedAgentRole,
+              onFavoriteTap: onFavoriteTap,
+              viewModel: viewModel),
+          desktop: _body(
+              agents: agents,
+              favoriteAgents: favoriteAgents,
+              selectedAgentRole: selectedAgentRole,
+              onFavoriteTap: onFavoriteTap,
+              viewModel: viewModel),
         ),
       ),
     );
@@ -55,4 +70,31 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
     BuildContext context,
   ) =>
       FavoriteAgentsViewModel();
+}
+
+class _body extends StatelessWidget {
+  const _body({
+    super.key,
+    required this.agents,
+    required this.favoriteAgents,
+    required this.selectedAgentRole,
+    required this.onFavoriteTap,
+    required this.viewModel,
+  });
+
+  final List<Agent> agents;
+  final List<FavoriteAgent> favoriteAgents;
+  final AgentRole? selectedAgentRole;
+  final void Function(Agent p1, bool p2) onFavoriteTap;
+  final FavoriteAgentsViewModel viewModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return AgentsCardListView(
+      agents: viewModel.getFavoriteAgents(agents, favoriteAgents),
+      selectedAgentRole: selectedAgentRole,
+      onFavoriteTap: onFavoriteTap,
+      favoriteAgents: favoriteAgents,
+    );
+  }
 }

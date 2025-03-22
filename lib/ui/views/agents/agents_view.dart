@@ -37,14 +37,26 @@ class AgentsView extends StackedView<AgentsViewModel> {
     Widget? child,
   ) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: CustomRefreshIndicator(
         isListView: true,
         onRefresh: onRefresh,
-        child: AgentsCardListView(
-          agents: agents,
-          selectedAgentRole: selectedAgentRole,
-          onFavoriteTap: onFavoriteTap,
-          favoriteAgents: favoriteAgents,
+        child: AdaptAllView(
+          phone: _body(
+              agents: agents,
+              selectedAgentRole: selectedAgentRole,
+              onFavoriteTap: onFavoriteTap,
+              favoriteAgents: favoriteAgents),
+          tablet: _body(
+              agents: agents,
+              selectedAgentRole: selectedAgentRole,
+              onFavoriteTap: onFavoriteTap,
+              favoriteAgents: favoriteAgents),
+          desktop: _body(
+              agents: agents,
+              selectedAgentRole: selectedAgentRole,
+              onFavoriteTap: onFavoriteTap,
+              favoriteAgents: favoriteAgents),
         ),
       ),
     );
@@ -55,4 +67,29 @@ class AgentsView extends StackedView<AgentsViewModel> {
     BuildContext context,
   ) =>
       AgentsViewModel();
+}
+
+class _body extends StatelessWidget {
+  const _body({
+    super.key,
+    required this.agents,
+    required this.selectedAgentRole,
+    required this.onFavoriteTap,
+    required this.favoriteAgents,
+  });
+
+  final List<Agent> agents;
+  final AgentRole? selectedAgentRole;
+  final void Function(Agent p1, bool p2) onFavoriteTap;
+  final List<FavoriteAgent> favoriteAgents;
+
+  @override
+  Widget build(BuildContext context) {
+    return AgentsCardListView(
+      agents: agents,
+      selectedAgentRole: selectedAgentRole,
+      onFavoriteTap: onFavoriteTap,
+      favoriteAgents: favoriteAgents,
+    );
+  }
 }

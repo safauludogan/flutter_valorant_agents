@@ -9,6 +9,7 @@ import 'package:flutter_valorant_agents/product/init/product_localization.dart';
 import 'package:flutter_valorant_agents/services/manager/product_network_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:widgets/widgets.dart';
 
 Future<void> main() async {
   await ApplicationInitialize().setup();
@@ -34,7 +35,7 @@ class MainApp extends StatelessWidget {
           navigatorObservers: [StackedService.routeObserver],
           builder: (context, child) {
             locator<ProductNetworkService>().setupNetworkConnection(context);
-            return child!;
+            return CustomResponsive.build(context, child);
           },
           theme: viewModel.theme,
           localizationsDelegates: context.localizationDelegates,
