@@ -39,6 +39,7 @@ class LightTheme implements CustomTheme {
         ),
         elevatedButtonTheme: elevatedButtonThemeData,
         inputDecorationTheme: inputDecorationTheme,
+        appBarTheme: appBarTheme,
         scaffoldBackgroundColor:
             colors.surface, // Set scaffold background to match surface
         extensions: <ThemeExtension<AppThemeColors>>[colors]);
@@ -92,5 +93,14 @@ class LightTheme implements CustomTheme {
         filled: true,
         isDense: true,
         fillColor: ColorName.gray100,
+      );
+
+  @override
+  AppBarTheme get appBarTheme => const AppBarTheme(
+        elevation: 1,
+        shadowColor: ColorName.gray200,
+        backgroundColor: ColorName.white,
+        surfaceTintColor: ColorName.white,
+        centerTitle: false,
       );
 }

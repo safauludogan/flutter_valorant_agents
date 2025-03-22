@@ -38,6 +38,7 @@ class DarkTheme implements CustomTheme {
         elevatedButtonTheme: elevatedButtonThemeData,
         inputDecorationTheme: inputDecorationTheme,
         scaffoldBackgroundColor: colors.surface,
+        appBarTheme: appBarTheme,
         extensions: <ThemeExtension<AppThemeColors>>[colors]);
   }
 
@@ -63,5 +64,14 @@ class DarkTheme implements CustomTheme {
   @override
   InputDecorationTheme get inputDecorationTheme => const InputDecorationTheme(
         hintStyle: TextStyle(color: ColorName.gray500),
+      );
+
+  @override
+  AppBarTheme get appBarTheme => const AppBarTheme(
+        elevation: 1,
+        shadowColor: ColorName.gray200,
+        backgroundColor: ColorName.white,
+        surfaceTintColor: ColorName.white,
+        centerTitle: false,
       );
 }

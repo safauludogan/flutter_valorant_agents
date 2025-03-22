@@ -5,4 +5,5 @@ abstract class CustomTheme {
 
   ElevatedButtonThemeData get elevatedButtonThemeData;
   InputDecorationTheme get inputDecorationTheme;
+  AppBarTheme get appBarTheme;
 }

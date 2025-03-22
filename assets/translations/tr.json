@@ -42,6 +42,12 @@
                 "favoriteUpdated" : "Favori güncellendi.",
                 "agentName" : "Ajan - {}"
             }
+        },
+        "home" : {
+            "pages" : {
+                "agents" : "Ajanlar",
+                "favoriteAgents" : "Favoriler"
+            }
         }
     }
 }
