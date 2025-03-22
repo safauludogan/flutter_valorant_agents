@@ -19,6 +19,7 @@ import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/filter_c
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'package:widgets/widgets.dart';
 
 part 'widget/agent_roles_filterchip.dart';
 
@@ -47,64 +48,86 @@ class HomeView extends StackedView<HomeViewModel>
                   HomePages.values.map((e) => Tab(text: e.getTitle())).toList(),
             ),
           ),
-          body: SafeArea(
-            child: Padding(
-              padding: Paddings.p16h,
-              child: viewModel.isBusy
-                  ? const ShimmerCardListView()
-                  : NetworkErrorResolver(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: NestedScrollView(
-                              headerSliverBuilder:
-                                  (context, innerBoxIsScrolled) => [
-                                SliverAppBar(
-                                  floating: true,
-                                  snap: true,
-                                  bottom: PreferredSize(
-                                    preferredSize: Size.fromHeight(48.h),
-                                    child: _AgentRolesFilterChip(
-                                      agentRoles: viewModel.agentRoles,
-                                      onSelected: viewModel.onAgentRoleSelected,
-                                      selectedAgentRole:
-                                          viewModel.selectedAgentRole,
-                                    ),
-                                  ),
-                                  title: viewModel.getError == null
-                                      ? SearchTextfield(
-                                          controller: searchInputController,
-                                          onChanged: (text) =>
-                                              viewModel.onSearchInputChanged(
-                                                  viewModel.searchValue),
-                                        )
-                                      : const SizedBox.shrink(),
-                                ),
-                              ],
-                              body: TabBarView(
-                                children: HomePages.values
-                                    .map((e) => e.getPage(
-                                        agents: viewModel.agents,
-                                        selectedAgentRole:
-                                            viewModel.selectedAgentRole,
-                                        onFavoriteTap: viewModel.onFavoriteTap,
-                                        favoriteAgents:
-                                            viewModel.favoriteAgents,
-                                        onRefresh: () async =>
-                                            viewModel.getAgents()))
-                                    .toList(),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      error: viewModel.getError,
-                    ).resolveErrorWidget(
-                      receiveData: () => viewModel.getAgents(),
-                    ),
-            ),
+          body: AdaptAllView(
+            phone: _body(
+                searchInputController: searchInputController,
+                viewModel: viewModel),
+            tablet: _body(
+                searchInputController: searchInputController,
+                viewModel: viewModel),
+            desktop: _body(
+                searchInputController: searchInputController,
+                viewModel: viewModel),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _body extends StatelessWidget {
+  const _body({
+    super.key,
+    required this.searchInputController,
+    required this.viewModel,
+  });
+
+  final TextEditingController searchInputController;
+  final HomeViewModel viewModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: Paddings.p16h,
+        child: viewModel.isBusy
+            ? const ShimmerCardListView()
+            : NetworkErrorResolver(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: NestedScrollView(
+                        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                          SliverAppBar(
+                            floating: true,
+                            snap: true,
+                            bottom: PreferredSize(
+                              preferredSize: Size.fromHeight(48.h),
+                              child: _AgentRolesFilterChip(
+                                agentRoles: viewModel.agentRoles,
+                                onSelected: viewModel.onAgentRoleSelected,
+                                selectedAgentRole: viewModel.selectedAgentRole,
+                              ),
+                            ),
+                            title: viewModel.getError == null
+                                ? SearchTextfield(
+                                    controller: searchInputController,
+                                    onChanged: (text) =>
+                                        viewModel.onSearchInputChanged(
+                                            viewModel.searchValue),
+                                  )
+                                : const SizedBox.shrink(),
+                          ),
+                        ],
+                        body: TabBarView(
+                          children: HomePages.values
+                              .map((e) => e.getPage(
+                                  agents: viewModel.agents,
+                                  selectedAgentRole:
+                                      viewModel.selectedAgentRole,
+                                  onFavoriteTap: viewModel.onFavoriteTap,
+                                  favoriteAgents: viewModel.favoriteAgents,
+                                  onRefresh: () async => viewModel.getAgents()))
+                              .toList(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                error: viewModel.getError,
+              ).resolveErrorWidget(
+                receiveData: () => viewModel.getAgents(),
+              ),
       ),
     );
   }

@@ -13,6 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  responsive_framework: ^1.5.1
+
   # UI
   shimmer: ^3.0.0
 
