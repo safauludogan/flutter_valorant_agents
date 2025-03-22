@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 /// Custom responsive
-/// 
+///
 /// [MOBILE] 0 - 450
 /// [TABLET] 451 - 800
 /// [DESKTOP] 801 - 1920
 /// [4K] 1921 - infinity
 final class CustomResponsive {
-
-
-
-
   /// Custom responsive builder
   static Widget build(BuildContext context, Widget? child) {
     return ResponsiveBreakpoints.builder(
