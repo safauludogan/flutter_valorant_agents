@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:dio_nexus/dio_nexus.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -65,12 +67,22 @@ final class AgentRepository extends IAgentRepository {
   /// CACHE
   @override
   Future<List<Agent>> getAgentsFromCache() async {
-    final result = _agentCacheOperation.getAll();
+    var isSynchronized = false;
 
-    if (result.isNotEmpty) {
-      return result.map((e) => e.agent).toList();
+    try {
+      final result = _agentCacheOperation.getAll();
+
+      if (result.isNotEmpty) {
+        return result.map((e) => e.agent).toList();
+      }
+      isSynchronized = true;
+      return await getAgentsFromRemote() ?? [];
+    } finally {
+      if (!isSynchronized) {
+        /// Cache invalidation
+        unawaited(getAgentsFromRemote());
+      }
     }
-    return await getAgentsFromRemote() ?? [];
   }
 
   /// Save agents to cache
