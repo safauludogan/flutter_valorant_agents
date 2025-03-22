@@ -43,23 +43,29 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
         onRefresh: onRefresh,
         child: AdaptAllView(
           phone: _body(
-              agents: agents,
-              favoriteAgents: favoriteAgents,
-              selectedAgentRole: selectedAgentRole,
-              onFavoriteTap: onFavoriteTap,
-              viewModel: viewModel),
+            agents: agents,
+            favoriteAgents: favoriteAgents,
+            selectedAgentRole: selectedAgentRole,
+            onFavoriteTap: onFavoriteTap,
+            viewModel: viewModel,
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+          ),
           tablet: _body(
-              agents: agents,
-              favoriteAgents: favoriteAgents,
-              selectedAgentRole: selectedAgentRole,
-              onFavoriteTap: onFavoriteTap,
-              viewModel: viewModel),
+            agents: agents,
+            favoriteAgents: favoriteAgents,
+            selectedAgentRole: selectedAgentRole,
+            onFavoriteTap: onFavoriteTap,
+            viewModel: viewModel,
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+          ),
           desktop: _body(
-              agents: agents,
-              favoriteAgents: favoriteAgents,
-              selectedAgentRole: selectedAgentRole,
-              onFavoriteTap: onFavoriteTap,
-              viewModel: viewModel),
+            agents: agents,
+            favoriteAgents: favoriteAgents,
+            selectedAgentRole: selectedAgentRole,
+            onFavoriteTap: onFavoriteTap,
+            viewModel: viewModel,
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+          ),
         ),
       ),
     );
@@ -80,6 +86,7 @@ class _body extends StatelessWidget {
     required this.selectedAgentRole,
     required this.onFavoriteTap,
     required this.viewModel,
+    required this.onAgentTap,
   });
 
   final List<Agent> agents;
@@ -87,6 +94,7 @@ class _body extends StatelessWidget {
   final AgentRole? selectedAgentRole;
   final void Function(Agent p1, bool p2) onFavoriteTap;
   final FavoriteAgentsViewModel viewModel;
+  final void Function(Agent) onAgentTap;
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +103,7 @@ class _body extends StatelessWidget {
       selectedAgentRole: selectedAgentRole,
       onFavoriteTap: onFavoriteTap,
       favoriteAgents: favoriteAgents,
+      onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
     );
   }
 }

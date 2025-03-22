@@ -43,20 +43,26 @@ class AgentsView extends StackedView<AgentsViewModel> {
         onRefresh: onRefresh,
         child: AdaptAllView(
           phone: _body(
-              agents: agents,
-              selectedAgentRole: selectedAgentRole,
-              onFavoriteTap: onFavoriteTap,
-              favoriteAgents: favoriteAgents),
+            agents: agents,
+            selectedAgentRole: selectedAgentRole,
+            onFavoriteTap: onFavoriteTap,
+            favoriteAgents: favoriteAgents,
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+          ),
           tablet: _body(
-              agents: agents,
-              selectedAgentRole: selectedAgentRole,
-              onFavoriteTap: onFavoriteTap,
-              favoriteAgents: favoriteAgents),
+            agents: agents,
+            selectedAgentRole: selectedAgentRole,
+            onFavoriteTap: onFavoriteTap,
+            favoriteAgents: favoriteAgents,
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+          ),
           desktop: _body(
-              agents: agents,
-              selectedAgentRole: selectedAgentRole,
-              onFavoriteTap: onFavoriteTap,
-              favoriteAgents: favoriteAgents),
+            agents: agents,
+            selectedAgentRole: selectedAgentRole,
+            onFavoriteTap: onFavoriteTap,
+            favoriteAgents: favoriteAgents,
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+          ),
         ),
       ),
     );
@@ -76,12 +82,14 @@ class _body extends StatelessWidget {
     required this.selectedAgentRole,
     required this.onFavoriteTap,
     required this.favoriteAgents,
+    required this.onAgentTap,
   });
 
   final List<Agent> agents;
   final AgentRole? selectedAgentRole;
   final void Function(Agent p1, bool p2) onFavoriteTap;
   final List<FavoriteAgent> favoriteAgents;
+  final void Function(Agent) onAgentTap;
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +98,7 @@ class _body extends StatelessWidget {
       selectedAgentRole: selectedAgentRole,
       onFavoriteTap: onFavoriteTap,
       favoriteAgents: favoriteAgents,
+      onAgentTap: onAgentTap,
     );
   }
 }

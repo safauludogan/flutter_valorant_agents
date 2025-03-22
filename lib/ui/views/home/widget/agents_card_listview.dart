@@ -24,6 +24,7 @@ class AgentsCardListView extends StatefulWidget {
     required this.selectedAgentRole,
     required this.onFavoriteTap,
     required this.favoriteAgents,
+    required this.onAgentTap,
     Key? key,
   }) : super(key: key);
 
@@ -38,6 +39,9 @@ class AgentsCardListView extends StatefulWidget {
 
   /// Favorite agents
   final List<FavoriteAgent> favoriteAgents;
+
+  /// On agent tap
+  final void Function(Agent) onAgentTap;
 
   @override
   State<AgentsCardListView> createState() => AgentsCardListViewState();
@@ -83,6 +87,7 @@ class AgentsCardListViewState extends State<AgentsCardListView>
               onFavoriteTap: widget.onFavoriteTap,
               isFavorite: widget.favoriteAgents.any((favorite) =>
                   favorite.agentId?.compareUuid(agent.uuid) ?? false),
+              onAgentTap: widget.onAgentTap,
             ),
           ),
         );
@@ -108,70 +113,75 @@ class _AgentCard extends StatelessWidget {
     required this.agent,
     required this.onFavoriteTap,
     required this.isFavorite,
+    required this.onAgentTap,
   });
 
   final Agent agent;
   final void Function(Agent, bool) onFavoriteTap;
   final bool isFavorite;
+  final void Function(Agent) onAgentTap;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.r),
-        side: BorderSide(
-          color: Colors.white.withValues(alpha: 0.1),
+    return InkWell(
+      onTap: () => onAgentTap(agent),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          side: BorderSide(
+            color: Colors.white.withValues(alpha: 0.1),
+          ),
         ),
-      ),
-      elevation: 8,
-      shadowColor: agent.backgroundGradientColors
-          ?.map((e) => Color(int.parse('0xFF$e')))
-          .first
-          .withValues(alpha: 0.3),
-      child: Container(
-        decoration: CardBgDecoration(
-          colors: agent.backgroundGradientColors
-              ?.map((e) => Color(int.parse('0xFF$e')))
-              .toList(),
-        ),
-        child: IntrinsicHeight(
-          child: Row(
-            children: [
-              // Agent Image
-              Expanded(
-                flex: 2,
-                child: _buildAgentImage(agent),
-              ),
-              // Agent Info
-              Expanded(
-                flex: 3,
-                child: Padding(
-                  padding: Paddings.p8a,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Agent Name and Role
-                      _buildAgentNameAndRole(agent),
-                      SizedBox(height: WidgetSizes.spacingXs.h),
-                      // Agent Description
-                      Text(
-                        agent.description ?? '',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.footNote3,
-                      ),
-                      SizedBox(height: WidgetSizes.spacingXs.h),
-                      // Abilities Icons
-                      if (agent.abilities != null) ...[
-                        _buildAbilitiesIcons(agent),
+        elevation: 8,
+        shadowColor: agent.backgroundGradientColors
+            ?.map((e) => Color(int.parse('0xFF$e')))
+            .first
+            .withValues(alpha: 0.3),
+        child: Container(
+          decoration: CardBgDecoration(
+            colors: agent.backgroundGradientColors
+                ?.map((e) => Color(int.parse('0xFF$e')))
+                .toList(),
+          ),
+          child: IntrinsicHeight(
+            child: Row(
+              children: [
+                // Agent Image
+                Expanded(
+                  flex: 2,
+                  child: _buildAgentImage(agent),
+                ),
+                // Agent Info
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: Paddings.p8a,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Agent Name and Role
+                        _buildAgentNameAndRole(agent),
+                        SizedBox(height: WidgetSizes.spacingXs.h),
+                        // Agent Description
+                        Text(
+                          agent.description ?? '',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.footNote3,
+                        ),
+                        SizedBox(height: WidgetSizes.spacingXs.h),
+                        // Abilities Icons
+                        if (agent.abilities != null) ...[
+                          _buildAbilitiesIcons(agent),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
