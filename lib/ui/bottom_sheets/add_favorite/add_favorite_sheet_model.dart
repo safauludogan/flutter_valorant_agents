@@ -23,7 +23,7 @@ class AddFavoriteSheetModel extends ReactiveViewModel
     }
 
     try {
-      final result = await _favoriteAgentRepository.addFavoriteAgent(
+      final result = _favoriteAgentRepository.addFavoriteAgent(
         favoriteAgent: FavoriteAgent(
           title: titleInputValue,
           description: descriptionInputValue,
@@ -40,6 +40,48 @@ class AddFavoriteSheetModel extends ReactiveViewModel
       }
     } on Exception catch (e) {
       _toastService.showErrorMessage(message: e.toString());
+    }
+  }
+
+  /// Update favorite
+  Future<void> updateFavorite(String agentId) async {
+    if (hasTitleInputValidationMessage ||
+        hasDescriptionInputValidationMessage) {
+      return;
+    }
+
+    try {
+      final result = _favoriteAgentRepository.updateFavoriteAgent(
+        favoriteAgent: FavoriteAgent(
+          title: titleInputValue,
+          description: descriptionInputValue,
+          agentId: agentId,
+        ),
+      );
+
+      if (result) {
+        _toastService.showSuccessMessage(
+            message: LocaleKeys.general_favorite_messages_favoriteUpdated.tr());
+
+        _navigationService.back<SheetResponse<bool>>(
+            result: SheetResponse<bool>(data: true));
+      }
+    } on Exception catch (e) {
+      _toastService.showErrorMessage(message: e.toString());
+    }
+  }
+
+  /// Delete favorite
+  Future<void> deleteFavorite(String agentId) async {
+    final result =
+        _favoriteAgentRepository.removeFavoriteAgent(agentId: agentId);
+
+    if (result) {
+      _toastService.showSuccessMessage(
+          message: LocaleKeys.general_favorite_messages_favoriteRemoved.tr());
+
+      _navigationService.back<SheetResponse<bool>>(
+          result: SheetResponse<bool>(data: true));
     }
   }
 }

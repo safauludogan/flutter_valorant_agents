@@ -17,7 +17,7 @@ class _AgentsCardListView extends StatefulWidget {
   final AgentRole? selectedAgentRole;
 
   /// On favorite tap
-  final ValueSetter<Agent> onFavoriteTap;
+  final void Function(Agent, bool) onFavoriteTap;
 
   /// Favorite agents
   final List<FavoriteAgent> favoriteAgents;
@@ -94,7 +94,7 @@ class _AgentCard extends StatelessWidget {
   });
 
   final Agent agent;
-  final ValueSetter<Agent> onFavoriteTap;
+  final void Function(Agent, bool) onFavoriteTap;
   final bool isFavorite;
 
   @override
@@ -209,7 +209,7 @@ class _AgentCard extends StatelessWidget {
         ],
         WidgetSizes.spacingXSs.width,
         FavoriteIconButton(
-          onFavoriteTap: () => onFavoriteTap(agent),
+          onFavoriteTap: () => onFavoriteTap(agent, isFavorite),
           isFavorite: isFavorite,
         ),
       ],

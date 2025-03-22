@@ -6,6 +6,8 @@ abstract class  LocaleKeys {
   static const appName = 'appName';
   static const general_button_tryAgain = 'general.button.tryAgain';
   static const general_button_all = 'general.button.all';
+  static const general_button_update = 'general.button.update';
+  static const general_button_delete = 'general.button.delete';
   static const general_button = 'general.button';
   static const general_messages_somethingWentWrong = 'general.messages.somethingWentWrong';
   static const general_messages_noAgentsFound = 'general.messages.noAgentsFound';
@@ -29,6 +31,8 @@ abstract class  LocaleKeys {
   static const general_favorite_messages_favoriteTitleAlreadyExists = 'general.favorite.messages.favoriteTitleAlreadyExists';
   static const general_favorite_messages_favoriteAgentAlreadyExistsInFavorites = 'general.favorite.messages.favoriteAgentAlreadyExistsInFavorites';
   static const general_favorite_messages_favoriteAdded = 'general.favorite.messages.favoriteAdded';
+  static const general_favorite_messages_favoriteUpdated = 'general.favorite.messages.favoriteUpdated';
+  static const general_favorite_messages_favoriteRemoved = 'general.favorite.messages.favoriteRemoved';
   static const general_favorite_messages_agentName = 'general.favorite.messages.agentName';
   static const general_favorite_messages = 'general.favorite.messages';
   static const general_favorite = 'general.favorite';

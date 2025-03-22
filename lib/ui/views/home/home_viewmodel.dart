@@ -105,12 +105,37 @@ class HomeViewModel extends ReactiveViewModel
   }
 
   /// On favorite tap
-  Future<void> onFavoriteTap(Agent agent) async {
+  Future<void> onFavoriteTap(Agent agent, bool isFavorite) async {
+    
+    if (!isFavorite) {
+      await _addFavoriteAgent(agent);
+    } else {
+      await _removeOrUpdateFavoriteAgent(agent);
+    }
+  }
+
+  Future<void> _addFavoriteAgent(Agent agent) async {
     final response = await _bottomSheetService.showCustomSheet<bool, String>(
         variant: BottomSheetType.addFavorite,
         isScrollControlled: true,
         title: agent.displayName,
         data: agent.uuid);
+    if (response?.data ?? false) {
+      unawaited(getAllFavoriteAgents());
+      rebuildUi();
+    }
+  }
+
+  Future<void> _removeOrUpdateFavoriteAgent(Agent agent) async {
+    final favoriteAgent =
+        _favoriteAgentRepository.getFavoriteAgent(agentId: agent.uuid!);
+
+    final response =
+        await _bottomSheetService.showCustomSheet<bool, FavoriteAgent>(
+            variant: BottomSheetType.addFavorite,
+            isScrollControlled: true,
+            title: agent.displayName,
+            data: favoriteAgent);
     if (response?.data ?? false) {
       unawaited(getAllFavoriteAgents());
       rebuildUi();

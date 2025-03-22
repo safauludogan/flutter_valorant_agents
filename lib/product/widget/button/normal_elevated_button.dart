@@ -10,6 +10,7 @@ class NormalElevatedButton extends StatelessWidget {
   const NormalElevatedButton({
     required this.onPressed,
     required this.text,
+    this.bgColor,
     this.isLoading = false,
     super.key,
   });
@@ -23,10 +24,15 @@ class NormalElevatedButton extends StatelessWidget {
   /// Is loading
   final bool isLoading;
 
+  final Color? bgColor;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: bgColor,
+      ),
       child: Center(
         child: Padding(
           padding: Paddings.p16v,
