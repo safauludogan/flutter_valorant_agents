@@ -64,6 +64,34 @@ final class AgentRepository extends IAgentRepository {
     }
   }
 
+  @override
+  Future<Agent?> getAgentByIdFromRemote({required String id}) async {
+    Agent? agent;
+    try {
+      _productNetworkErrorManager.resolve(
+        await _agentService.getAllAgentById(id: id),
+        response: (value) {
+          agent = value?.agents?.first;
+        },
+        networkExceptions: (value) {
+          if (value != null) {
+            throw NetworkError(value);
+          }
+        },
+      );
+
+      return agent;
+    } catch (e) {
+      if (e is NetworkError) {
+        rethrow;
+      }
+      throw NetworkError(
+        NetworkExceptions.defaultError(
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
+      );
+    }
+  }
+
   /// CACHE
   @override
   Future<List<Agent>> getAgentsFromCache() async {
@@ -77,6 +105,15 @@ final class AgentRepository extends IAgentRepository {
       }
       isSynchronized = true;
       return await getAgentsFromRemote() ?? [];
+    } catch (e) {
+      if (e is NetworkError) {
+        rethrow;
+      }
+
+      throw NetworkError(
+        NetworkExceptions.defaultError(
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
+      );
     } finally {
       if (!isSynchronized) {
         /// Cache invalidation
@@ -91,6 +128,27 @@ final class AgentRepository extends IAgentRepository {
       _agentCacheOperation
           .addAll(agents.map((e) => AgentCacheModel(agent: e)).toList());
     } catch (e) {
+      throw NetworkError(
+        NetworkExceptions.defaultError(
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
+      );
+    }
+  }
+
+  @override
+  Future<Agent?> getAgentByIdFromCache({required String id}) async {
+    try {
+      final result = _agentCacheOperation.get(id);
+
+      if (result != null) {
+        return result.agent;
+      }
+      return await getAgentByIdFromRemote(id: id);
+    } catch (e) {
+      if (e is NetworkError) {
+        rethrow;
+      }
+
       throw NetworkError(
         NetworkExceptions.defaultError(
             error: LocaleKeys.general_messages_somethingWentWrong.tr()),
