@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/ui/views/home/widget/agents_card_listview.dart';
-import 'package:stacked/stacked.dart';
 import 'package:gen/gen.dart';
+import 'package:stacked/stacked.dart';
 import 'package:widgets/widgets.dart';
 
 import 'favorite_agents_viewmodel.dart';
@@ -13,6 +13,7 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
     required this.onFavoriteTap,
     required this.favoriteAgents,
     required this.onRefresh,
+    required this.checkFavoriteAgent,
   });
 
   /// Agents
@@ -30,6 +31,9 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
   /// On refresh
   final Future<void> Function() onRefresh;
 
+  /// Check favorite agent
+  final VoidCallback checkFavoriteAgent;
+
   @override
   Widget builder(
     BuildContext context,
@@ -42,29 +46,35 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
         isListView: true,
         onRefresh: onRefresh,
         child: AdaptAllView(
-          phone: _body(
+          phone: _Body(
             agents: agents,
             favoriteAgents: favoriteAgents,
             selectedAgentRole: selectedAgentRole,
             onFavoriteTap: onFavoriteTap,
             viewModel: viewModel,
-            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(
+                agent.uuid!, checkFavoriteAgent),
+            checkFavoriteAgent: checkFavoriteAgent,
           ),
-          tablet: _body(
+          tablet: _Body(
             agents: agents,
             favoriteAgents: favoriteAgents,
             selectedAgentRole: selectedAgentRole,
             onFavoriteTap: onFavoriteTap,
             viewModel: viewModel,
-            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(
+                agent.uuid!, checkFavoriteAgent),
+            checkFavoriteAgent: checkFavoriteAgent,
           ),
-          desktop: _body(
+          desktop: _Body(
             agents: agents,
             favoriteAgents: favoriteAgents,
             selectedAgentRole: selectedAgentRole,
             onFavoriteTap: onFavoriteTap,
             viewModel: viewModel,
-            onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+            onAgentTap: (agent) => viewModel.navigateToAgentDetail(
+                agent.uuid!, checkFavoriteAgent),
+            checkFavoriteAgent: checkFavoriteAgent,
           ),
         ),
       ),
@@ -78,8 +88,8 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
       FavoriteAgentsViewModel();
 }
 
-class _body extends StatelessWidget {
-  const _body({
+class _Body extends StatelessWidget {
+  const _Body({
     super.key,
     required this.agents,
     required this.favoriteAgents,
@@ -87,6 +97,7 @@ class _body extends StatelessWidget {
     required this.onFavoriteTap,
     required this.viewModel,
     required this.onAgentTap,
+    required this.checkFavoriteAgent,
   });
 
   final List<Agent> agents;
@@ -94,6 +105,7 @@ class _body extends StatelessWidget {
   final AgentRole? selectedAgentRole;
   final void Function(Agent p1, bool p2) onFavoriteTap;
   final FavoriteAgentsViewModel viewModel;
+  final VoidCallback checkFavoriteAgent;
   final void Function(Agent) onAgentTap;
 
   @override
@@ -103,7 +115,8 @@ class _body extends StatelessWidget {
       selectedAgentRole: selectedAgentRole,
       onFavoriteTap: onFavoriteTap,
       favoriteAgents: favoriteAgents,
-      onAgentTap: (agent) => viewModel.navigateToAgentDetail(agent.uuid!),
+      onAgentTap: (agent) =>
+          viewModel.navigateToAgentDetail(agent.uuid!, checkFavoriteAgent),
     );
   }
 }

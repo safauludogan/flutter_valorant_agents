@@ -966,6 +966,21 @@ class MockAgentService extends _i1.Mock implements _i13.AgentService {
         returnValueForMissingStub:
             _i7.Future<_i3.IResponseModel<_i14.AgentResponse?>?>.value(),
       ) as _i7.Future<_i3.IResponseModel<_i14.AgentResponse?>?>);
+
+  @override
+  _i7.Future<_i3.IResponseModel<_i14.AgentResponse?>?> getAllAgentById(
+          {required String? id}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getAllAgentById,
+          [],
+          {#id: id},
+        ),
+        returnValue:
+            _i7.Future<_i3.IResponseModel<_i14.AgentResponse?>?>.value(),
+        returnValueForMissingStub:
+            _i7.Future<_i3.IResponseModel<_i14.AgentResponse?>?>.value(),
+      ) as _i7.Future<_i3.IResponseModel<_i14.AgentResponse?>?>);
 }
 
 /// A class which mocks [ProductNetworkService].

@@ -8,6 +8,7 @@ import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart
 import 'package:flutter_valorant_agents/product/manager/network_error_resolver.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/project_durations.dart';
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
+import 'package:flutter_valorant_agents/product/widget/icon/favorite_icon_button.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:flutter_valorant_agents/ui/views/agent_detail/agent_detail_viewmodel.dart';
@@ -40,8 +41,8 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
   void onViewModelReady(AgentDetailViewModel viewModel) {
     super.onViewModelReady(viewModel);
     viewModel
-      ..initialize()
-      ..getAgent(agentId: agentId);
+      ..getAgent(agentId: agentId)
+      ..initialize();
   }
 
   @override
@@ -97,6 +98,13 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
                   ),
                 ),
               ),
+            Padding(
+              padding: Paddings.p8r,
+              child: FavoriteIconButton(
+                onFavoriteTap: () => viewModel.onFavoriteTap(agent),
+                isFavorite: viewModel.isFavorite,
+              ),
+            )
           ],
           flexibleSpace: FlexibleSpaceBar(
             background: Stack(
