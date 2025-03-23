@@ -16,4 +16,14 @@ class AgentService {
       requestType: RequestType.GET,
     );
   }
+
+  /// Get  agent
+  Future<IResponseModel<AgentResponse?>?> getAllAgentById(
+      {required String id}) async {
+    return _productNetworkService.sendRequest<AgentResponse, AgentResponse>(
+      '${ProductServicePath.agents.value}/$id',
+      responseModel: AgentResponse(),
+      requestType: RequestType.GET,
+    );
+  }
 }

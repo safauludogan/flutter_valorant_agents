@@ -126,7 +126,7 @@ class _body extends StatelessWidget {
                 ),
                 error: viewModel.getError,
               ).resolveErrorWidget(
-                receiveData: () => viewModel.getAgents(),
+                receiveData: viewModel.getAgents,
               ),
       ),
     );
