@@ -1,6 +1,7 @@
 import 'package:dio_nexus/dio_nexus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/widget/lottie/lottie_notfound.dart';
 import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
@@ -19,22 +20,27 @@ final class NetworkErrorResolver {
   final Widget child;
 
   /// Error widget
-  Widget resolveErrorWidget({required VoidCallback receiveData}) {
+  Widget resolveErrorWidget({
+    required BuildContext context,
+    required VoidCallback receiveData,
+  }) {
     if (error == null) return child;
     if (error == const NetworkExceptions.noInternetConnection()) {
-      return _noInternetConnectionWidget(receiveData: receiveData);
+      return _noInternetConnectionWidget(
+          receiveData: receiveData, context: context);
     } else if (error == const NetworkExceptions.receiveTimeout()) {
       return _serverErrorWidget(receiveData: receiveData);
     }
     return Center(
         child: Text(
       NetworkExceptions.getErrorMessage(error!),
-      style: AppTextStyles.footNote3,
+      style: context.textTheme.titleSmall,
     ));
   }
 
   /// No internet connection widget
-  Widget _noInternetConnectionWidget({required VoidCallback receiveData}) {
+  Widget _noInternetConnectionWidget(
+      {required BuildContext context, required VoidCallback receiveData}) {
     return Center(
       child: Column(
         children: [
@@ -43,8 +49,8 @@ final class NetworkErrorResolver {
               children: [
                 const LottieNotFound(),
                 Text(
-                  LocaleKeys.general_messages_noInternetConnection,
-                  style: AppTextStyles.footNote3,
+                  LocaleKeys.messages_noInternetConnection,
+                  style: context.textTheme.titleSmall,
                 ).tr(),
                 OutlinedButton(
                   onPressed: () => receiveData.call(),
@@ -62,7 +68,7 @@ final class NetworkErrorResolver {
   Widget _serverErrorWidget({required VoidCallback receiveData}) {
     return Column(
       children: [
-        const Text(LocaleKeys.general_messages_noResponseFromServer).tr(),
+        const Text(LocaleKeys.messages_noResponseFromServer).tr(),
         OutlinedButton(
           onPressed: () => receiveData.call(),
           child: const Text(LocaleKeys.general_button_tryAgain).tr(),

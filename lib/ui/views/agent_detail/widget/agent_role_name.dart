@@ -11,8 +11,8 @@ class _AgentRoleName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       roleName,
-      style: AppTextStyles.footNote2.copyWith(
-        color: Colors.white.withValues(alpha: 0.8),
+      style: context.textTheme.labelMedium?.copyWith(
+        color: context.colorScheme.surface.withValues(alpha: 0.8),
       ),
     );
   }

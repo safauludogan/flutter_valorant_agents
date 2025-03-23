@@ -6,9 +6,8 @@ class _AgentAbilityTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       LocaleKeys.agentDetail_pages_abilitiesTitle,
-      style: AppTextStyles.headline2.copyWith(
-        color: Colors.white,
-      ),
+      style: context.textTheme.displayMedium
+          ?.copyWith(color: context.colorScheme.onSecondary),
     ).tr();
   }
 }

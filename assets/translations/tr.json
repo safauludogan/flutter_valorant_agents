@@ -1,58 +1,66 @@
 {
-    "appName":"Valorant Ajanları",
-
-    "general" : {
-        "button" : {
-            "tryAgain" : "Tekrar deneyin",
-            "all" : "Tümü",
-            "update" : "Güncelle",
-            "delete" : "Sil"
+    "appName": "Valorant Ajanları",
+    "general": {
+        "button": {
+            "tryAgain": "Tekrar deneyin",
+            "all": "Tümü",
+            "update": "Güncelle",
+            "delete": "Sil"
         },
-        "messages" : {
-            "somethingWentWrong" : "Hay aksi, bir şeyler ters gitti!",
-            "noAgentsFound" : "Ajanlar bulunamadı ☹️",
-            "noInternetConnection" : "İnternet bağlantınızı kontrol ediniz.",
-            "noResponseFromServer" : "Sunucudan yanıt alınamadı"
-        },
-        "textformfield" : {
-            "hintText" : {
-                "searchAgent" : "Ajan arayın",
-                "title" : "Başlık",
-                "description" : "Açıklama"
-            }
-        },
-        "validator" : {
-            "favoriteTitleMustBeAtLeast3Characters" : "Favori başlığı en az 3 karakter olmalıdır.",
-            "favoriteDescriptionMustBeAtLeast10Characters" : "Favori açıklaması en az 10 karakter olmalıdır."
-        },
-        "bottomSheet" : {
-            "addFavorite" : {
-                "title" : "Favorilere Ekle",
-                "description" : "Bu ajanı favorilerinize eklemek istediğinize emin misiniz?",
-                "additionalButtonTitle" : "İptal",
-                "mainButtonTitle" : "Favorilere Ekle"
-            }
-        },
-        "favorite" : {
-            "messages" : {
-                "favoriteTitleAlreadyExists" : "Bu başlıkta bir favori mevcut.",
-                "favoriteAgentAlreadyExistsInFavorites" : "Bu ajan zaten favorilerinizde mevcut.",
-                "favoriteAdded" : "Favoriye eklendi.",
-                "favoriteRemoved" : "Favori silindi.",
-                "favoriteUpdated" : "Favori güncellendi.",
-                "agentName" : "Ajan - {}"
-            }
-        },
-        "home" : {
-            "pages" : {
-                "agents" : "Ajanlar",
-                "favoriteAgents" : "Favoriler"
-            }
-        },
-        "agentDetail" : {
-            "pages" : {
-                "abilitiesTitle" : "Yetenekler"
-            }
+        "messages": {
+            "somethingWentWrong": "Hay aksi, bir şeyler ters gitti!",
+            "noAgentsFound": "Ajanlar bulunamadı ☹️",
+            "noInternetConnection": "İnternet bağlantınızı kontrol ediniz.",
+            "noResponseFromServer": "Sunucudan yanıt alınamadı"
         }
+    },
+    "textformfield": {
+        "hintText": {
+            "searchAgent": "Ajan arayın",
+            "title": "Başlık",
+            "description": "Açıklama"
+        }
+    },
+    "validator": {
+        "favoriteTitleMustBeAtLeast3Characters": "Favori başlığı en az 3 karakter olmalıdır.",
+        "favoriteDescriptionMustBeAtLeast10Characters": "Favori açıklaması en az 10 karakter olmalıdır."
+    },
+    "bottomSheet": {
+        "addFavorite": {
+            "title": "Favorilere Ekle",
+            "description": "Bu ajanı favorilerinize eklemek istediğinize emin misiniz?",
+            "additionalButtonTitle": "İptal",
+            "mainButtonTitle": "Favorilere Ekle"
+        }
+    },
+    "favorite": {
+        "messages": {
+            "favoriteTitleAlreadyExists": "Bu başlıkta bir favori mevcut.",
+            "favoriteAgentAlreadyExistsInFavorites": "Bu ajan zaten favorilerinizde mevcut.",
+            "favoriteAdded": "Favoriye eklendi.",
+            "favoriteRemoved": "Favori silindi.",
+            "favoriteUpdated": "Favori güncellendi.",
+            "agentName": "Ajan - {}"
+        }
+    },
+    "home": {
+        "pages": {
+            "agents": "Ajanlar",
+            "favoriteAgents": "Favoriler"
+        }
+    },
+    "agentDetail": {
+        "pages": {
+            "abilitiesTitle": "Yetenekler"
+        }
+    },
+    "settings": {
+        "title": "Ayarlar",
+        "language": "Dil",
+        "theme": "Tema",
+        "light": "Açık",
+        "dark": "Koyu",
+        "turkish": "Türkçe",
+        "english": "İngilizce"
     }
 }

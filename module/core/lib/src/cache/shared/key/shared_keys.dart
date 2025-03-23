@@ -1,2 +1,2 @@
 /// Shared keys for cache
-enum SharedKeys { dd }
+enum SharedKeys { themeMode }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/textfield/base/product_textfield.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/project_durations.dart';
@@ -80,16 +81,16 @@ class _SearchTextfieldState extends State<SearchTextfield>
         textInputAction: widget.textInputAction,
         maxLength: 45,
         keyboardType: TextInputType.text,
-        decoration: _inputDecoration(),
+        decoration: _inputDecoration(context),
       ),
     );
   }
 
-  InputDecoration _inputDecoration() {
+  InputDecoration _inputDecoration(BuildContext context) {
     return InputDecoration(
       fillColor: ColorName.gray100,
       filled: true,
-      hintText: LocaleKeys.general_textformfield_hintText_searchAgent.tr(),
+      hintText: LocaleKeys.textformfield_hintText_searchAgent.tr(),
       errorText: widget.errorText,
       prefixIconConstraints: const BoxConstraints(),
       counterText: '',
@@ -101,7 +102,7 @@ class _SearchTextfieldState extends State<SearchTextfield>
       errorBorder: _border,
       isDense: true,
       contentPadding: const EdgeInsets.symmetric(vertical: 8),
-      hintStyle: AppTextStyles.small.copyWith(
+      hintStyle: context.textTheme.titleSmall?.copyWith(
         fontSize: 14,
         color: ColorName.gray500,
       ),

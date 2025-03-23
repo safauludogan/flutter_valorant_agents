@@ -10,6 +10,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
   final Color error;
   final Color onError;
   final Color conditionalColor;
+  final Color surfaceTint;
 
   AppThemeColors({
     required this.primary,
@@ -21,6 +22,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     required this.error,
     required this.onError,
     required this.conditionalColor,
+    required this.surfaceTint,
   });
 
   @override
@@ -34,6 +36,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
       Color? surface,
       Color? onSurface,
       Color? error,
+      Color? surfaceTint,
       Color? onError,
       Color? conditionalColor}) {
     return AppThemeColors(
@@ -46,6 +49,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
       error: error ?? this.error,
       onError: onError ?? this.onError,
       conditionalColor: conditionalColor ?? this.conditionalColor,
+      surfaceTint: surfaceTint ?? this.surfaceTint,
     );
   }
 
@@ -63,6 +67,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
       onError: Color.lerp(onError, other.onError, t)!,
       conditionalColor:
           Color.lerp(conditionalColor, other.conditionalColor, t)!,
+      surfaceTint: Color.lerp(surfaceTint, other.surfaceTint, t)!,
     );
   }
 }

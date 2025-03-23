@@ -17,7 +17,7 @@ class _AgentName extends StatelessWidget {
       duration: const ProjectDurations.lowDuration(),
       child: Text(
         agentName,
-        style: style ?? AppTextStyles.bodyText1,
+        style: style ?? context.textTheme.bodyLarge,
       ),
     );
   }

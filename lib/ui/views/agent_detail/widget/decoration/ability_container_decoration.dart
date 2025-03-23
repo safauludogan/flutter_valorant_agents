@@ -6,10 +6,10 @@ final class AbilityContainerDecoration extends BoxDecoration {
   /// Ability container decoration
   AbilityContainerDecoration()
       : super(
-          color: Colors.white.withValues(alpha: 0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(16.r),
           border: Border.all(
-            color: Colors.white.withValues(alpha: 0.2),
+            color: Colors.black.withValues(alpha: 0.2),
           ),
         );
 }

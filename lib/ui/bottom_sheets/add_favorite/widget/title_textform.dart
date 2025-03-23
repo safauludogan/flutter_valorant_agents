@@ -24,15 +24,15 @@ class _TitleTextform extends StatelessWidget {
       children: [
         ProductTextfield(
           controller: titleInputController,
-          hintText: LocaleKeys.general_textformfield_hintText_title.tr(),
+          hintText: LocaleKeys.textformfield_hintText_title.tr(),
           maxLength: 30,
         ),
         verticalSpaceTiny,
         if (isValidate)
           Text(
             titleInputError!,
-            style: AppTextStyles.small
-                .copyWith(color: Theme.of(context).colorScheme.error),
+            style: context.textTheme.titleSmall
+                ?.copyWith(color: context.colorScheme.error),
           ),
       ],
     );

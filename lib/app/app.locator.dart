@@ -15,6 +15,7 @@ import '../services/api/agent/agent_service.dart';
 import '../services/app/localization_service.dart';
 import '../services/app/theme_service.dart';
 import '../services/cache/product_cache_service.dart';
+import '../services/cache/product_shared_cache_service.dart';
 import '../services/common/toast_service.dart';
 import '../services/manager/product_network_service.dart';
 
@@ -38,4 +39,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => ProductNetworkService());
   locator.registerLazySingleton(() => ToastService());
   locator.registerLazySingleton(() => ProductCacheService());
+  locator.registerLazySingleton(() => ProductSharedCacheService());
 }

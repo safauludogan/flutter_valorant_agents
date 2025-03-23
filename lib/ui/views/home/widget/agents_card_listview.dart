@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_valorant_agents/product/animation/fade_transition_curved_animate_mixin.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/extension/double_extension.dart';
 import 'package:flutter_valorant_agents/product/extension/string_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
@@ -61,7 +62,7 @@ class AgentsCardListViewState extends State<AgentsCardListView>
   @override
   Widget build(BuildContext context) {
     if (widget.agents.isEmpty) {
-      return _noAgentsFoundWidget;
+      return _noAgentsFoundWidget(context);
     }
     return ListView.builder(
       shrinkWrap: true,
@@ -95,13 +96,13 @@ class AgentsCardListViewState extends State<AgentsCardListView>
     );
   }
 
-  Widget get _noAgentsFoundWidget => Center(
+  Widget _noAgentsFoundWidget(BuildContext context) => Center(
         child: Column(
           children: [
             const LottieNotFound(),
             Text(
-              LocaleKeys.general_messages_noAgentsFound,
-              style: AppTextStyles.footNote3,
+              LocaleKeys.messages_noAgentsFound,
+              style: context.textTheme.titleSmall,
             ).tr(),
           ],
         ),
@@ -162,14 +163,14 @@ class _AgentCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Agent Name and Role
-                        _buildAgentNameAndRole(agent),
+                        _buildAgentNameAndRole(context, agent),
                         SizedBox(height: WidgetSizes.spacingXs.h),
                         // Agent Description
                         Text(
                           agent.description ?? '',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.footNote3,
+                          style: context.textTheme.labelSmall,
                         ),
                         SizedBox(height: WidgetSizes.spacingXs.h),
                         // Abilities Icons
@@ -199,13 +200,15 @@ class _AgentCard extends StatelessWidget {
   }
 
   /// Agent name and role
-  Widget _buildAgentNameAndRole(Agent agent) {
+  Widget _buildAgentNameAndRole(BuildContext context, Agent agent) {
     return Row(
       children: [
         Expanded(
           child: Text(
             agent.displayName ?? '',
-            style: AppTextStyles.bodyText1,
+            style: context.textTheme.bodyLarge?.copyWith(
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
         if (agent.role?.displayIcon != null) ...[
@@ -226,8 +229,8 @@ class _AgentCard extends StatelessWidget {
                 SizedBox(width: 4.w),
                 Text(
                   agent.role!.displayName!,
-                  style: AppTextStyles.footNote2.copyWith(
-                    color: Colors.white.withValues(alpha: 0.8),
+                  style: context.textTheme.labelMedium?.copyWith(
+                    color: ColorName.white.withValues(alpha: 0.8),
                   ),
                 ),
               ],

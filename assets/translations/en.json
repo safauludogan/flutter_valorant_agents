@@ -1,58 +1,66 @@
 {
-    "appName":"Valorant Agents",
-
-    "general" : {
-        "button" : {
-            "tryAgain" : "Try again",
-            "all" : "All",
-            "update" : "Update",
-            "delete" : "Delete"
-        },
-        "messages" : {
-            "somethingWentWrong" : "Oops, something went wrong!",
-            "noAgentsFound" : "No agents found ☹️",
-            "noInternetConnection" : "Check your internet connection.",
-            "noResponseFromServer" : "No response from server"
-        },
-        "textformfield" : {
-            "hintText" : {
-                "searchAgent" : "Search agent",
-                "title" : "Title",
-                "description" : "Description"
-            }
-        },
-        "validator" : {
-            "favoriteTitleMustBeAtLeast3Characters" : "Favorite title must be at least 3 characters.",
-            "favoriteDescriptionMustBeAtLeast10Characters" : "Favorite description must be at least 10 characters."
-        },
-        "bottomSheet" : {
-            "addFavorite" : {
-                "title" : "Add to favorites",
-                "description" : "Are you sure you want to add this agent to your favorites?",
-                "additionalButtonTitle" : "Cancel",
-                "mainButtonTitle" : "Add to favorites"
-            }
-        },
-        "favorite" : {
-            "messages" : {
-                "favoriteTitleAlreadyExists" : "This title already exists in your favorites.",
-                "favoriteAgentAlreadyExistsInFavorites" : "This agent already exists in your favorites.",
-                "favoriteAdded" : "Favorite added.",
-                "favoriteUpdated" : "Favorite updated.",
-                "favoriteRemoved" : "Favorite removed.",
-                "agentName" : "Agent - {}"
-            }
+    "appName": "Valorant Agents",
+    "general": {
+        "button": {
+            "tryAgain": "Try again",
+            "all": "All",
+            "update": "Update",
+            "delete": "Delete"
         }
     },
-    "home" : {
-        "pages" : {
-            "agents" : "Agents",
-            "favoriteAgents" : "Favorites"
+    "messages": {
+        "somethingWentWrong": "Oops, something went wrong!",
+        "noAgentsFound": "No agents found ☹️",
+        "noInternetConnection": "Check your internet connection.",
+        "noResponseFromServer": "No response from server"
+    },
+    "textformfield": {
+        "hintText": {
+            "searchAgent": "Search agent",
+            "title": "Title",
+            "description": "Description"
         }
     },
-    "agentDetail" : {
-        "pages" : {
-            "abilitiesTitle" : "Abilities"
+    "validator": {
+        "favoriteTitleMustBeAtLeast3Characters": "Favorite title must be at least 3 characters.",
+        "favoriteDescriptionMustBeAtLeast10Characters": "Favorite description must be at least 10 characters."
+    },
+    "bottomSheet": {
+        "addFavorite": {
+            "title": "Add to favorites",
+            "description": "Are you sure you want to add this agent to your favorites?",
+            "additionalButtonTitle": "Cancel",
+            "mainButtonTitle": "Add to favorites"
         }
-    }   
+    },
+    "favorite": {
+        "messages": {
+            "favoriteTitleAlreadyExists": "This title already exists in your favorites.",
+            "favoriteAgentAlreadyExistsInFavorites": "This agent already exists in your favorites.",
+            "favoriteAdded": "Favorite added.",
+            "favoriteUpdated": "Favorite updated.",
+            "favoriteRemoved": "Favorite removed.",
+            "agentName": "Agent - {}"
+        }
+    },
+    "home": {
+        "pages": {
+            "agents": "Agents",
+            "favoriteAgents": "Favorites"
+        }
+    },
+    "agentDetail": {
+        "pages": {
+            "abilitiesTitle": "Abilities"
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "theme": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "turkish": "Turkish",
+        "english": "English"
+    }
 }

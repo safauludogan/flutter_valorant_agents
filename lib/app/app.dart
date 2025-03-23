@@ -16,6 +16,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import 'package:flutter_valorant_agents/ui/views/settings/settings_view.dart';
+import 'package:flutter_valorant_agents/services/cache/product_shared_cache_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -40,6 +42,7 @@ import 'package:stacked_services/stacked_services.dart';
       page: AgentDetailView,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
+    MaterialRoute(page: SettingsView),
 // @stacked-route
   ],
   dependencies: [
@@ -53,6 +56,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: ToastService),
     LazySingleton(classType: ProductCacheService),
 
+    LazySingleton(classType: ProductSharedCacheService),
 // @stacked-service
   ],
   bottomsheets: [

@@ -7,6 +7,9 @@ final class Paddings {
   /// [p1a] 1.h
   static final EdgeInsets p1a = EdgeInsets.all(1.h);
 
+  /// [p2a] 2.h
+  static final EdgeInsets p2a = EdgeInsets.all(2.h);
+
   /// [p4a] 4.h
   static final EdgeInsets p4a = EdgeInsets.all(4.h);
 

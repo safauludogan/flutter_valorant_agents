@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// Radiuses
 final class Radiuses {
   ///  All Radius
   static const BorderRadius b0r = BorderRadius.zero;

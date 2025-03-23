@@ -28,7 +28,7 @@ class _AbilityListView extends StatelessWidget {
             children: [
               _NameAndIcon(ability: ability),
               if (ability.description != null) ...[
-                _description(ability),
+                _description(ability, context: context),
               ],
             ],
           ),
@@ -37,11 +37,11 @@ class _AbilityListView extends StatelessWidget {
     );
   }
 
-  Text _description(Abilities ability) {
+  Text _description(Abilities ability, {required BuildContext context}) {
     return Text(
       ability.description!,
-      style: AppTextStyles.footNote2.copyWith(
-        color: Colors.white.withValues(alpha: 0.7),
+      style: context.textTheme.labelMedium?.copyWith(
+        color: context.colorScheme.onSecondary.withValues(alpha: 0.8),
       ),
     );
   }
@@ -71,9 +71,8 @@ class _NameAndIcon extends StatelessWidget {
         Expanded(
           child: Text(
             ability.displayName ?? '',
-            style: AppTextStyles.bodyText1.copyWith(
-              color: Colors.white,
-            ),
+            style: context.textTheme.bodyLarge
+                ?.copyWith(color: context.colorScheme.onSecondary),
           ),
         ),
       ],

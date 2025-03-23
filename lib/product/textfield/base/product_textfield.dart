@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/textfield/base/decoration/product_textfield_decoration.dart';
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
 import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
@@ -69,8 +70,7 @@ class _ProductTextfieldState extends State<ProductTextfield> {
       },
       child: TextFormField(
         maxLines: widget.isMultiline ? 5 : 1,
-        style: AppTextStyles.small
-            .copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+        style: context.textTheme.titleMedium?.copyWith(color: ColorName.black),
         textInputAction: widget.textInputAction,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         maxLength: widget.maxLength,

@@ -25,13 +25,12 @@ final class FavoriteAgentRepository implements IFavoriteAgentRepository {
 
       for (final favorite in currentFavorites) {
         if (favorite.title?.trim() == favoriteAgent.title?.trim()) {
-          throw Exception(LocaleKeys
-              .general_favorite_messages_favoriteTitleAlreadyExists
-              .tr());
+          throw Exception(
+              LocaleKeys.favorite_messages_favoriteTitleAlreadyExists.tr());
         }
         if (favorite.agentId?.compareUuid(favoriteAgent.agentId) ?? true) {
           throw Exception(LocaleKeys
-              .general_favorite_messages_favoriteAgentAlreadyExistsInFavorites
+              .favorite_messages_favoriteAgentAlreadyExistsInFavorites
               .tr());
         }
       }
@@ -65,9 +64,8 @@ final class FavoriteAgentRepository implements IFavoriteAgentRepository {
       for (final favorite in currentFavorites) {
         if (!favorite.agentId!.compareUuid(favoriteAgent.agentId) &&
             favorite.title?.trim() == favoriteAgent.title?.trim()) {
-          throw Exception(LocaleKeys
-              .general_favorite_messages_favoriteTitleAlreadyExists
-              .tr());
+          throw Exception(
+              LocaleKeys.favorite_messages_favoriteTitleAlreadyExists.tr());
         }
       }
       _favoriteAgentCacheOperation

@@ -14,6 +14,9 @@ final class ProductLocalization extends EasyLocalization {
           supportedLocales: _supportedItems,
           path: _translationPath,
           useOnlyLangCode: true,
+          saveLocale: true,
+          startLocale: Locales.tr.locale,
+          useFallbackTranslations: true,
         );
 
   /// Project supported locales

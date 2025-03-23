@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:stacked/stacked.dart';
 import 'package:flutter_valorant_agents/ui/common/ui_helpers.dart';
-
-import 'startup_viewmodel.dart';
+import 'package:flutter_valorant_agents/ui/views/startup/startup_viewmodel.dart';
+import 'package:stacked/stacked.dart';
 
 class StartupView extends StackedView<StartupViewModel> {
   const StartupView({Key? key}) : super(key: key);
@@ -15,6 +14,7 @@ class StartupView extends StackedView<StartupViewModel> {
     Widget? child,
   ) {
     return const Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

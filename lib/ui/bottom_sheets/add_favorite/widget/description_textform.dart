@@ -24,15 +24,15 @@ class _DescriptionTextform extends StatelessWidget {
       children: [
         MultilineTextfield(
           controller: descriptionInputController,
-          hintText: LocaleKeys.general_textformfield_hintText_description.tr(),
+          hintText: LocaleKeys.textformfield_hintText_description.tr(),
           maxLength: 100,
         ),
         verticalSpaceTiny,
         if (isValidate)
           Text(
             descriptionInputError!,
-            style: AppTextStyles.small
-                .copyWith(color: Theme.of(context).colorScheme.error),
+            style: context.textTheme.titleSmall
+                ?.copyWith(color: context.colorScheme.error),
           ),
       ],
     );
