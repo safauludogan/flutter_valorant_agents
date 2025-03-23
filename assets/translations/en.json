@@ -12,7 +12,8 @@
         "somethingWentWrong": "Oops, something went wrong!",
         "noAgentsFound": "No agents found ☹️",
         "noInternetConnection": "Check your internet connection.",
-        "noResponseFromServer": "No response from server"
+        "noResponseFromServer": "No response from server",
+        "languageChanged": "Language changed. Agents will be reloaded."
     },
     "textformfield": {
         "hintText": {

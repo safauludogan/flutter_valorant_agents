@@ -58,7 +58,7 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-          resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body: viewModel.isBusy
           ? const LoadingCircular()
           : NetworkErrorResolver(

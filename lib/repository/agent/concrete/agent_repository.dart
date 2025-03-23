@@ -48,7 +48,7 @@ final class AgentRepository extends IAgentRepository {
       );
 
       if (response.isNotEmpty) {
-        await _clearCache();
+        await clearCache();
         _saveAgentsToCache(response);
       }
 
@@ -157,7 +157,7 @@ final class AgentRepository extends IAgentRepository {
   }
 
   /// Clear cache
-  Future<void> _clearCache() async {
+  Future<void> clearCache() async {
     try {
       await _agentCacheOperation.clear();
     } catch (e) {

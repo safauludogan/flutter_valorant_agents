@@ -13,7 +13,6 @@ import 'package:flutter_valorant_agents/ui/bottom_sheets/add_favorite/add_favori
 import 'package:flutter_valorant_agents/ui/bottom_sheets/add_favorite/mixin/add_favorite_sheet_mixin.dart';
 import 'package:flutter_valorant_agents/ui/common/app_colors.dart';
 import 'package:flutter_valorant_agents/ui/common/ui_helpers.dart';
-import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';

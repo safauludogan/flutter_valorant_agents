@@ -13,7 +13,7 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
     required this.onFavoriteTap,
     required this.favoriteAgents,
     required this.onRefresh,
-    required this.checkFavoriteAgent,
+    required this.checkFavoriteAgentRefresh,
   });
 
   /// Agents
@@ -32,7 +32,7 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
   final Future<void> Function() onRefresh;
 
   /// Check favorite agent
-  final VoidCallback checkFavoriteAgent;
+  final VoidCallback checkFavoriteAgentRefresh;
 
   @override
   Widget builder(
@@ -53,8 +53,8 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
             onFavoriteTap: onFavoriteTap,
             viewModel: viewModel,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
-                agent.uuid!, checkFavoriteAgent),
-            checkFavoriteAgent: checkFavoriteAgent,
+                agent.uuid!, checkFavoriteAgentRefresh),
+            checkFavoriteAgent: checkFavoriteAgentRefresh,
           ),
           tablet: _Body(
             agents: agents,
@@ -63,8 +63,8 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
             onFavoriteTap: onFavoriteTap,
             viewModel: viewModel,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
-                agent.uuid!, checkFavoriteAgent),
-            checkFavoriteAgent: checkFavoriteAgent,
+                agent.uuid!, checkFavoriteAgentRefresh),
+            checkFavoriteAgent: checkFavoriteAgentRefresh,
           ),
           desktop: _Body(
             agents: agents,
@@ -73,8 +73,8 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
             onFavoriteTap: onFavoriteTap,
             viewModel: viewModel,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
-                agent.uuid!, checkFavoriteAgent),
-            checkFavoriteAgent: checkFavoriteAgent,
+                agent.uuid!, checkFavoriteAgentRefresh),
+            checkFavoriteAgent: checkFavoriteAgentRefresh,
           ),
         ),
       ),

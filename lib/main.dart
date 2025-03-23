@@ -33,6 +33,7 @@ class MainApp extends StatelessWidget {
           onGenerateRoute: StackedRouter().onGenerateRoute,
           navigatorKey: StackedService.navigatorKey,
           navigatorObservers: [StackedService.routeObserver],
+          debugShowCheckedModeBanner: false,
           builder: (context, child) {
             locator<ProductNetworkService>().setupNetworkConnection(context);
             return CustomResponsive.build(context, child);

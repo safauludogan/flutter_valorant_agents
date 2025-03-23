@@ -13,7 +13,7 @@ class AgentsView extends StackedView<AgentsViewModel> {
     required this.onFavoriteTap,
     required this.favoriteAgents,
     required this.onRefresh,
-    required this.checkFavoriteAgent,
+    required this.checkFavoriteAgentRefresh,
   });
 
   /// Agents
@@ -32,7 +32,7 @@ class AgentsView extends StackedView<AgentsViewModel> {
   final Future<void> Function() onRefresh;
 
   /// Check favorite agent
-  final VoidCallback checkFavoriteAgent;
+  final VoidCallback checkFavoriteAgentRefresh;
 
   @override
   Widget builder(
@@ -52,7 +52,7 @@ class AgentsView extends StackedView<AgentsViewModel> {
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
-                agent.uuid!, checkFavoriteAgent),
+                agent.uuid!, checkFavoriteAgentRefresh),
           ),
           tablet: _body(
             agents: agents,
@@ -60,7 +60,7 @@ class AgentsView extends StackedView<AgentsViewModel> {
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
-                agent.uuid!, checkFavoriteAgent),
+                agent.uuid!, checkFavoriteAgentRefresh),
           ),
           desktop: _body(
             agents: agents,
@@ -68,7 +68,7 @@ class AgentsView extends StackedView<AgentsViewModel> {
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
-                agent.uuid!, checkFavoriteAgent),
+                agent.uuid!, checkFavoriteAgentRefresh),
           ),
         ),
       ),

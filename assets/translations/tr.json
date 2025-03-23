@@ -6,13 +6,14 @@
             "all": "Tümü",
             "update": "Güncelle",
             "delete": "Sil"
-        },
-        "messages": {
-            "somethingWentWrong": "Hay aksi, bir şeyler ters gitti!",
-            "noAgentsFound": "Ajanlar bulunamadı ☹️",
-            "noInternetConnection": "İnternet bağlantınızı kontrol ediniz.",
-            "noResponseFromServer": "Sunucudan yanıt alınamadı"
         }
+    },
+    "messages": {
+        "somethingWentWrong": "Hay aksi, bir şeyler ters gitti!",
+        "noAgentsFound": "Ajanlar bulunamadı ☹️",
+        "noInternetConnection": "İnternet bağlantınızı kontrol ediniz.",
+        "noResponseFromServer": "Sunucudan yanıt alınamadı",
+        "languageChanged": "Dil değiştirildi. Ajanlar yeniden yüklenecektir."
     },
     "textformfield": {
         "hintText": {

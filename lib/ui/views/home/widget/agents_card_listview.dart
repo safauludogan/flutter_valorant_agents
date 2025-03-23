@@ -11,7 +11,6 @@ import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
 import 'package:flutter_valorant_agents/product/widget/icon/favorite_icon_button.dart';
 import 'package:flutter_valorant_agents/product/widget/lottie/lottie_notfound.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
-import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/abilities_decoration.dart';
 import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/card_bg_decoration.dart';

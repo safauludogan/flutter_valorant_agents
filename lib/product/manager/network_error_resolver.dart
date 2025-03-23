@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/widget/lottie/lottie_notfound.dart';
-import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 
 @immutable
 

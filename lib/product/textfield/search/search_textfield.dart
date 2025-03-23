@@ -9,7 +9,6 @@ import 'package:flutter_valorant_agents/product/utility/constants/project_durati
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
 import 'package:flutter_valorant_agents/product/widget/icon/search_icon.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
-import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:gen/gen.dart';
 
 part 'search_operation_mixin.dart';

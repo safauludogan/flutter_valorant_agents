@@ -8,4 +8,5 @@ abstract class IAgentRepository {
   /// CACHE
   Future<List<Agent>> getAgentsFromCache();
   Future<Agent?> getAgentByIdFromCache({required String id});
+  Future<void> clearCache();
 }
