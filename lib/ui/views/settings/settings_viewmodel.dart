@@ -21,6 +21,10 @@ class SettingsViewModel extends ReactiveViewModel {
   bool _isLightTheme = true;
   bool get isLightTheme => _isLightTheme;
 
+  /// When language changed refresh agent list for language
+  bool _isLanguageChanged = false;
+  bool get isLanguageChanged => _isLanguageChanged;
+
   /// Change theme
   void changeTheme(AppThemeMode themeMode) {
     setBusy(true);
@@ -34,13 +38,18 @@ class SettingsViewModel extends ReactiveViewModel {
   }
 
   /// Change language
-  Future<void> changeLanguage(Locales value,
+  Future<void> changeLanguage(Locales locale,
       {required BuildContext context}) async {
+    if (_isTurkish && locale == Locales.tr ||
+        !_isTurkish && locale == Locales.en) {
+      return;
+    }
     setBusy(true);
     await Future<void>.delayed(const Duration(milliseconds: 300));
     if (!context.mounted) return;
-    _localizationService.updateLanguage(context: context, value: value);
-    _isTurkish = value == Locales.tr;
+    _localizationService.updateLanguage(context: context, value: locale);
+    _isTurkish = locale == Locales.tr;
+    _isLanguageChanged = true;
     rebuildUi();
     setBusy(false);
   }

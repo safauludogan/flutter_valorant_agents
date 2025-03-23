@@ -104,7 +104,7 @@ class StackedRouter extends _i1.RouterBase {
             onFavoriteTap: args.onFavoriteTap,
             favoriteAgents: args.favoriteAgents,
             onRefresh: args.onRefresh,
-            checkFavoriteAgent: args.checkFavoriteAgent),
+            checkFavoriteAgentRefresh: args.checkFavoriteAgentRefresh),
         settings: data,
         transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
       );
@@ -119,7 +119,7 @@ class StackedRouter extends _i1.RouterBase {
                 onFavoriteTap: args.onFavoriteTap,
                 favoriteAgents: args.favoriteAgents,
                 onRefresh: args.onRefresh,
-                checkFavoriteAgent: args.checkFavoriteAgent),
+                checkFavoriteAgentRefresh: args.checkFavoriteAgentRefresh),
         settings: data,
         transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
       );
@@ -177,7 +177,7 @@ class AgentsViewArguments {
     required this.onFavoriteTap,
     required this.favoriteAgents,
     required this.onRefresh,
-    required this.checkFavoriteAgent,
+    required this.checkFavoriteAgentRefresh,
   });
 
   final List<_i9.Agent> agents;
@@ -193,11 +193,11 @@ class AgentsViewArguments {
 
   final _i10.Future<void> Function() onRefresh;
 
-  final void Function() checkFavoriteAgent;
+  final void Function() checkFavoriteAgentRefresh;
 
   @override
   String toString() {
-    return '{"agents": "$agents", "selectedAgentRole": "$selectedAgentRole", "onFavoriteTap": "$onFavoriteTap", "favoriteAgents": "$favoriteAgents", "onRefresh": "$onRefresh", "checkFavoriteAgent": "$checkFavoriteAgent"}';
+    return '{"agents": "$agents", "selectedAgentRole": "$selectedAgentRole", "onFavoriteTap": "$onFavoriteTap", "favoriteAgents": "$favoriteAgents", "onRefresh": "$onRefresh", "checkFavoriteAgentRefresh": "$checkFavoriteAgentRefresh"}';
   }
 
   @override
@@ -208,7 +208,7 @@ class AgentsViewArguments {
         other.onFavoriteTap == onFavoriteTap &&
         other.favoriteAgents == favoriteAgents &&
         other.onRefresh == onRefresh &&
-        other.checkFavoriteAgent == checkFavoriteAgent;
+        other.checkFavoriteAgentRefresh == checkFavoriteAgentRefresh;
   }
 
   @override
@@ -218,7 +218,7 @@ class AgentsViewArguments {
         onFavoriteTap.hashCode ^
         favoriteAgents.hashCode ^
         onRefresh.hashCode ^
-        checkFavoriteAgent.hashCode;
+        checkFavoriteAgentRefresh.hashCode;
   }
 }
 
@@ -229,7 +229,7 @@ class FavoriteAgentsViewArguments {
     required this.onFavoriteTap,
     required this.favoriteAgents,
     required this.onRefresh,
-    required this.checkFavoriteAgent,
+    required this.checkFavoriteAgentRefresh,
   });
 
   final List<_i9.Agent> agents;
@@ -245,11 +245,11 @@ class FavoriteAgentsViewArguments {
 
   final _i10.Future<void> Function() onRefresh;
 
-  final void Function() checkFavoriteAgent;
+  final void Function() checkFavoriteAgentRefresh;
 
   @override
   String toString() {
-    return '{"agents": "$agents", "selectedAgentRole": "$selectedAgentRole", "onFavoriteTap": "$onFavoriteTap", "favoriteAgents": "$favoriteAgents", "onRefresh": "$onRefresh", "checkFavoriteAgent": "$checkFavoriteAgent"}';
+    return '{"agents": "$agents", "selectedAgentRole": "$selectedAgentRole", "onFavoriteTap": "$onFavoriteTap", "favoriteAgents": "$favoriteAgents", "onRefresh": "$onRefresh", "checkFavoriteAgentRefresh": "$checkFavoriteAgentRefresh"}';
   }
 
   @override
@@ -260,7 +260,7 @@ class FavoriteAgentsViewArguments {
         other.onFavoriteTap == onFavoriteTap &&
         other.favoriteAgents == favoriteAgents &&
         other.onRefresh == onRefresh &&
-        other.checkFavoriteAgent == checkFavoriteAgent;
+        other.checkFavoriteAgentRefresh == checkFavoriteAgentRefresh;
   }
 
   @override
@@ -270,7 +270,7 @@ class FavoriteAgentsViewArguments {
         onFavoriteTap.hashCode ^
         favoriteAgents.hashCode ^
         onRefresh.hashCode ^
-        checkFavoriteAgent.hashCode;
+        checkFavoriteAgentRefresh.hashCode;
   }
 }
 
@@ -341,7 +341,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
     ) onFavoriteTap,
     required List<_i9.FavoriteAgent> favoriteAgents,
     required _i10.Future<void> Function() onRefresh,
-    required void Function() checkFavoriteAgent,
+    required void Function() checkFavoriteAgentRefresh,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -355,7 +355,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onRefresh: onRefresh,
-            checkFavoriteAgent: checkFavoriteAgent),
+            checkFavoriteAgentRefresh: checkFavoriteAgentRefresh),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -371,7 +371,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
     ) onFavoriteTap,
     required List<_i9.FavoriteAgent> favoriteAgents,
     required _i10.Future<void> Function() onRefresh,
-    required void Function() checkFavoriteAgent,
+    required void Function() checkFavoriteAgentRefresh,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -385,7 +385,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onRefresh: onRefresh,
-            checkFavoriteAgent: checkFavoriteAgent),
+            checkFavoriteAgentRefresh: checkFavoriteAgentRefresh),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -462,7 +462,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
     ) onFavoriteTap,
     required List<_i9.FavoriteAgent> favoriteAgents,
     required _i10.Future<void> Function() onRefresh,
-    required void Function() checkFavoriteAgent,
+    required void Function() checkFavoriteAgentRefresh,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -476,7 +476,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onRefresh: onRefresh,
-            checkFavoriteAgent: checkFavoriteAgent),
+            checkFavoriteAgentRefresh: checkFavoriteAgentRefresh),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -492,7 +492,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
     ) onFavoriteTap,
     required List<_i9.FavoriteAgent> favoriteAgents,
     required _i10.Future<void> Function() onRefresh,
-    required void Function() checkFavoriteAgent,
+    required void Function() checkFavoriteAgentRefresh,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -506,7 +506,7 @@ extension NavigatorStateExtension on _i11.NavigationService {
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onRefresh: onRefresh,
-            checkFavoriteAgent: checkFavoriteAgent),
+            checkFavoriteAgentRefresh: checkFavoriteAgentRefresh),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

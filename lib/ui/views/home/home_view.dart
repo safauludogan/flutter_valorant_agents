@@ -49,7 +49,9 @@ class HomeView extends StackedView<HomeViewModel>
             ),
             actions: [
               SettingsIcon(
-                onPressed: viewModel.navigateToSettings,
+                onPressed: () async {
+                  await viewModel.navigateToSettings();
+                },
               )
             ],
           ),
@@ -121,7 +123,7 @@ class _Body extends StatelessWidget {
                                       viewModel.selectedAgentRole,
                                   onFavoriteTap: viewModel.onFavoriteTap,
                                   favoriteAgents: viewModel.favoriteAgents,
-                                  checkFavoriteAgent:
+                                  checkFavoriteAgentRefresh:
                                       viewModel.getAllFavoriteAgents,
                                   onRefresh: () async => viewModel.getAgents()))
                               .toList(),

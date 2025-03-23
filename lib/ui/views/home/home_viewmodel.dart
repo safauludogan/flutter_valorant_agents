@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:dio_nexus/dio_nexus.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/app/app.router.dart';
+import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/manager/network_error.dart';
 import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
 import 'package:flutter_valorant_agents/repository/favorite_agent/abstract/i_favorite_agent_repository.dart';
+import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.form.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:gen/gen.dart';
@@ -21,6 +24,7 @@ class HomeViewModel extends ReactiveViewModel
   final _bottomSheetService = locator<BottomSheetService>();
   final _favoriteAgentRepository = locator<IFavoriteAgentRepository>();
   final _navigationService = locator<NavigationService>();
+  final _toastService = locator<ToastService>();
 
   /// Agents private property
   List<Agent> _agents = [];
@@ -150,5 +154,14 @@ class HomeViewModel extends ReactiveViewModel
   }
 
   /// Navigate to settings
-  void navigateToSettings() => _navigationService.navigateToSettingsView();
+  Future<void> navigateToSettings() async {
+    final result = await _navigationService.navigateToSettingsView();
+
+    if (result == true) {
+      await _agentRepository.clearCache();
+      await getAgents();
+      _toastService.showInfoMessage(
+          message: LocaleKeys.messages_languageChanged.tr());
+    }
+  }
 }

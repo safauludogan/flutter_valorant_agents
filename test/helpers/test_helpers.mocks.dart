@@ -852,6 +852,29 @@ class MockLocalizationService extends _i1.Mock
       ) as String);
 
   @override
+  String getCurrentLocaleLanguageTag(_i2.BuildContext? context) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentLocaleLanguageTag,
+          [context],
+        ),
+        returnValue: _i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getCurrentLocaleLanguageTag,
+            [context],
+          ),
+        ),
+        returnValueForMissingStub: _i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getCurrentLocaleLanguageTag,
+            [context],
+          ),
+        ),
+      ) as String);
+
+  @override
   void listenToReactiveValues(List<dynamic>? reactiveValues) =>
       super.noSuchMethod(
         Invocation.method(

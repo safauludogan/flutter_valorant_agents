@@ -4,6 +4,7 @@ import 'package:common/common.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/extension/double_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
 import 'package:flutter_valorant_agents/ui/views/settings/settings_viewmodel.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 part 'widget/settings_view_title.dart';
 part 'widget/settings_view_section_title.dart';
@@ -28,37 +30,44 @@ class SettingsView extends StackedView<SettingsViewModel> {
   @override
   Widget builder(
       BuildContext context, SettingsViewModel viewModel, Widget? child) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: viewModel.isBusy
-            ? const SizedBox.shrink()
-            : const _SettingsViewTitle(),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
-          child: viewModel.isBusy
-              ? const LoadingCircular()
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Select language
-                    const _SettingsViewSectionTitle(
-                        title: LocaleKeys.settings_language),
-                    WidgetSizes.spacingM.h.height,
-                    _buildLanguageOptions(context, viewModel),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        locator<NavigationService>()
+            .back<bool>(result: viewModel.isLanguageChanged);
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title: viewModel.isBusy
+              ? const SizedBox.shrink()
+              : const _SettingsViewTitle(),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+            child: viewModel.isBusy
+                ? const LoadingCircular()
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Select language
+                      const _SettingsViewSectionTitle(
+                          title: LocaleKeys.settings_language),
+                      WidgetSizes.spacingM.h.height,
+                      _buildLanguageOptions(context, viewModel),
 
-                    // Divider
-                    const _SettingsViewDivider(),
+                      // Divider
+                      const _SettingsViewDivider(),
 
-                    // Select theme
-                    const _SettingsViewSectionTitle(
-                        title: LocaleKeys.settings_theme),
-                    WidgetSizes.spacingM.h.height,
-                    _buildThemeOptions(context, viewModel),
-                  ],
-                ),
+                      // Select theme
+                      const _SettingsViewSectionTitle(
+                          title: LocaleKeys.settings_theme),
+                      WidgetSizes.spacingM.h.height,
+                      _buildThemeOptions(context, viewModel),
+                    ],
+                  ),
+          ),
         ),
       ),
     );
@@ -93,8 +102,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
     );
   }
 
-  Widget _buildThemeOptions(
-      BuildContext context, SettingsViewModel viewModel) {
+  Widget _buildThemeOptions(BuildContext context, SettingsViewModel viewModel) {
     return Column(
       children: [
         _buildSettingsOption(

@@ -32,6 +32,7 @@ class ProductNetworkInterceptor implements InterceptorsWrapper {
   }
 
   /// Get app current language with [ProductLocalization.getCurrentLocale]
-  String get getLanguage => locator<LocalizationService>()
-      .getCurrentLocaleLanguageTag(StackedService.navigatorKey!.currentContext!);
+  String get getLanguage =>
+      locator<LocalizationService>().getCurrentLocaleLanguageTag(
+          StackedService.navigatorKey!.currentContext!);
 }

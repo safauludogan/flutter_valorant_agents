@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/textfield/base/decoration/product_textfield_decoration.dart';
-import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
-import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:gen/gen.dart';
 
 class ProductTextfield extends StatefulWidget {
