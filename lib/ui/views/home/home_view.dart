@@ -125,7 +125,8 @@ class _Body extends StatelessWidget {
                                   favoriteAgents: viewModel.favoriteAgents,
                                   checkFavoriteAgentRefresh:
                                       viewModel.getAllFavoriteAgents,
-                                  onRefresh: () async => viewModel.getAgents()))
+                                  onRefresh: () async => viewModel.getAgents(),
+                                  onNotesTap: viewModel.onTabAgentNote))
                               .toList(),
                         ),
                       ),

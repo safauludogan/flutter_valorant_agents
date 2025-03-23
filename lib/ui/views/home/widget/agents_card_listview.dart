@@ -14,6 +14,7 @@ import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/abilities_decoration.dart';
 import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/card_bg_decoration.dart';
+import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/notes_text_decoration.dart';
 import 'package:gen/gen.dart';
 import 'package:widgets/widgets.dart';
 
@@ -25,6 +26,7 @@ class AgentsCardListView extends StatefulWidget {
     required this.onFavoriteTap,
     required this.favoriteAgents,
     required this.onAgentTap,
+    required this.onNotesTap,
     Key? key,
   }) : super(key: key);
 
@@ -42,6 +44,9 @@ class AgentsCardListView extends StatefulWidget {
 
   /// On agent tap
   final void Function(Agent) onAgentTap;
+
+  /// On notes tap
+  final void Function(FavoriteAgent) onNotesTap;
 
   @override
   State<AgentsCardListView> createState() => AgentsCardListViewState();
@@ -88,6 +93,13 @@ class AgentsCardListViewState extends State<AgentsCardListView>
               isFavorite: widget.favoriteAgents.any((favorite) =>
                   favorite.agentId?.compareUuid(agent.uuid) ?? false),
               onAgentTap: widget.onAgentTap,
+              favoriteAgent: widget.favoriteAgents
+                  .where(
+                    (favorite) =>
+                        favorite.agentId?.compareUuid(agent.uuid) ?? false,
+                  )
+                  .firstOrNull,
+              onNotesTap: widget.onNotesTap,
             ),
           ),
         );
@@ -100,7 +112,7 @@ class AgentsCardListViewState extends State<AgentsCardListView>
           children: [
             const LottieNotFound(),
             Text(
-              LocaleKeys.messages_noAgentsFound,
+              LocaleKeys.general_messages_noAgentsFound,
               style: context.textTheme.titleSmall,
             ).tr(),
           ],
@@ -114,12 +126,16 @@ class _AgentCard extends StatelessWidget {
     required this.onFavoriteTap,
     required this.isFavorite,
     required this.onAgentTap,
+    required this.favoriteAgent,
+    required this.onNotesTap,
   });
 
   final Agent agent;
   final void Function(Agent, bool) onFavoriteTap;
   final bool isFavorite;
   final void Function(Agent) onAgentTap;
+  final FavoriteAgent? favoriteAgent;
+  final ValueSetter<FavoriteAgent> onNotesTap;
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +178,12 @@ class _AgentCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Agent Name and Role
-                        _buildAgentNameAndRole(context, agent),
+                        _buildAgentNameAndRole(
+                          context,
+                          agent,
+                          favoriteAgent,
+                          onNotesTap,
+                        ),
                         SizedBox(height: WidgetSizes.spacingXs.h),
                         // Agent Description
                         Text(
@@ -199,47 +220,73 @@ class _AgentCard extends StatelessWidget {
   }
 
   /// Agent name and role
-  Widget _buildAgentNameAndRole(BuildContext context, Agent agent) {
+  Widget _buildAgentNameAndRole(BuildContext context, Agent agent,
+      FavoriteAgent? favoriteAgent, ValueSetter<FavoriteAgent> onNotesTap) {
     return Row(
       children: [
         Expanded(
-          child: Text(
-            agent.displayName ?? '',
-            style: context.textTheme.bodyLarge?.copyWith(
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ),
-        if (agent.role?.displayIcon != null) ...[
-          SizedBox(width: WidgetSizes.spacingXxs.w),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8.w,
-              vertical: 4.h,
-            ),
-            decoration: AbilitiesDecoration(),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CustomNetworkImage(
-                  imageUrl: agent.role!.displayIcon,
-                  size: Size(14.w, 14.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                agent.displayName ?? '',
+                style: context.textTheme.bodyLarge?.copyWith(
+                  overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(width: 4.w),
-                Text(
-                  agent.role!.displayName!,
-                  style: context.textTheme.labelMedium?.copyWith(
-                    color: ColorName.white.withValues(alpha: 0.8),
+              ),
+              if (agent.role?.displayIcon != null) ...[
+                SizedBox(width: WidgetSizes.spacingXxs.w),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.w,
+                    vertical: 4.h,
+                  ),
+                  decoration: AbilitiesDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CustomNetworkImage(
+                        imageUrl: agent.role!.displayIcon,
+                        size: Size(14.w, 14.h),
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        agent.role!.displayName!,
+                        style: context.textTheme.labelMedium?.copyWith(
+                          color: ColorName.white.withValues(alpha: 0.8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
-            ),
+            ],
           ),
-        ],
+        ),
         WidgetSizes.spacingXSs.width,
-        FavoriteIconButton(
-          onFavoriteTap: () => onFavoriteTap(agent, isFavorite),
-          isFavorite: isFavorite,
+        Column(
+          children: [
+            FavoriteIconButton(
+              onFavoriteTap: () => onFavoriteTap(agent, isFavorite),
+              isFavorite: isFavorite,
+            ),
+            if (favoriteAgent != null) ...[
+              WidgetSizes.spacingXSS.h.height,
+              Container(
+                padding: Paddings.p4a,
+                decoration: NotesTextDecoration(context),
+                child: InkWell(
+                  child: Text(LocaleKeys.home_pages_notes,
+                      style: context.textTheme.titleSmall?.copyWith(
+                        color: ColorName.white.withValues(alpha: 0.8),
+                      )).tr(),
+                  onTap: () => onNotesTap(favoriteAgent),
+                ),
+              ),
+            ] else ...[
+              WidgetSizes.spacingL.h.height,
+            ]
+          ],
         ),
       ],
     );

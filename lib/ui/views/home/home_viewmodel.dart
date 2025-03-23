@@ -25,6 +25,7 @@ class HomeViewModel extends ReactiveViewModel
   final _favoriteAgentRepository = locator<IFavoriteAgentRepository>();
   final _navigationService = locator<NavigationService>();
   final _toastService = locator<ToastService>();
+  final _dialogService = locator<DialogService>();
 
   /// Agents private property
   List<Agent> _agents = [];
@@ -161,7 +162,15 @@ class HomeViewModel extends ReactiveViewModel
       await _agentRepository.clearCache();
       await getAgents();
       _toastService.showInfoMessage(
-          message: LocaleKeys.messages_languageChanged.tr());
+          message: LocaleKeys.general_messages_languageChanged.tr());
     }
+  }
+
+  /// On tab agent note
+  void onTabAgentNote(FavoriteAgent favoriteAgent) {
+    _dialogService.showDialog(
+      title: favoriteAgent.title,
+      description: favoriteAgent.description,
+    );
   }
 }

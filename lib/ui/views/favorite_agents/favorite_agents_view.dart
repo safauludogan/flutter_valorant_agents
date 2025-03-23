@@ -14,6 +14,7 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
     required this.favoriteAgents,
     required this.onRefresh,
     required this.checkFavoriteAgentRefresh,
+    required this.onNotesTap,
   });
 
   /// Agents
@@ -33,6 +34,9 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
 
   /// Check favorite agent
   final VoidCallback checkFavoriteAgentRefresh;
+
+  /// On notes tap
+  final void Function(FavoriteAgent) onNotesTap;
 
   @override
   Widget builder(
@@ -55,6 +59,7 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
                 agent.uuid!, checkFavoriteAgentRefresh),
             checkFavoriteAgent: checkFavoriteAgentRefresh,
+            onNotesTap: onNotesTap,
           ),
           tablet: _Body(
             agents: agents,
@@ -65,6 +70,7 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
                 agent.uuid!, checkFavoriteAgentRefresh),
             checkFavoriteAgent: checkFavoriteAgentRefresh,
+            onNotesTap: onNotesTap,
           ),
           desktop: _Body(
             agents: agents,
@@ -75,6 +81,7 @@ class FavoriteAgentsView extends StackedView<FavoriteAgentsViewModel> {
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
                 agent.uuid!, checkFavoriteAgentRefresh),
             checkFavoriteAgent: checkFavoriteAgentRefresh,
+            onNotesTap: onNotesTap,
           ),
         ),
       ),
@@ -98,6 +105,7 @@ class _Body extends StatelessWidget {
     required this.viewModel,
     required this.onAgentTap,
     required this.checkFavoriteAgent,
+    required this.onNotesTap,
   });
 
   final List<Agent> agents;
@@ -107,6 +115,7 @@ class _Body extends StatelessWidget {
   final FavoriteAgentsViewModel viewModel;
   final VoidCallback checkFavoriteAgent;
   final void Function(Agent) onAgentTap;
+  final void Function(FavoriteAgent) onNotesTap;
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +126,7 @@ class _Body extends StatelessWidget {
       favoriteAgents: favoriteAgents,
       onAgentTap: (agent) =>
           viewModel.navigateToAgentDetail(agent.uuid!, checkFavoriteAgent),
+      onNotesTap: onNotesTap,
     );
   }
 }
