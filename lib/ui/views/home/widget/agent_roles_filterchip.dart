@@ -53,7 +53,7 @@ class _AgentRolesFilterChip extends StatelessWidget {
       avatar: agentRole.uuid == allFilterAgentRole.uuid
           ? null
           : Container(
-              decoration: FilterChipDecoration(),
+              decoration: RoleBgDecoration(),
               child: Padding(
                 padding: Paddings.p1h,
                 child: CustomNetworkImage(

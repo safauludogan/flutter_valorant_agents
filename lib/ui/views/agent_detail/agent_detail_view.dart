@@ -1,12 +1,31 @@
 import 'package:common/common.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_valorant_agents/product/extension/double_extension.dart';
+import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart'
+    show LocaleKeys;
 import 'package:flutter_valorant_agents/product/manager/network_error_resolver.dart';
+import 'package:flutter_valorant_agents/product/utility/constants/project_durations.dart';
+import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
+import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
+import 'package:flutter_valorant_agents/ui/views/agent_detail/agent_detail_viewmodel.dart';
+import 'package:flutter_valorant_agents/ui/views/agent_detail/widget/decoration/ability_container_decoration.dart';
+import 'package:flutter_valorant_agents/ui/views/agent_detail/widget/decoration/ability_icon_container_decoration.dart';
+import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/role_bg_decoration.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
 
-import 'agent_detail_viewmodel.dart';
+part 'widget/agent_bg.dart';
+part 'widget/agent_portrait.dart';
+part 'widget/agent_role_icon.dart';
+part 'widget/appbar_bottom_linear_shadow.dart';
+part 'widget/appbar_title.dart';
+part 'widget/agent_role_name.dart';
+part 'widget/agent_description.dart';
+part 'widget/agent_ability_title.dart';
+part 'widget/ability_listview.dart';
 
 class AgentDetailView extends StackedView<AgentDetailViewModel> {
   const AgentDetailView({
@@ -20,7 +39,15 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
   @override
   void onViewModelReady(AgentDetailViewModel viewModel) {
     super.onViewModelReady(viewModel);
-    viewModel.getAgent(agentId: agentId);
+    viewModel
+      ..initialize()
+      ..getAgent(agentId: agentId);
+  }
+
+  @override
+  void onDispose(AgentDetailViewModel viewModel) {
+    super.onDispose(viewModel);
+    viewModel.scrollController.dispose();
   }
 
   @override
@@ -47,11 +74,30 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
     if (agent == null) return const SizedBox.shrink();
 
     return CustomScrollView(
+      controller: viewModel.scrollController,
       slivers: [
         SliverAppBar(
           expandedHeight: 500.h,
           pinned: true,
-          backgroundColor: Colors.transparent,
+          title: _AgentName(
+            opacity: viewModel.opacity,
+            agentName: agent.displayName!,
+          ),
+          // Scroll yapıldığında görünecek role icon
+          actions: [
+            if (agent.role?.displayIcon != null)
+              AnimatedOpacity(
+                opacity: viewModel.opacity,
+                duration: const ProjectDurations.lowDuration(),
+                child: Padding(
+                  padding: EdgeInsets.only(right: 16.w),
+                  child: Container(
+                    decoration: RoleBgDecoration(),
+                    child: _AgentRoleIcon(imageUrl: agent.role!.displayIcon!),
+                  ),
+                ),
+              ),
+          ],
           flexibleSpace: FlexibleSpaceBar(
             background: Stack(
               fit: StackFit.expand,
@@ -60,24 +106,14 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
                   Positioned.fill(
                     child: Opacity(
                       opacity: 0.2,
-                      child: CustomNetworkImage(
-                        imageUrl: agent.background,
-                        size: Size(1.w, 1.h),
-                        networkCache:
-                            const CustomNetworkCache(height: 700, width: 1024),
-                      ),
+                      child: _AgentBg(imageUrl: agent.background!),
                     ),
                   ),
                 // Agent full portrait
                 Positioned.fill(
-                  child: Hero(
+                  child: _AgentPortrait(
                     tag: agent.uuid ?? '',
-                    child: CustomNetworkImage(
-                      imageUrl: agent.fullPortrait ?? '',
-                      size: Size(1.w, 500.h),
-                      networkCache:
-                          const CustomNetworkCache(height: 1024, width: 930),
-                    ),
+                    imageUrl: agent.fullPortrait ?? '',
                   ),
                 ),
 
@@ -87,18 +123,7 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
                   left: 0,
                   right: 0,
                   height: 150.h,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withOpacity(0.8),
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: const _AppBarBottomLinearShadow(),
                 ),
                 // Agent name and role at bottom
                 Positioned(
@@ -111,28 +136,22 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            agent.displayName ?? '',
+                          _AgentName(
+                            agentName: agent.displayName!,
                             style: AppTextStyles.headline1.copyWith(
                               color: Colors.white,
                             ),
                           ),
                           if (agent.role?.displayIcon != null) ...[
-                            SizedBox(width: 12.w),
-                            CustomNetworkImage(
-                              imageUrl: agent.role!.displayIcon!,
-                              size: Size(24.w, 24.h),
-                            ),
+                            WidgetSizes.spacingS.w.width,
+                            _AgentRoleIcon(imageUrl: agent.role!.displayIcon!),
                           ],
                         ],
                       ),
                       if (agent.role?.displayName != null) ...[
-                        SizedBox(height: 4.h),
-                        Text(
-                          agent.role!.displayName!,
-                          style: AppTextStyles.footNote2.copyWith(
-                            color: Colors.white.withOpacity(0.8),
-                          ),
+                        WidgetSizes.spacingXxs.h.height,
+                        _AgentRoleName(
+                          roleName: agent.role!.displayName!,
                         ),
                       ],
                     ],
@@ -146,103 +165,20 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
         // Content
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.all(16.r),
+            padding: Paddings.p16a,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Description
-                Container(
-                  padding: EdgeInsets.all(16.r),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                  child: Text(
-                    agent.description ?? '',
-                    style: AppTextStyles.bodyText2.copyWith(
-                      color: Colors.white.withOpacity(0.9),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 32.h),
-
-                // Abilities section
-                Text(
-                  'Yetenekler',
-                  style: AppTextStyles.headline2.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 16.h),
-
-                if (agent.abilities != null) _buildAbilities(agent.abilities!),
+                _AgentDescription(description: agent.description!),
+                WidgetSizes.spacingXxl2.h.height,
+                const _AgentAbilityTitle(),
+                if (agent.abilities != null)
+                  _AbilityListView(abilities: agent.abilities!),
               ],
             ),
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildAbilities(List<Abilities> abilities) {
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: abilities.length,
-      separatorBuilder: (_, __) => SizedBox(height: 16.h),
-      itemBuilder: (context, index) {
-        final ability = abilities[index];
-        return Container(
-          padding: EdgeInsets.all(16.r),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(
-              color: Colors.white.withOpacity(0.2),
-              width: 1,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  if (ability.displayIcon != null)
-                    Container(
-                      padding: EdgeInsets.all(12.r),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      child: CustomNetworkImage(
-                        imageUrl: ability.displayIcon!,
-                        size: Size(48.w, 48.h),
-                      ),
-                    ),
-                  SizedBox(width: 16.w),
-                  Expanded(
-                    child: Text(
-                      ability.displayName ?? '',
-                      style: AppTextStyles.bodyText1.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              if (ability.description != null) ...[
-                SizedBox(height: 12.h),
-                Text(
-                  ability.description!,
-                  style: AppTextStyles.footNote2.copyWith(
-                    color: Colors.white.withOpacity(0.7),
-                  ),
-                ),
-              ],
-            ],
-          ),
-        );
-      },
     );
   }
 

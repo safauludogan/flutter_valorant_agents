@@ -15,7 +15,7 @@ import 'package:flutter_valorant_agents/ui/views/home/home_viewmodel.dart';
 import 'package:flutter_valorant_agents/ui/views/home/mixin/home_view_mixin.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/filter_all_agent_role.dart';
 import 'package:flutter_valorant_agents/ui/views/home/utility/home_pages.dart';
-import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/filter_chip_decoration.dart';
+import 'package:flutter_valorant_agents/ui/views/home/widget/decoration/role_bg_decoration.dart';
 import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';

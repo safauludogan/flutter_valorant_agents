@@ -48,6 +48,11 @@
                 "agents" : "Ajanlar",
                 "favoriteAgents" : "Favoriler"
             }
+        },
+        "agentDetail" : {
+            "pages" : {
+                "abilitiesTitle" : "Yetenekler"
+            }
         }
     }
 }
