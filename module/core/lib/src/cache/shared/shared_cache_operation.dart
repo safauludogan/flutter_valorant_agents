@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// SharedPreferences operations
-final class SharedCacheOperation {
+class SharedCacheOperation {
   late final SharedPreferences _prefs;
 
   /// Initialize [SharedPreferences]

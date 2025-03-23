@@ -28,8 +28,7 @@ final class ProductNetworkErrorManager {
 
     if (error != null) {
       _showError(
-        error.errorMessage ??
-            LocaleKeys.general_messages_somethingWentWrong.tr(),
+        error.errorMessage ?? LocaleKeys.messages_somethingWentWrong.tr(),
       );
 
       if (error.networkException != null) {

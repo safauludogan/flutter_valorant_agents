@@ -2,6 +2,7 @@ import 'package:common/common.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/extension/double_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart'
     show LocaleKeys;
@@ -10,7 +11,6 @@ import 'package:flutter_valorant_agents/product/utility/constants/project_durati
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
 import 'package:flutter_valorant_agents/product/widget/icon/favorite_icon_button.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
-import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:flutter_valorant_agents/ui/views/agent_detail/agent_detail_viewmodel.dart';
 import 'package:flutter_valorant_agents/ui/views/agent_detail/widget/decoration/ability_container_decoration.dart';
 import 'package:flutter_valorant_agents/ui/views/agent_detail/widget/decoration/ability_icon_container_decoration.dart';
@@ -58,13 +58,14 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: Colors.black,
+          resizeToAvoidBottomInset: false,
       body: viewModel.isBusy
           ? const LoadingCircular()
           : NetworkErrorResolver(
               error: viewModel.getError,
               child: _buildContent(context, viewModel),
             ).resolveErrorWidget(
+              context: context,
               receiveData: () => viewModel.getAgent(agentId: agentId),
             ),
     );
@@ -146,9 +147,7 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
                         children: [
                           _AgentName(
                             agentName: agent.displayName!,
-                            style: AppTextStyles.headline1.copyWith(
-                              color: Colors.white,
-                            ),
+                            style: context.textTheme.displayLarge,
                           ),
                           if (agent.role?.displayIcon != null) ...[
                             WidgetSizes.spacingS.w.width,

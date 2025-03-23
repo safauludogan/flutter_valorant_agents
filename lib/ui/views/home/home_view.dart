@@ -2,14 +2,15 @@ import 'package:common/common.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/extension/string_extension.dart';
 import 'package:flutter_valorant_agents/product/manager/network_error_resolver.dart';
 import 'package:flutter_valorant_agents/product/textfield/search/search_textfield.dart';
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
+import 'package:flutter_valorant_agents/product/widget/icon/settings_icon.dart';
 import 'package:flutter_valorant_agents/product/widget/shimmer/shimmer_card_listview.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/styles/radiuses.dart';
-import 'package:flutter_valorant_agents/ui/styles/text_styles.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_view.form.dart';
 import 'package:flutter_valorant_agents/ui/views/home/home_viewmodel.dart';
 import 'package:flutter_valorant_agents/ui/views/home/mixin/home_view_mixin.dart';
@@ -43,19 +44,23 @@ class HomeView extends StackedView<HomeViewModel>
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: TabBar(
-              dividerColor: Colors.transparent,
               tabs:
                   HomePages.values.map((e) => Tab(text: e.getTitle())).toList(),
             ),
+            actions: [
+              SettingsIcon(
+                onPressed: viewModel.navigateToSettings,
+              )
+            ],
           ),
           body: AdaptAllView(
-            phone: _body(
+            phone: _Body(
                 searchInputController: searchInputController,
                 viewModel: viewModel),
-            tablet: _body(
+            tablet: _Body(
                 searchInputController: searchInputController,
                 viewModel: viewModel),
-            desktop: _body(
+            desktop: _Body(
                 searchInputController: searchInputController,
                 viewModel: viewModel),
           ),
@@ -65,9 +70,8 @@ class HomeView extends StackedView<HomeViewModel>
   }
 }
 
-class _body extends StatelessWidget {
-  const _body({
-    super.key,
+class _Body extends StatelessWidget {
+  const _Body({
     required this.searchInputController,
     required this.viewModel,
   });
@@ -129,6 +133,7 @@ class _body extends StatelessWidget {
                 error: viewModel.getError,
               ).resolveErrorWidget(
                 receiveData: viewModel.getAgents,
+                context: context,
               ),
       ),
     );

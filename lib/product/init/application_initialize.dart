@@ -16,7 +16,10 @@ import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_reposi
 import 'package:flutter_valorant_agents/repository/agent/concrete/agent_repository.dart';
 import 'package:flutter_valorant_agents/repository/favorite_agent/abstract/i_favorite_agent_repository.dart';
 import 'package:flutter_valorant_agents/repository/favorite_agent/concrete/favorite_agent_repository.dart';
+import 'package:flutter_valorant_agents/services/app/theme_service.dart';
 import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart';
+import 'package:flutter_valorant_agents/services/cache/product_shared_cache_service.dart';
+import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 @immutable
@@ -43,6 +46,8 @@ final class ApplicationInitialize {
     await _productCacheService();
 
     _registerLocators();
+
+    _setupTheme();
   }
 
   static void _registerLocators() {
@@ -73,15 +78,17 @@ final class ApplicationInitialize {
   }
 
   static Future<void> _productCacheService() async {
-    final _productCache = locator<ProductCacheService>();
+    final productSharedCacheService = locator<ProductSharedCacheService>();
+    final productCache = locator<ProductCacheService>();
 
-    await _productCache.init();
+    await productCache.init();
+    await productSharedCacheService.init();
 
     /// Register models
     ///
 
     /// Agent
-    _productCache
+    productCache
       ..register<AgentCacheModel>(
         AgentCacheModel.empty(),
         HiveAdapterId.agent,
@@ -104,10 +111,18 @@ final class ApplicationInitialize {
       );
 
     /// Open cache box
-    await _productCache.agentCacheOperation.open();
-    await _productCache.agentRoleCacheOperation.open();
-    await _productCache.recruitmentDataCacheOperation.open();
-    await _productCache.abilitiesCacheOperation.open();
-    await _productCache.favoriteAgentCacheOperation.open();
+    await productCache.agentCacheOperation.open();
+    await productCache.agentRoleCacheOperation.open();
+    await productCache.recruitmentDataCacheOperation.open();
+    await productCache.abilitiesCacheOperation.open();
+    await productCache.favoriteAgentCacheOperation.open();
+  }
+
+  static void _setupTheme() {
+    final themeModeCache =
+        locator<ProductSharedCacheService>().get<String>(SharedKeys.themeMode);
+
+    locator<ThemeService>()
+        .updateThemeMode(AppThemeMode.fromString(themeModeCache));
   }
 }

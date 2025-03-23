@@ -9,55 +9,46 @@ abstract class LocaleKeys {
   static const general_button_update = 'general.button.update';
   static const general_button_delete = 'general.button.delete';
   static const general_button = 'general.button';
-  static const general_messages_somethingWentWrong =
-      'general.messages.somethingWentWrong';
-  static const general_messages_noAgentsFound =
-      'general.messages.noAgentsFound';
-  static const general_messages_noInternetConnection =
-      'general.messages.noInternetConnection';
-  static const general_messages_noResponseFromServer =
-      'general.messages.noResponseFromServer';
-  static const general_messages = 'general.messages';
-  static const general_textformfield_hintText_searchAgent =
-      'general.textformfield.hintText.searchAgent';
-  static const general_textformfield_hintText_title =
-      'general.textformfield.hintText.title';
-  static const general_textformfield_hintText_description =
-      'general.textformfield.hintText.description';
-  static const general_textformfield_hintText =
-      'general.textformfield.hintText';
-  static const general_textformfield = 'general.textformfield';
-  static const general_validator_favoriteTitleMustBeAtLeast3Characters =
-      'general.validator.favoriteTitleMustBeAtLeast3Characters';
-  static const general_validator_favoriteDescriptionMustBeAtLeast10Characters =
-      'general.validator.favoriteDescriptionMustBeAtLeast10Characters';
-  static const general_validator = 'general.validator';
-  static const general_bottomSheet_addFavorite_title =
-      'general.bottomSheet.addFavorite.title';
-  static const general_bottomSheet_addFavorite_description =
-      'general.bottomSheet.addFavorite.description';
-  static const general_bottomSheet_addFavorite_additionalButtonTitle =
-      'general.bottomSheet.addFavorite.additionalButtonTitle';
-  static const general_bottomSheet_addFavorite_mainButtonTitle =
-      'general.bottomSheet.addFavorite.mainButtonTitle';
-  static const general_bottomSheet_addFavorite =
-      'general.bottomSheet.addFavorite';
-  static const general_bottomSheet = 'general.bottomSheet';
-  static const general_favorite_messages_favoriteTitleAlreadyExists =
-      'general.favorite.messages.favoriteTitleAlreadyExists';
-  static const general_favorite_messages_favoriteAgentAlreadyExistsInFavorites =
-      'general.favorite.messages.favoriteAgentAlreadyExistsInFavorites';
-  static const general_favorite_messages_favoriteAdded =
-      'general.favorite.messages.favoriteAdded';
-  static const general_favorite_messages_favoriteUpdated =
-      'general.favorite.messages.favoriteUpdated';
-  static const general_favorite_messages_favoriteRemoved =
-      'general.favorite.messages.favoriteRemoved';
-  static const general_favorite_messages_agentName =
-      'general.favorite.messages.agentName';
-  static const general_favorite_messages = 'general.favorite.messages';
-  static const general_favorite = 'general.favorite';
   static const general = 'general';
+  static const messages_somethingWentWrong = 'messages.somethingWentWrong';
+  static const messages_noAgentsFound = 'messages.noAgentsFound';
+  static const messages_noInternetConnection = 'messages.noInternetConnection';
+  static const messages_noResponseFromServer = 'messages.noResponseFromServer';
+  static const messages = 'messages';
+  static const textformfield_hintText_searchAgent =
+      'textformfield.hintText.searchAgent';
+  static const textformfield_hintText_title = 'textformfield.hintText.title';
+  static const textformfield_hintText_description =
+      'textformfield.hintText.description';
+  static const textformfield_hintText = 'textformfield.hintText';
+  static const textformfield = 'textformfield';
+  static const validator_favoriteTitleMustBeAtLeast3Characters =
+      'validator.favoriteTitleMustBeAtLeast3Characters';
+  static const validator_favoriteDescriptionMustBeAtLeast10Characters =
+      'validator.favoriteDescriptionMustBeAtLeast10Characters';
+  static const validator = 'validator';
+  static const bottomSheet_addFavorite_title = 'bottomSheet.addFavorite.title';
+  static const bottomSheet_addFavorite_description =
+      'bottomSheet.addFavorite.description';
+  static const bottomSheet_addFavorite_additionalButtonTitle =
+      'bottomSheet.addFavorite.additionalButtonTitle';
+  static const bottomSheet_addFavorite_mainButtonTitle =
+      'bottomSheet.addFavorite.mainButtonTitle';
+  static const bottomSheet_addFavorite = 'bottomSheet.addFavorite';
+  static const bottomSheet = 'bottomSheet';
+  static const favorite_messages_favoriteTitleAlreadyExists =
+      'favorite.messages.favoriteTitleAlreadyExists';
+  static const favorite_messages_favoriteAgentAlreadyExistsInFavorites =
+      'favorite.messages.favoriteAgentAlreadyExistsInFavorites';
+  static const favorite_messages_favoriteAdded =
+      'favorite.messages.favoriteAdded';
+  static const favorite_messages_favoriteUpdated =
+      'favorite.messages.favoriteUpdated';
+  static const favorite_messages_favoriteRemoved =
+      'favorite.messages.favoriteRemoved';
+  static const favorite_messages_agentName = 'favorite.messages.agentName';
+  static const favorite_messages = 'favorite.messages';
+  static const favorite = 'favorite';
   static const home_pages_agents = 'home.pages.agents';
   static const home_pages_favoriteAgents = 'home.pages.favoriteAgents';
   static const home_pages = 'home.pages';
@@ -66,4 +57,12 @@ abstract class LocaleKeys {
       'agentDetail.pages.abilitiesTitle';
   static const agentDetail_pages = 'agentDetail.pages';
   static const agentDetail = 'agentDetail';
+  static const settings_title = 'settings.title';
+  static const settings_language = 'settings.language';
+  static const settings_theme = 'settings.theme';
+  static const settings_light = 'settings.light';
+  static const settings_dark = 'settings.dark';
+  static const settings_turkish = 'settings.turkish';
+  static const settings_english = 'settings.english';
+  static const settings = 'settings';
 }

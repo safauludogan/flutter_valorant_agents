@@ -29,6 +29,8 @@ import 'package:flutter_valorant_agents/services/app/theme_service.dart'
     as _i11;
 import 'package:flutter_valorant_agents/services/cache/product_cache_service.dart'
     as _i17;
+import 'package:flutter_valorant_agents/services/cache/product_shared_cache_service.dart'
+    as _i23;
 import 'package:flutter_valorant_agents/services/common/toast_service.dart'
     as _i16;
 import 'package:flutter_valorant_agents/services/manager/product_network_service.dart'
@@ -828,6 +830,28 @@ class MockLocalizationService extends _i1.Mock
       );
 
   @override
+  String getCurrentLocale(_i2.BuildContext? context) => (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentLocale,
+          [context],
+        ),
+        returnValue: _i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getCurrentLocale,
+            [context],
+          ),
+        ),
+        returnValueForMissingStub: _i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getCurrentLocale,
+            [context],
+          ),
+        ),
+      ) as String);
+
+  @override
   void listenToReactiveValues(List<dynamic>? reactiveValues) =>
       super.noSuchMethod(
         Invocation.method(
@@ -890,8 +914,8 @@ class MockThemeService extends _i1.Mock implements _i11.ThemeService {
       ) as _i2.ThemeData);
 
   @override
-  bool get isDarkModel => (super.noSuchMethod(
-        Invocation.getter(#isDarkModel),
+  bool get isDarkMode => (super.noSuchMethod(
+        Invocation.getter(#isDarkMode),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
@@ -2382,4 +2406,67 @@ class MockProductCacheService extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [ProductSharedCacheService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProductSharedCacheService extends _i1.Mock
+    implements _i23.ProductSharedCacheService {
+  @override
+  _i7.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> clear() => (super.noSuchMethod(
+        Invocation.method(
+          #clear,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> clearByKeys(List<_i4.SharedKeys>? keys) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #clearByKeys,
+          [keys],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> add(
+    _i4.SharedKeys? key,
+    Object? value,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [
+            key,
+            value,
+          ],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  T? get<T>(_i4.SharedKeys? key) => (super.noSuchMethod(
+        Invocation.method(
+          #get,
+          [key],
+        ),
+        returnValueForMissingStub: null,
+      ) as T?);
 }

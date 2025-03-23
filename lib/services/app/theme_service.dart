@@ -19,7 +19,7 @@ class ThemeService with ListenableServiceMixin {
       : AppThemes.darkTheme;
 
   /// Whether the current theme is dark
-  bool get isDarkModel => _themeMode == AppThemeMode.dark;
+  bool get isDarkMode => _themeMode == AppThemeMode.dark;
 
   /// Updates the theme mode
   void updateThemeMode(AppThemeMode newThemeMode) {

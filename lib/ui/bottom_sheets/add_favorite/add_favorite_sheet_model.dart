@@ -33,7 +33,7 @@ class AddFavoriteSheetModel extends ReactiveViewModel
 
       if (result) {
         _toastService.showSuccessMessage(
-            message: LocaleKeys.general_favorite_messages_favoriteAdded.tr());
+            message: LocaleKeys.favorite_messages_favoriteAdded.tr());
 
         _navigationService.back<SheetResponse<bool>>(
             result: SheetResponse<bool>(data: true));
@@ -61,7 +61,7 @@ class AddFavoriteSheetModel extends ReactiveViewModel
 
       if (result) {
         _toastService.showSuccessMessage(
-            message: LocaleKeys.general_favorite_messages_favoriteUpdated.tr());
+            message: LocaleKeys.favorite_messages_favoriteUpdated.tr());
 
         _navigationService.back<SheetResponse<bool>>(
             result: SheetResponse<bool>(data: true));
@@ -78,7 +78,7 @@ class AddFavoriteSheetModel extends ReactiveViewModel
 
     if (result) {
       _toastService.showSuccessMessage(
-          message: LocaleKeys.general_favorite_messages_favoriteRemoved.tr());
+          message: LocaleKeys.favorite_messages_favoriteRemoved.tr());
 
       _navigationService.back<SheetResponse<bool>>(
           result: SheetResponse<bool>(data: true));

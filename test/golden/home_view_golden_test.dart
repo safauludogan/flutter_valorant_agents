@@ -16,8 +16,8 @@ void main() {
     tester.binding.window.devicePixelRatioTestValue = 1.0;
 
     await tester.pumpWidget(
-      const MediaQuery(
-        data: MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
         child: MaterialApp(debugShowCheckedModeBanner: false, home: HomeView()),
       ),
     );

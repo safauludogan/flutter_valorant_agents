@@ -69,7 +69,7 @@ class AgentDetailViewModel extends BaseViewModel {
 
   /// Update opacity
   void updateOpacity(double offset) {
-    _opacity = scrollController.offset > 460.h ? 1.0 : 0.0;
+    _opacity = scrollController.offset > 430.h ? 1.0 : 0.0;
     rebuildUi();
   }
 

@@ -5,9 +5,9 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i9;
+import 'dart:async' as _i10;
 
-import 'package:flutter/material.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/ui/views/agent_detail/agent_detail_view.dart'
     as _i6;
@@ -16,11 +16,13 @@ import 'package:flutter_valorant_agents/ui/views/agents/agents_view.dart'
 import 'package:flutter_valorant_agents/ui/views/favorite_agents/favorite_agents_view.dart'
     as _i5;
 import 'package:flutter_valorant_agents/ui/views/home/home_view.dart' as _i2;
+import 'package:flutter_valorant_agents/ui/views/settings/settings_view.dart'
+    as _i7;
 import 'package:flutter_valorant_agents/ui/views/startup/startup_view.dart'
     as _i3;
-import 'package:gen/gen.dart' as _i8;
+import 'package:gen/gen.dart' as _i9;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i10;
+import 'package:stacked_services/stacked_services.dart' as _i11;
 
 class Routes {
   static const homeView = '/home-view';
@@ -33,12 +35,15 @@ class Routes {
 
   static const agentDetailView = '/agent-detail-view';
 
+  static const settingsView = '/settings-view';
+
   static const all = <String>{
     homeView,
     startupView,
     agentsView,
     favoriteAgentsView,
     agentDetailView,
+    settingsView,
   };
 }
 
@@ -64,6 +69,10 @@ class StackedRouter extends _i1.RouterBase {
       Routes.agentDetailView,
       page: _i6.AgentDetailView,
     ),
+    _i1.RouteDef(
+      Routes.settingsView,
+      page: _i7.SettingsView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
@@ -71,7 +80,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<HomeViewArguments>(
         orElse: () => const HomeViewArguments(),
       );
-      return _i7.PageRouteBuilder<dynamic>(
+      return _i8.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i2.HomeView(key: args.key),
         settings: data,
@@ -79,7 +88,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i3.StartupView: (data) {
-      return _i7.PageRouteBuilder<dynamic>(
+      return _i8.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i3.StartupView(),
         settings: data,
@@ -88,7 +97,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i4.AgentsView: (data) {
       final args = data.getArgs<AgentsViewArguments>(nullOk: false);
-      return _i7.PageRouteBuilder<dynamic>(
+      return _i8.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) => _i4.AgentsView(
             agents: args.agents,
             selectedAgentRole: args.selectedAgentRole,
@@ -102,7 +111,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i5.FavoriteAgentsView: (data) {
       final args = data.getArgs<FavoriteAgentsViewArguments>(nullOk: false);
-      return _i7.PageRouteBuilder<dynamic>(
+      return _i8.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i5.FavoriteAgentsView(
                 agents: args.agents,
@@ -117,11 +126,17 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i6.AgentDetailView: (data) {
       final args = data.getArgs<AgentDetailViewArguments>(nullOk: false);
-      return _i7.PageRouteBuilder<dynamic>(
+      return _i8.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i6.AgentDetailView(agentId: args.agentId, key: args.key),
         settings: data,
         transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i7.SettingsView: (data) {
+      return _i8.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i7.SettingsView(),
+        settings: data,
       );
     },
   };
@@ -136,7 +151,7 @@ class StackedRouter extends _i1.RouterBase {
 class HomeViewArguments {
   const HomeViewArguments({this.key});
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -165,18 +180,18 @@ class AgentsViewArguments {
     required this.checkFavoriteAgent,
   });
 
-  final List<_i8.Agent> agents;
+  final List<_i9.Agent> agents;
 
-  final _i8.AgentRole? selectedAgentRole;
+  final _i9.AgentRole? selectedAgentRole;
 
   final void Function(
-    _i8.Agent,
+    _i9.Agent,
     bool,
   ) onFavoriteTap;
 
-  final List<_i8.FavoriteAgent> favoriteAgents;
+  final List<_i9.FavoriteAgent> favoriteAgents;
 
-  final _i9.Future<void> Function() onRefresh;
+  final _i10.Future<void> Function() onRefresh;
 
   final void Function() checkFavoriteAgent;
 
@@ -217,18 +232,18 @@ class FavoriteAgentsViewArguments {
     required this.checkFavoriteAgent,
   });
 
-  final List<_i8.Agent> agents;
+  final List<_i9.Agent> agents;
 
-  final _i8.AgentRole? selectedAgentRole;
+  final _i9.AgentRole? selectedAgentRole;
 
   final void Function(
-    _i8.Agent,
+    _i9.Agent,
     bool,
   ) onFavoriteTap;
 
-  final List<_i8.FavoriteAgent> favoriteAgents;
+  final List<_i9.FavoriteAgent> favoriteAgents;
 
-  final _i9.Future<void> Function() onRefresh;
+  final _i10.Future<void> Function() onRefresh;
 
   final void Function() checkFavoriteAgent;
 
@@ -267,7 +282,7 @@ class AgentDetailViewArguments {
 
   final String agentId;
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -286,9 +301,9 @@ class AgentDetailViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i10.NavigationService {
+extension NavigatorStateExtension on _i11.NavigationService {
   Future<dynamic> navigateToHomeView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -318,14 +333,14 @@ extension NavigatorStateExtension on _i10.NavigationService {
   }
 
   Future<dynamic> navigateToAgentsView({
-    required List<_i8.Agent> agents,
-    required _i8.AgentRole? selectedAgentRole,
+    required List<_i9.Agent> agents,
+    required _i9.AgentRole? selectedAgentRole,
     required void Function(
-      _i8.Agent,
+      _i9.Agent,
       bool,
     ) onFavoriteTap,
-    required List<_i8.FavoriteAgent> favoriteAgents,
-    required _i9.Future<void> Function() onRefresh,
+    required List<_i9.FavoriteAgent> favoriteAgents,
+    required _i10.Future<void> Function() onRefresh,
     required void Function() checkFavoriteAgent,
     int? routerId,
     bool preventDuplicates = true,
@@ -348,14 +363,14 @@ extension NavigatorStateExtension on _i10.NavigationService {
   }
 
   Future<dynamic> navigateToFavoriteAgentsView({
-    required List<_i8.Agent> agents,
-    required _i8.AgentRole? selectedAgentRole,
+    required List<_i9.Agent> agents,
+    required _i9.AgentRole? selectedAgentRole,
     required void Function(
-      _i8.Agent,
+      _i9.Agent,
       bool,
     ) onFavoriteTap,
-    required List<_i8.FavoriteAgent> favoriteAgents,
-    required _i9.Future<void> Function() onRefresh,
+    required List<_i9.FavoriteAgent> favoriteAgents,
+    required _i10.Future<void> Function() onRefresh,
     required void Function() checkFavoriteAgent,
     int? routerId,
     bool preventDuplicates = true,
@@ -379,7 +394,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
 
   Future<dynamic> navigateToAgentDetailView({
     required String agentId,
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -394,8 +409,22 @@ extension NavigatorStateExtension on _i10.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToSettingsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.settingsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -425,14 +454,14 @@ extension NavigatorStateExtension on _i10.NavigationService {
   }
 
   Future<dynamic> replaceWithAgentsView({
-    required List<_i8.Agent> agents,
-    required _i8.AgentRole? selectedAgentRole,
+    required List<_i9.Agent> agents,
+    required _i9.AgentRole? selectedAgentRole,
     required void Function(
-      _i8.Agent,
+      _i9.Agent,
       bool,
     ) onFavoriteTap,
-    required List<_i8.FavoriteAgent> favoriteAgents,
-    required _i9.Future<void> Function() onRefresh,
+    required List<_i9.FavoriteAgent> favoriteAgents,
+    required _i10.Future<void> Function() onRefresh,
     required void Function() checkFavoriteAgent,
     int? routerId,
     bool preventDuplicates = true,
@@ -455,14 +484,14 @@ extension NavigatorStateExtension on _i10.NavigationService {
   }
 
   Future<dynamic> replaceWithFavoriteAgentsView({
-    required List<_i8.Agent> agents,
-    required _i8.AgentRole? selectedAgentRole,
+    required List<_i9.Agent> agents,
+    required _i9.AgentRole? selectedAgentRole,
     required void Function(
-      _i8.Agent,
+      _i9.Agent,
       bool,
     ) onFavoriteTap,
-    required List<_i8.FavoriteAgent> favoriteAgents,
-    required _i9.Future<void> Function() onRefresh,
+    required List<_i9.FavoriteAgent> favoriteAgents,
+    required _i10.Future<void> Function() onRefresh,
     required void Function() checkFavoriteAgent,
     int? routerId,
     bool preventDuplicates = true,
@@ -486,7 +515,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
 
   Future<dynamic> replaceWithAgentDetailView({
     required String agentId,
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -495,6 +524,20 @@ extension NavigatorStateExtension on _i10.NavigationService {
   }) async {
     return replaceWith<dynamic>(Routes.agentDetailView,
         arguments: AgentDetailViewArguments(agentId: agentId, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithSettingsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.settingsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

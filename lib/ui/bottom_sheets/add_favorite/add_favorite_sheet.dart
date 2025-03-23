@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/textfield/base/product_textfield.dart';
 import 'package:flutter_valorant_agents/product/textfield/multiline_textfield.dart';
@@ -62,9 +63,9 @@ class AddFavoriteSheet extends StackedView<AddFavoriteSheetModel>
   ) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: context.colorScheme.surface,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
         ),
@@ -77,13 +78,13 @@ class AddFavoriteSheet extends StackedView<AddFavoriteSheetModel>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                LocaleKeys.general_bottomSheet_addFavorite_title.tr(),
-                style: AppTextStyles.bodyText1,
+                LocaleKeys.bottomSheet_addFavorite_title.tr(),
+                style: context.textTheme.bodyLarge,
               ),
               Text(
-                LocaleKeys.general_favorite_messages_agentName
+                LocaleKeys.favorite_messages_agentName
                     .tr(args: [request.title.toString()]),
-                style: AppTextStyles.small.copyWith(fontSize: 12),
+                style: context.textTheme.titleSmall,
               ),
             ],
           ),
@@ -102,9 +103,9 @@ class AddFavoriteSheet extends StackedView<AddFavoriteSheetModel>
           verticalSpaceTiny,
           if (isAddFavorite)
             Text(
-              LocaleKeys.general_bottomSheet_addFavorite_description.tr(),
-              style: AppTextStyles.small
-                  .copyWith(fontSize: 12, color: kcMediumGrey),
+              LocaleKeys.bottomSheet_addFavorite_description.tr(),
+              style:
+                  context.textTheme.titleSmall?.copyWith(color: kcMediumGrey),
               maxLines: 3,
               softWrap: true,
             ),
@@ -112,8 +113,7 @@ class AddFavoriteSheet extends StackedView<AddFavoriteSheetModel>
           if (isAddFavorite)
             NormalElevatedButton(
               onPressed: () => viewModel.addFavorite(request.data as String),
-              text: LocaleKeys.general_bottomSheet_addFavorite_mainButtonTitle
-                  .tr(),
+              text: LocaleKeys.bottomSheet_addFavorite_mainButtonTitle.tr(),
             )
           else
             Column(
