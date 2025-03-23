@@ -142,6 +142,8 @@ class HomeViewModel extends ReactiveViewModel
   }
 
   /// Get all favorite agents
-  Future<void> getAllFavoriteAgents() async =>
-      _favoriteAgents = _favoriteAgentRepository.getFavoriteAgents();
+  Future<void> getAllFavoriteAgents() async {
+    _favoriteAgents = _favoriteAgentRepository.getFavoriteAgents();
+    rebuildUi();
+  }
 }
