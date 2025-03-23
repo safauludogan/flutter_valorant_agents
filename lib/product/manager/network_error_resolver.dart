@@ -48,7 +48,7 @@ final class NetworkErrorResolver {
               children: [
                 const LottieNotFound(),
                 Text(
-                  LocaleKeys.messages_noInternetConnection,
+                  LocaleKeys.general_messages_noInternetConnection,
                   style: context.textTheme.titleSmall,
                 ).tr(),
                 OutlinedButton(
@@ -67,7 +67,7 @@ final class NetworkErrorResolver {
   Widget _serverErrorWidget({required VoidCallback receiveData}) {
     return Column(
       children: [
-        const Text(LocaleKeys.messages_noResponseFromServer).tr(),
+        const Text(LocaleKeys.general_messages_noResponseFromServer).tr(),
         OutlinedButton(
           onPressed: () => receiveData.call(),
           child: const Text(LocaleKeys.general_button_tryAgain).tr(),

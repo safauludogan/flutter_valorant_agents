@@ -16,6 +16,7 @@ enum HomePages {
     required List<FavoriteAgent> favoriteAgents,
     required Future<void> Function() onRefresh,
     required VoidCallback checkFavoriteAgentRefresh,
+    required void Function(FavoriteAgent) onNotesTap,
   }) {
     switch (this) {
       case HomePages.agents:
@@ -26,6 +27,7 @@ enum HomePages {
           favoriteAgents: favoriteAgents,
           onRefresh: onRefresh,
           checkFavoriteAgentRefresh: checkFavoriteAgentRefresh,
+          onNotesTap: onNotesTap,
         );
       case HomePages.favoriteAgents:
         return FavoriteAgentsView(
@@ -35,6 +37,7 @@ enum HomePages {
           favoriteAgents: favoriteAgents,
           onRefresh: onRefresh,
           checkFavoriteAgentRefresh: checkFavoriteAgentRefresh,
+          onNotesTap: onNotesTap,
         );
     }
   }

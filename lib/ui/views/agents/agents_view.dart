@@ -14,6 +14,7 @@ class AgentsView extends StackedView<AgentsViewModel> {
     required this.favoriteAgents,
     required this.onRefresh,
     required this.checkFavoriteAgentRefresh,
+    required this.onNotesTap,
   });
 
   /// Agents
@@ -34,6 +35,9 @@ class AgentsView extends StackedView<AgentsViewModel> {
   /// Check favorite agent
   final VoidCallback checkFavoriteAgentRefresh;
 
+  /// On notes tap
+  final void Function(FavoriteAgent) onNotesTap;
+
   @override
   Widget builder(
     BuildContext context,
@@ -46,29 +50,32 @@ class AgentsView extends StackedView<AgentsViewModel> {
         isListView: true,
         onRefresh: onRefresh,
         child: AdaptAllView(
-          phone: _body(
+          phone: _Body(
             agents: agents,
             selectedAgentRole: selectedAgentRole,
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
                 agent.uuid!, checkFavoriteAgentRefresh),
+            onNotesTap: onNotesTap,
           ),
-          tablet: _body(
+          tablet: _Body(
             agents: agents,
             selectedAgentRole: selectedAgentRole,
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
                 agent.uuid!, checkFavoriteAgentRefresh),
+            onNotesTap: onNotesTap,
           ),
-          desktop: _body(
+          desktop: _Body(
             agents: agents,
             selectedAgentRole: selectedAgentRole,
             onFavoriteTap: onFavoriteTap,
             favoriteAgents: favoriteAgents,
             onAgentTap: (agent) => viewModel.navigateToAgentDetail(
                 agent.uuid!, checkFavoriteAgentRefresh),
+            onNotesTap: onNotesTap,
           ),
         ),
       ),
@@ -82,14 +89,15 @@ class AgentsView extends StackedView<AgentsViewModel> {
       AgentsViewModel();
 }
 
-class _body extends StatelessWidget {
-  const _body({
+class _Body extends StatelessWidget {
+  const _Body({
     super.key,
     required this.agents,
     required this.selectedAgentRole,
     required this.onFavoriteTap,
     required this.favoriteAgents,
     required this.onAgentTap,
+    required this.onNotesTap,
   });
 
   final List<Agent> agents;
@@ -97,6 +105,7 @@ class _body extends StatelessWidget {
   final void Function(Agent p1, bool p2) onFavoriteTap;
   final List<FavoriteAgent> favoriteAgents;
   final void Function(Agent) onAgentTap;
+  final void Function(FavoriteAgent) onNotesTap;
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +115,7 @@ class _body extends StatelessWidget {
       onFavoriteTap: onFavoriteTap,
       favoriteAgents: favoriteAgents,
       onAgentTap: onAgentTap,
+      onNotesTap: onNotesTap,
     );
   }
 }

@@ -59,7 +59,7 @@ final class AgentRepository extends IAgentRepository {
       }
       throw NetworkError(
         NetworkExceptions.defaultError(
-            error: LocaleKeys.messages_somethingWentWrong.tr()),
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
       );
     }
   }
@@ -87,7 +87,7 @@ final class AgentRepository extends IAgentRepository {
       }
       throw NetworkError(
         NetworkExceptions.defaultError(
-            error: LocaleKeys.messages_somethingWentWrong.tr()),
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
       );
     }
   }
@@ -112,7 +112,7 @@ final class AgentRepository extends IAgentRepository {
 
       throw NetworkError(
         NetworkExceptions.defaultError(
-            error: LocaleKeys.messages_somethingWentWrong.tr()),
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
       );
     } finally {
       if (!isSynchronized) {
@@ -130,7 +130,7 @@ final class AgentRepository extends IAgentRepository {
     } catch (e) {
       throw NetworkError(
         NetworkExceptions.defaultError(
-            error: LocaleKeys.messages_somethingWentWrong.tr()),
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
       );
     }
   }
@@ -151,7 +151,7 @@ final class AgentRepository extends IAgentRepository {
 
       throw NetworkError(
         NetworkExceptions.defaultError(
-            error: LocaleKeys.messages_somethingWentWrong.tr()),
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
       );
     }
   }
@@ -163,7 +163,7 @@ final class AgentRepository extends IAgentRepository {
     } catch (e) {
       throw NetworkError(
         NetworkExceptions.defaultError(
-            error: LocaleKeys.messages_somethingWentWrong.tr()),
+            error: LocaleKeys.general_messages_somethingWentWrong.tr()),
       );
     }
   }
