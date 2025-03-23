@@ -49,5 +49,10 @@
             "agents" : "Agents",
             "favoriteAgents" : "Favorites"
         }
-    }
+    },
+    "agentDetail" : {
+        "pages" : {
+            "abilitiesTitle" : "Abilities"
+        }
+    }   
 }

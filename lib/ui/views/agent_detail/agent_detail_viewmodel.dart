@@ -1,5 +1,6 @@
 import 'package:dio_nexus/dio_nexus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/product/manager/network_error.dart';
 import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
@@ -17,6 +18,13 @@ class AgentDetailViewModel extends BaseViewModel {
   NetworkExceptions? _error;
   NetworkExceptions? get getError => _error;
 
+  /// Scroll opacity
+  double _opacity = 0;
+  double get opacity => _opacity;
+
+  /// Scroll controller
+  late ScrollController scrollController;
+
   /// Get agent
   Future<void> getAgent({required String agentId}) async {
     setBusy(true);
@@ -30,5 +38,21 @@ class AgentDetailViewModel extends BaseViewModel {
     } finally {
       setBusy(false);
     }
+  }
+
+  /// Initialize
+  void initialize() {
+    scrollController = ScrollController()
+      ..addListener(() {
+        if (scrollController.hasClients) {
+          updateOpacity(scrollController.offset);
+        }
+      });
+  }
+
+  /// Update opacity
+  void updateOpacity(double offset) {
+    _opacity = scrollController.offset > 460.h ? 1.0 : 0.0;
+    rebuildUi();
   }
 }

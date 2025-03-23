@@ -13,6 +13,9 @@ final class Paddings {
   /// [p8a] 8.h
   static final EdgeInsets p8a = EdgeInsets.all(8.h);
 
+  /// [p12a] 12.h
+  static final EdgeInsets p12a = EdgeInsets.all(12.h);
+
   /// [p16a] 16.h
   static final EdgeInsets p16a = EdgeInsets.all(16.h);
 
@@ -73,6 +76,19 @@ final class Paddings {
 
   /// [p32r] 32.h
   static final EdgeInsets p32r = EdgeInsets.only(right: 32.h);
+
+  /// Top Padding
+  /// [p4t] 4.h
+  static final EdgeInsets p4t = EdgeInsets.only(top: 4.h);
+
+  /// [p8t] 8.h
+  static final EdgeInsets p8t = EdgeInsets.only(top: 8.h);
+
+  /// [p16t] 16.h
+  static final EdgeInsets p16t = EdgeInsets.only(top: 16.h);
+
+  /// [p32t] 32.h
+  static final EdgeInsets p32t = EdgeInsets.only(top: 32.h);
 
   /// Other Padding
   /// [p12v4h] 12.h 4.w
