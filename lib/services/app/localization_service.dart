@@ -17,4 +17,8 @@ class LocalizationService with ListenableServiceMixin {
   /// Get current locale
   String getCurrentLocale(BuildContext context) =>
       Localizations.localeOf(context).countryCode ?? '';
+
+  /// Get current locale
+  String getCurrentLocaleLanguageTag(BuildContext context) =>
+      Localizations.localeOf(context).toLanguageTag();
 }
