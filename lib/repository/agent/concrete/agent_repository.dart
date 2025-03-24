@@ -49,7 +49,7 @@ final class AgentRepository extends IAgentRepository {
 
       if (response.isNotEmpty) {
         await clearCache();
-        _saveAgentsToCache(response);
+        saveAgentsToCache(response);
       }
 
       return response;
@@ -123,7 +123,7 @@ final class AgentRepository extends IAgentRepository {
   }
 
   /// Save agents to cache
-  void _saveAgentsToCache(List<Agent> agents) {
+  void saveAgentsToCache(List<Agent> agents) {
     try {
       _agentCacheOperation
           .addAll(agents.map((e) => AgentCacheModel(agent: e)).toList());

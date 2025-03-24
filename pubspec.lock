@@ -256,10 +256,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio_nexus
-      sha256: "157519fa2c091affe93aeaa5984d04562c0c32be2f3148d177f66e1c86c30a4b"
+      sha256: "00afdfc8901b900808b2c7cbd418c3dfed71d55af4b7939644541e4d35f6715c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.3+1"
   dio_web_adapter:
     dependency: transitive
     description:

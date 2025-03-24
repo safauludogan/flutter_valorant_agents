@@ -19,7 +19,7 @@ dependencies:
   easy_localization: ^3.0.7+1
 
   # Network
-  dio_nexus: ^0.3.3
+  dio_nexus: ^0.3.3+1
   dio: ^5.8.0+1
 
   # UI
