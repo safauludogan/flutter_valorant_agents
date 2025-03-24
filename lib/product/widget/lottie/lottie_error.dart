@@ -23,8 +23,8 @@ class _LottieErrorState extends State<LottieError>
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
   @override

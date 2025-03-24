@@ -79,7 +79,7 @@ class HomeViewModel extends ReactiveViewModel
     } on NetworkError catch (e) {
       _error = e.networkException;
     } catch (e) {
-      debugPrint(e.toString());
+      //debugPrint(e.toString());
     } finally {
       setBusy(false);
     }
@@ -178,6 +178,7 @@ class HomeViewModel extends ReactiveViewModel
       _toastService.showInfoMessage(
           message: LocaleKeys.general_messages_languageChanged.tr());
     }
+    await getAllFavoriteAgents();
   }
 
   /// On tab agent note

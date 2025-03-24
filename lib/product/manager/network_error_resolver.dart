@@ -3,7 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
+import 'package:flutter_valorant_agents/product/widget/lottie/lottie_no_internet_connection.dart';
 import 'package:flutter_valorant_agents/product/widget/lottie/lottie_notfound.dart';
+import 'package:flutter_valorant_agents/product/widget/no_data_widget.dart';
 
 @immutable
 
@@ -46,7 +48,7 @@ final class NetworkErrorResolver {
           Center(
             child: Column(
               children: [
-                const LottieNotFound(),
+                const LottieNoInternetConnection(),
                 Text(
                   LocaleKeys.general_messages_noInternetConnection,
                   style: context.textTheme.titleSmall,
@@ -64,15 +66,14 @@ final class NetworkErrorResolver {
   }
 
   /// Server error widget
-  Widget _serverErrorWidget({required VoidCallback receiveData}) {
-    return Column(
-      children: [
-        const Text(LocaleKeys.general_messages_noResponseFromServer).tr(),
-        OutlinedButton(
-          onPressed: () => receiveData.call(),
-          child: const Text(LocaleKeys.general_button_tryAgain).tr(),
-        )
-      ],
-    );
-  }
+  Widget _serverErrorWidget({required VoidCallback receiveData}) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: NoDataWidget(
+              receiveData: () => receiveData.call(),
+            ),
+          ),
+        ],
+      );
 }

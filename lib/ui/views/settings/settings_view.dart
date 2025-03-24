@@ -12,6 +12,14 @@ import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.d
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
 import 'package:flutter_valorant_agents/product/widget/images/img_english.dart';
 import 'package:flutter_valorant_agents/product/widget/images/img_turkish.dart';
+import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/agent/concrete/agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/favorite_agent/abstract/i_favorite_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/favorite_agent/concrete/favorite_agent_repository.dart';
+import 'package:flutter_valorant_agents/services/app/localization_service.dart';
+import 'package:flutter_valorant_agents/services/app/theme_service.dart';
+import 'package:flutter_valorant_agents/services/cache/product_shared_cache_service.dart';
+import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/styles/radiuses.dart';
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
@@ -65,11 +73,26 @@ class SettingsView extends StackedView<SettingsViewModel> {
                           title: LocaleKeys.settings_theme),
                       WidgetSizes.spacingM.h.height,
                       _buildThemeOptions(context, viewModel),
+
+                      const Spacer(),
+                      // Clear all cache
+                      Center(child: _clearCaches(viewModel, context)),
                     ],
                   ),
           ),
         ),
       ),
+    );
+  }
+
+  TextButton _clearCaches(SettingsViewModel viewModel, BuildContext context) {
+    return TextButton(
+      onPressed: () => viewModel.clearAllCache(),
+      child: Text(
+        LocaleKeys.settings_clearCache,
+        style:
+            context.textTheme.bodyLarge?.copyWith(color: ColorName.crimsonRed),
+      ).tr(),
     );
   }
 
@@ -179,7 +202,15 @@ class SettingsView extends StackedView<SettingsViewModel> {
 
   @override
   SettingsViewModel viewModelBuilder(BuildContext context) {
-    final viewModel = SettingsViewModel()
+    final viewModel = SettingsViewModel(
+      themeService: locator<ThemeService>(),
+      localizationService: locator<LocalizationService>(),
+      productSharedCacheService: locator<ProductSharedCacheService>(),
+      agentRepository: locator<IAgentRepository>(),
+      favoriteAgentRepository: locator<IFavoriteAgentRepository>(),
+      dialogService: locator<DialogService>(),
+      toastService: locator<ToastService>(),
+    )
       ..localizationControl(context)
       ..themeControl();
     return viewModel;
