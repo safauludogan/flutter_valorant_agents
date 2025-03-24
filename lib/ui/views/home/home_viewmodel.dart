@@ -4,7 +4,6 @@ import 'package:dio_nexus/dio_nexus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_valorant_agents/app/app.bottomsheets.dart';
-import 'package:flutter_valorant_agents/app/app.locator.dart';
 import 'package:flutter_valorant_agents/app/app.router.dart';
 import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/manager/network_error.dart';
@@ -20,12 +19,27 @@ import 'package:stacked_services/stacked_services.dart';
 class HomeViewModel extends ReactiveViewModel
     with FormStateHelper
     implements FormViewModel {
-  final _agentRepository = locator<IAgentRepository>();
-  final _bottomSheetService = locator<BottomSheetService>();
-  final _favoriteAgentRepository = locator<IFavoriteAgentRepository>();
-  final _navigationService = locator<NavigationService>();
-  final _toastService = locator<ToastService>();
-  final _dialogService = locator<DialogService>();
+  HomeViewModel({
+    required IAgentRepository agentRepository,
+    required IFavoriteAgentRepository favoriteAgentRepository,
+    required BottomSheetService bottomSheetService,
+    required NavigationService navigationService,
+    required ToastService toastService,
+    required DialogService dialogService,
+  })  : _agentRepository = agentRepository,
+        _favoriteAgentRepository = favoriteAgentRepository,
+        _bottomSheetService = bottomSheetService,
+        _navigationService = navigationService,
+        _toastService = toastService,
+        _dialogService = dialogService;
+
+  late final IAgentRepository _agentRepository;
+  final IFavoriteAgentRepository _favoriteAgentRepository;
+
+  final BottomSheetService _bottomSheetService;
+  final NavigationService _navigationService;
+  final ToastService _toastService;
+  final DialogService _dialogService;
 
   /// Agents private property
   List<Agent> _agents = [];
