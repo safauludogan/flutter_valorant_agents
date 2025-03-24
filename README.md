@@ -16,20 +16,33 @@ Valorant API kullanarak ajanları ve yeteneklerini gösteren, favorilere ekleme 
 
 ## 📱 Uygulama Önizlemesi
 
-### Ana Ekran ve Ajan Detayları
-![Ana Ekran ve Detaylar](gif/1.gif)
-
-### Favori Ajanlar
-![Favori Ajanlar](gif/2.gif)
-
-### Arama ve Filtreleme
-![Arama Özellikleri](gif/3.gif)
-
-### Tema Değiştirme
-![Tema Değiştirme](gif/4.gif)
-
-### Dil Seçenekleri
-![Dil Değiştirme](gif/5.gif)
+<table>
+  <tr>
+    <td align="center">
+      <b>Ana Ekran ve Ajan Detayları</b><br/>
+      <img src="gif/1.gif" width="250" alt="Ana Ekran ve Detaylar">
+    </td>
+    <td align="center">
+      <b>Favori Ajanlar</b><br/>
+      <img src="gif/2.gif" width="250" alt="Favori Ajanlar">
+    </td>
+    <td align="center">
+      <b>Arama ve Filtreleme</b><br/>
+      <img src="gif/3.gif" width="250" alt="Arama Özellikleri">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Tema Değiştirme</b><br/>
+      <img src="gif/4.gif" width="250" alt="Tema Değiştirme">
+    </td>
+    <td align="center">
+      <b>Dil Seçenekleri</b><br/>
+      <img src="gif/5.gif" width="250" alt="Dil Değiştirme">
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ## 🛠 Teknoloji Altyapısı
 
