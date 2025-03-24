@@ -69,5 +69,8 @@
         "turkish": "Turkish",
         "english": "English",
         "clearCache": "Clear cache"
+    },
+    "startup": {
+        "loading": "Loading..."
     }
 }

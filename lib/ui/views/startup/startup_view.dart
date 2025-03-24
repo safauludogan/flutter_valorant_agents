@@ -1,8 +1,17 @@
+import 'package:common/common.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_valorant_agents/product/extension/context_extension.dart';
+import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/ui/common/ui_helpers.dart';
 import 'package:flutter_valorant_agents/ui/views/startup/startup_viewmodel.dart';
+import 'package:gen/gen.dart';
 import 'package:stacked/stacked.dart';
+import 'package:widgets/widgets.dart';
+
+part 'widget/app_name_text.dart';
+part 'widget/loading.dart';
 
 class StartupView extends StackedView<StartupViewModel> {
   const StartupView({Key? key}) : super(key: key);
@@ -19,25 +28,8 @@ class StartupView extends StackedView<StartupViewModel> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'STACKED',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Loading ...', style: TextStyle(fontSize: 16)),
-                horizontalSpaceSmall,
-                SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                    strokeWidth: 6,
-                  ),
-                ),
-              ],
-            ),
+            _AppNameText(),
+            _Loading(),
           ],
         ),
       ),

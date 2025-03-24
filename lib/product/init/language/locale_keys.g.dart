@@ -59,5 +59,7 @@ abstract class  LocaleKeys {
   static const settings_english = 'settings.english';
   static const settings_clearCache = 'settings.clearCache';
   static const settings = 'settings';
+  static const startup_loading = 'startup.loading';
+  static const startup = 'startup';
 
 }
