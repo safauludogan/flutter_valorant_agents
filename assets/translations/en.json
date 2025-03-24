@@ -5,14 +5,18 @@
             "tryAgain": "Try again",
             "all": "All",
             "update": "Update",
-            "delete": "Delete"
+            "delete": "Delete",
+            "clear": "Clear",
+            "cancel": "Cancel"
         },
         "messages": {
             "somethingWentWrong": "Oops, something went wrong!",
             "noAgentsFound": "No agents found ☹️",
             "noInternetConnection": "Check your internet connection.",
             "noResponseFromServer": "No response from server",
-            "languageChanged": "Language changed. Agents will be reloaded."
+            "languageChanged": "Language changed. Agents will be reloaded.",
+            "clearCacheSuccess": "Cache cleared successfully.",
+            "clearCacheDescription": "This action will clear all cache. This action is irreversible."
         }
     },
     "textformfield": {
@@ -63,6 +67,7 @@
         "light": "Light",
         "dark": "Dark",
         "turkish": "Turkish",
-        "english": "English"
+        "english": "English",
+        "clearCache": "Clear cache"
     }
 }

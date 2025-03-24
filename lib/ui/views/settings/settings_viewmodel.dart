@@ -1,17 +1,44 @@
 import 'package:core/core.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_valorant_agents/app/app.locator.dart';
+import 'package:flutter_valorant_agents/product/init/language/locale_keys.g.dart';
 import 'package:flutter_valorant_agents/product/utility/constants/enum/locales.dart';
+import 'package:flutter_valorant_agents/repository/agent/abstract/i_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/agent/concrete/agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/favorite_agent/abstract/i_favorite_agent_repository.dart';
+import 'package:flutter_valorant_agents/repository/favorite_agent/concrete/favorite_agent_repository.dart';
 import 'package:flutter_valorant_agents/services/app/localization_service.dart';
 import 'package:flutter_valorant_agents/services/app/theme_service.dart';
 import 'package:flutter_valorant_agents/services/cache/product_shared_cache_service.dart';
+import 'package:flutter_valorant_agents/services/common/toast_service.dart';
 import 'package:flutter_valorant_agents/ui/themes/theme_modes.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class SettingsViewModel extends ReactiveViewModel {
-  final _themeService = locator<ThemeService>();
-  final _localizationService = locator<LocalizationService>();
-  final _productSharedCacheService = locator<ProductSharedCacheService>();
+  SettingsViewModel({
+    required ThemeService themeService,
+    required LocalizationService localizationService,
+    required ProductSharedCacheService productSharedCacheService,
+    required IAgentRepository agentRepository,
+    required IFavoriteAgentRepository favoriteAgentRepository,
+    required DialogService dialogService,
+    required ToastService toastService,
+  })  : _themeService = themeService,
+        _localizationService = localizationService,
+        _productSharedCacheService = productSharedCacheService,
+        _agentRepository = agentRepository,
+        _favoriteAgentRepository = favoriteAgentRepository,
+        _dialogService = dialogService,
+        _toastService = toastService;
+
+  final ThemeService _themeService;
+  final LocalizationService _localizationService;
+  final ProductSharedCacheService _productSharedCacheService;
+  final IAgentRepository _agentRepository;
+  final IFavoriteAgentRepository _favoriteAgentRepository;
+  final DialogService _dialogService;
+  final ToastService _toastService;
 
   /// Change theme
   bool _isTurkish = true;
@@ -67,6 +94,24 @@ class SettingsViewModel extends ReactiveViewModel {
   void themeControl() {
     _isLightTheme = !_themeService.isDarkMode;
     rebuildUi();
+  }
+
+  /// Clear all cache
+  Future<void> clearAllCache() async {
+    final response = await _dialogService.showConfirmationDialog(
+      dialogPlatform: DialogPlatform.Material,
+      title: LocaleKeys.settings_clearCache.tr(),
+      description: LocaleKeys.general_messages_clearCacheDescription.tr(),
+      cancelTitle: LocaleKeys.general_button_cancel.tr(),
+      confirmationTitle: LocaleKeys.general_button_clear.tr(),
+    );
+    if (response?.confirmed ?? false) {
+      await _agentRepository.clearCache();
+      await _favoriteAgentRepository.clearFavoriteAgents();
+      _toastService.showSuccessMessage(
+        message: LocaleKeys.general_messages_clearCacheSuccess.tr(),
+      );
+    }
   }
 
   @override

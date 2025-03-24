@@ -24,8 +24,8 @@ class _LottieNoInternetConnectionState extends State<LottieNoInternetConnection>
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
   @override

@@ -10,6 +10,7 @@ import 'package:flutter_valorant_agents/product/manager/network_error_resolver.d
 import 'package:flutter_valorant_agents/product/utility/constants/project_durations.dart';
 import 'package:flutter_valorant_agents/product/utility/size/widget_size.dart';
 import 'package:flutter_valorant_agents/product/widget/icon/favorite_icon_button.dart';
+import 'package:flutter_valorant_agents/product/widget/no_data_widget.dart';
 import 'package:flutter_valorant_agents/ui/styles/paddings.dart';
 import 'package:flutter_valorant_agents/ui/views/agent_detail/agent_detail_viewmodel.dart';
 import 'package:flutter_valorant_agents/ui/views/agent_detail/widget/decoration/ability_container_decoration.dart';
@@ -73,7 +74,19 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
 
   Widget _buildContent(BuildContext context, AgentDetailViewModel viewModel) {
     final agent = viewModel.agent;
-    if (agent == null) return const SizedBox.shrink();
+
+    if (agent == null) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: NoDataWidget(
+              receiveData: () => viewModel.getAgent(agentId: agentId),
+            ),
+          ),
+        ],
+      );
+    }
 
     return CustomScrollView(
       controller: viewModel.scrollController,
@@ -83,7 +96,7 @@ class AgentDetailView extends StackedView<AgentDetailViewModel> {
           pinned: true,
           title: _AgentName(
             opacity: viewModel.opacity,
-            agentName: agent.displayName!,
+            agentName: agent!.displayName!,
           ),
           // Scroll yapıldığında görünecek role icon
           actions: [

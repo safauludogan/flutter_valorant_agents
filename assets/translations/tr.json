@@ -5,14 +5,18 @@
             "tryAgain": "Tekrar deneyin",
             "all": "Tümü",
             "update": "Güncelle",
-            "delete": "Sil"
+            "delete": "Sil",
+            "clear": "Temizle",
+            "cancel": "İptal"
         },
         "messages": {
             "somethingWentWrong": "Hay aksi, bir şeyler ters gitti!",
             "noAgentsFound": "Ajanlar bulunamadı ☹️",
             "noInternetConnection": "İnternet bağlantınızı kontrol ediniz.",
             "noResponseFromServer": "Sunucudan yanıt alınamadı",
-            "languageChanged": "Dil değiştirildi. Ajanlar yeniden yüklenecektir."
+            "languageChanged": "Dil değiştirildi. Ajanlar yeniden yüklenecektir.",
+            "clearCacheSuccess": "Cache başarıyla temizlendi.",
+            "clearCacheDescription": "Bu işlem tüm cache'i temizleyecektir. Bu işlem geri alınamaz."
         }
     },
     "textformfield": {
@@ -63,6 +67,7 @@
         "light": "Açık",
         "dark": "Koyu",
         "turkish": "Türkçe",
-        "english": "İngilizce"
+        "english": "İngilizce",
+        "clearCache": "Cache'i temizle"
     }
 }
